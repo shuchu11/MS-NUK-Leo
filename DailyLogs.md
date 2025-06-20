@@ -22,9 +22,11 @@ git checkout develop
 ```
 * Set up the Docker environment
 ```
-sudo apt install docker-compose-plugin    # 安裝 docker-compose
 ./scripts/syncComponents.sh  # 下載各核心模組
 docker-compose -f docker compose/docker compose-basic-vpp.yaml up --build  # 開始建構並啟動 OAI 所有 container
 ```
->[!Caution] `Command 'docker-compose' not found, but can be installed with:`
->
+>[!Caution]
+>`Command 'docker-compose' not found, but can be installed with: ... `
+> **solution :** `sudo apt install docker-compose-plugin`
+
+--> Again, Enter the command `docker-compose -f docker compose/docker compose-basic-vpp.yaml up --build  # 開始建構並啟動 OAI 所有 container`
