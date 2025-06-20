@@ -120,3 +120,18 @@ docker compose -f docker-compose/docker-compose-gnbsim.yaml up -d
 * 所有容器都顯示 Started，這代表 gnbsim 映像設定正確，Docker Compose 執行成功！
 
 **確認 UE 是否成功與 AMF 建立連線（UE attach）**
+執行以下兩條指令觀察 log：
+
+1. 查看 gnbsim 的 log
+   ```
+docker logs gnbsim
+   ```
+result : [ gnbsim log .txt ]https://github.com/shuchu11/MS-NUK-Leo/blob/77fc5a8b66d33b298418a05ee4a493e50176f7ad/oai_installation/gNB_log.txt
+
+![image](https://github.com/user-attachments/assets/4dbb0bfe-4a2e-48dc-b9a4-db027856412f)
+
+2. 查看 oai-amf 的 log（這邊會顯示 UE 註冊事件）
+```
+docker logs oai-amf
+```
+![image](https://github.com/user-attachments/assets/a7137769-f356-49da-b30a-404f9fa50320)
