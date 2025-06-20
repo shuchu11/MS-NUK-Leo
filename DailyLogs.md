@@ -95,7 +95,7 @@ docker compose -f docker-compose/docker-compose-gnbsim.yaml up -d
 >docker-compose 檔案中指定的 gnbsim 映像名稱為 gnbsim，但電腦端或 Docker Hub 找不到這個映像
 ![image](https://github.com/user-attachments/assets/0a1cbca7-e1b7-4ff2-8b96-85d074120e98)
 
-**solution :**
+**solution :** \
 ref : https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-fed/-/blob/master/docs/DEPLOY_SA5G_MINI_WITH_GNBSIM.md?utm_source=chatgpt.com#6-getting-a-gnbsim-docker-image \
 
 follow steps blew : \
