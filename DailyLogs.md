@@ -66,9 +66,9 @@ enter `docker ps`check the containers status (the result is blew)
 
 目前的 OAI 5G Core 所有 container 都已經：
 
-*  啟動成功 \
-*  健康檢查狀態為 (healthy) \
-*  開啟了關鍵 Port，包括： \
+*  啟動成功 
+*  健康檢查狀態為 (healthy) 
+*  開啟了關鍵 Port，包括： 
 
 AMF: SCTP 38412
 
@@ -78,3 +78,20 @@ UPF: GTPU 2152
 
 其他服務皆啟用 8080 / 9090（管理與 API）\
 這代表現在的 5G 核心網路平台已經完全準備好，接下來你可以模擬「基地台（gNB）」與「用戶裝置（UE）」的附著與上網行為。
+
+## 啟動 gNB + UE 模擬器（gnbsim）
+輸入  `ls -l docker-compose` 可以見到以下幾種gNB模擬器yaml檔
+
+-rw-rw-r-- 1 codebind codebind  1388 Jun 20 09:44 docker-compose-gnbsim-ebpf.yaml  \
+-rw-rw-r-- 1 codebind codebind  2686 Jun 20 09:44 docker-compose-gnbsim-vpp-additional.yaml    \
+-rw-rw-r-- 1 codebind codebind  1409 Jun 20 09:44 docker-compose-gnbsim-vpp.yaml    \
+-rw-rw-r-- 1 codebind codebind  6185 Jun 20 09:44 docker-compose-gnbsim.yaml  \
+
+這裡選最基礎的 docker-compose-gnbsim.yaml 開始：
+```
+docker compose -f docker-compose/docker-compose-gnbsim.yaml up -d
+```
+>[!Caution]
+>docker-compose 檔案中指定的 gnbsim 映像名稱為 gnbsim，但電腦端或 Docker Hub 找不到這個映像
+![image](https://github.com/user-attachments/assets/0a1cbca7-e1b7-4ff2-8b96-85d074120e98)
+
