@@ -96,9 +96,9 @@ docker compose -f docker-compose/docker-compose-gnbsim.yaml up -d
 ![image](https://github.com/user-attachments/assets/0a1cbca7-e1b7-4ff2-8b96-85d074120e98)
 
 **solution :** \
-ref : https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-fed/-/blob/master/docs/DEPLOY_SA5G_MINI_WITH_GNBSIM.md?utm_source=chatgpt.com#6-getting-a-gnbsim-docker-image \
+ref : https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-fed/-/blob/master/docs/DEPLOY_SA5G_MINI_WITH_GNBSIM.md?utm_source=chatgpt.com#6-getting-a-gnbsim-docker-image 
 
-follow steps blew : \
+follow steps blew : 
 * 拉取 image：
 ```
 docker pull rohankharade/gnbsim
