@@ -11,7 +11,7 @@ sudo apt install git cmake build-essential pkg-config -y
 mkdir -p ~/openairinterface
 cd ~/openairinterface
 ```
-**Installing the 5G Core Network (OAI 5GC)** \
+**Installing the 5G Core Network (OAI 5GC)** 
 
 * Download the OAI 5G Core source code
 ```
