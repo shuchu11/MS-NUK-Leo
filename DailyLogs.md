@@ -36,6 +36,7 @@ docker-compose -f docker compose/docker compose-basic-vpp.yaml up --build  # 開
 `docker compose -f docker-compose/docker-compose-basic-vpp.yaml up --build  # 開始建構並啟動 OAI 所有 container`
 
 >[!Caution]
+>123
 ```
 codebind@codebind:~/openairinterface/oai-cn5g-fed$ docker compose -f docker-compose/docker-compose-basic-vpp.yaml up --build
 open /home/codebind/openairinterface/oai-cn5g-fed/docker-compose/docker-compose-basic-vpp.yaml: no such file or directory
