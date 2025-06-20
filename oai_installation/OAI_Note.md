@@ -29,8 +29,10 @@ sudo snap install docker    # 安裝 docker-compose
 
 ![image](https://github.com/user-attachments/assets/125b98fb-a9db-4c1d-804f-34147f469207)
 
+隨機選取資料夾中的 docker-compose-basic-vpp-pcf-steering.yaml 啟動，以確認core是否可以成功運行 \
 以下指令可以在背景模式下運行容器，僅顯示運行狀態 \
 `docker compose -f docker-compose/docker-compose-basic-vpp-pcf-steering.yaml up -d     # 開始建構並啟動 OAI 所有 container`
+
 ![image](https://github.com/user-attachments/assets/59e60734-8867-42fd-9c32-2a282089bfc6)
 
 enter `docker ps`check the containers status (the result is blew)
