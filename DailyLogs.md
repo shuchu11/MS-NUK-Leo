@@ -46,5 +46,10 @@ open /home/codebind/openairinterface/oai-cn5g-fed/docker-compose/docker-compose-
 執行以下指令，列出 docker-compose 資料夾的內容 \
 `ls -l docker-compose`
 ![image](https://github.com/user-attachments/assets/125b98fb-a9db-4c1d-804f-34147f469207)
-證實 docker-compose-basic-vpp.yaml 確實不存在 ，隨機選取資料夾中的 docker-compose-basic-vpp-pcf-steering.yaml 開啟 \
+證實 docker-compose-basic-vpp.yaml 確實不存在 ，隨機選取資料夾中的 docker-compose-basic-vpp-pcf-steering.yaml 啟動，確認core是否可以成功運行 \
 `docker compose -f docker-compose/docker-compose-basic-vpp-pcf-steering.yaml up --build`
+![image](https://github.com/user-attachments/assets/00311281-57e7-4556-8749-651afca808d0)
+[!information]
+ocker 會「前景模式」運行所有 container，並把 container 的 log 寫到你的終端機上（如上圖），導致無法在同一個終端機再輸入其他指令。\
+按 Ctrl + C 停止 (以下為成功停止 docker compose 的畫面)
+![image](https://github.com/user-attachments/assets/f566575e-bcdb-48c6-aed7-3d692921525f)
