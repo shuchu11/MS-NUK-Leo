@@ -28,3 +28,21 @@ sudo snap install docker    # 安裝 docker-compose
 以下指令可以在背景模式下運行容器，僅顯示運行狀態 \
 `docker compose -f docker-compose/docker-compose-basic-vpp-pcf-steering.yaml up -d     # 開始建構並啟動 OAI 所有 container`
 ![image](https://github.com/user-attachments/assets/59e60734-8867-42fd-9c32-2a282089bfc6)
+
+enter `docker ps`check the containers status (the result is blew)
+![image](https://github.com/user-attachments/assets/7b53a69a-5905-4e35-96c0-81dfa201378c)
+
+目前的 OAI 5G Core 所有 container 都已經：
+
+*  啟動成功 \
+*  健康檢查狀態為 (healthy) \
+*  開啟了關鍵 Port，包括： \
+
+AMF: SCTP 38412
+
+SMF: GTPU 8805
+
+UPF: GTPU 2152
+
+其他服務皆啟用 8080 / 9090（管理與 API）\
+這代表現在的 5G 核心網路平台已經完全準備好，接下來你可以模擬「基地台（gNB）」與「用戶裝置（UE）」的附著與上網行為。
