@@ -1,0 +1,130 @@
+[2025-06-20 10:26:08.430] [ngap] [debug] Encoded size (20)
+[2025-06-20 10:26:08.430] [sctp] [debug] [Socket 4, Assoc ID 5] Sending buffer 0x7e8100002e20 of 20 bytes on stream 0 with PPID 60
+[2025-06-20 10:26:08.430] [sctp] [debug] Successfully sent 20 bytes on stream 0
+[2025-06-20 10:26:08.430] [amf_n2] [debug] Send request to SBI to trigger UE Communication Failure Report (SUPI imsi-208950000000033 )
+[2025-06-20 10:26:08.430] [ngap] [debug] Free NGAP Message PDU
+[2025-06-20 10:26:08.437] [sctp] [info] [Assoc_id 6, Socket 5] Received a message (length 53) from port 52961, on stream 0, PPID 60
+[2025-06-20 10:26:08.437] [ngap] [debug] Handling SCTP payload from SCTP Server on assoc_id (6), stream_id (0), instreams (16), outstreams (16)
+[2025-06-20 10:26:08.437] [ngap] [debug] Decoded NGAP message, procedure code 46, present 1
+InitiatingMessage ::= {
+    procedureCode: 46
+    criticality: 1 (ignore)
+    value: UplinkNASTransport ::= {
+        protocolIEs: ProtocolIE-Container ::= {
+            UplinkNASTransport-IEs ::= {
+                id: 10
+                criticality: 0 (reject)
+                value: 2
+            }
+            UplinkNASTransport-IEs ::= {
+                id: 85
+                criticality: 0 (reject)
+                value: 0
+            }
+            UplinkNASTransport-IEs ::= {
+                id: 38
+                criticality: 0 (reject)
+                value: 7E 04 55 E4 9D F0 01 7E 00 43
+            }
+            UplinkNASTransport-IEs ::= {
+                id: 121
+                criticality: 1 (ignore)
+                value: UserLocationInformationNR ::= {
+                    nR-CGI: NR-CGI ::= {
+                        pLMNIdentity: 02 F8 59
+                        nRCellIdentity: 00 00 10 00 10 (4 bits unused)
+                    }
+                    tAI: TAI ::= {
+                        pLMNIdentity: 02 F8 59
+                        tAC: 00 A0 00
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+[2025-06-20 10:26:09.576] [amf_sbi] [debug] Send a simple HTTP request
+[2025-06-20 10:26:09.583] [common] [debug] Parsing the message with the Simple Parser
+[2025-06-20 10:26:09.583] [amf_sbi] [info] JSON part 
+[2025-06-20 10:26:09.583] [amf_sbi] [warning] Could not get JSON content from the response
+[2025-06-20 10:26:09.583] [amf_sbi] [info] Receive Nsmf_PDUSessionUpdateSMContext, handling ...
+[2025-06-20 10:26:09.583] [amf_sbi] [debug] Send PDU Session Update SM Context Request to SMF (SUPI imsi-208950000000032, PDU Session ID 1)
+[2025-06-20 10:26:09.583] [amf_sbi] [debug] smf_info, context location http://oai-smf:8080/nsmf-pdusession/v1/sm-contexts/4
+[2025-06-20 10:26:09.583] [amf_sbi] [debug] SMF URI: http://oai-smf:8080/nsmf-pdusession/v1/sm-contexts/4/modify
+[2025-06-20 10:26:09.583] [amf_sbi] [debug] Buffer: 0003e0c0a84605f9be8c340001
+[2025-06-20 10:26:09.583] [common] [debug] Input string (26 bytes): 0003e0c0a84605f9be8c340001 
+[2025-06-20 10:26:09.583] [common] [debug] Data (formatted):
+ 00  03  e0  c0  a8  46  05  f9  be  8c  34  00  01 
+[2025-06-20 10:26:09.583] [amf_sbi] [debug] Send HTTP message to http://oai-smf:8080/nsmf-pdusession/v1/sm-contexts/4/modify
+[2025-06-20 10:26:09.583] [amf_sbi] [debug] Send HTTP message to NF with body ------Boundary
+Content-Type: application/json
+
+{"n2SmInfo":{"contentId":"n2msg"},"n2SmInfoType":"PDU_RES_SETUP_RSP"}
+------Boundary
+Content-Type: application/vnd.3gpp.ngap
+Content-Id: n2msg
+
+
+
+
+
+[2025-06-20 11:14:41.839] [amf_app] [debug] Send ITTI msg to SBI task to trigger NRF Heartbeat
+[2025-06-20 11:14:41.839] [amf_sbi] [info] Receive Update NF Instance Request, handling ...
+[2025-06-20 11:14:41.839] [amf_sbi] [debug] Send NF Update to NRF
+[2025-06-20 11:14:41.839] [amf_sbi] [debug] Send NF Update to NRF, Msg body [{"op":"replace","path":"/nfStatus","value":"REGISTERED"}]
+[2025-06-20 11:14:41.839] [amf_sbi] [debug] Send NF Update to NRF, NRF URI http://oai-nrf:8080/nnrf-nfm/v1/nf-instances/d4c10f36-a2e0-4fde-880a-0e51fd78d534
+[2025-06-20 11:14:41.839] [amf_sbi] [info] Send HTTP message to http://oai-nrf:8080/nnrf-nfm/v1/nf-instances/d4c10f36-a2e0-4fde-880a-0e51fd78d534
+[2025-06-20 11:14:41.839] [amf_sbi] [info] HTTP message Body: [{"op":"replace","path":"/nfStatus","value":"REGISTERED"}]
+[2025-06-20 11:14:41.839] [amf_sbi] [debug] Send a simple HTTP request
+[2025-06-20 11:14:41.842] [amf_sbi] [info] Get response with HTTP code (204)
+[2025-06-20 11:14:41.842] [amf_sbi] [info] Could not get JSON content from the response
+[2025-06-20 11:14:41.842] [amf_sbi] [debug] NF Update, response from NRF, JSON data: 
+ null
+[2025-06-20 11:14:41.842] [amf_app] [debug] Received SBI_UPDATE_NF_INSTANCE_RESPONSE
+[2025-06-20 11:14:41.842] [amf_app] [debug] Handle NF Update response
+[2025-06-20 11:14:41.842] [amf_app] [debug] Set a timer to the next Heart-beat (10)
+[2025-06-20 11:14:51.849] [amf_app] [debug] Send ITTI msg to SBI task to trigger NRF Heartbeat
+[2025-06-20 11:14:51.849] [amf_sbi] [info] Receive Update NF Instance Request, handling ...
+[2025-06-20 11:14:51.849] [amf_sbi] [debug] Send NF Update to NRF
+[2025-06-20 11:14:51.849] [amf_sbi] [debug] Send NF Update to NRF, Msg body [{"op":"replace","path":"/nfStatus","value":"REGISTERED"}]
+[2025-06-20 11:14:51.849] [amf_sbi] [debug] Send NF Update to NRF, NRF URI http://oai-nrf:8080/nnrf-nfm/v1/nf-instances/d4c10f36-a2e0-4fde-880a-0e51fd78d534
+[2025-06-20 11:14:51.849] [amf_sbi] [info] Send HTTP message to http://oai-nrf:8080/nnrf-nfm/v1/nf-instances/d4c10f36-a2e0-4fde-880a-0e51fd78d534
+[2025-06-20 11:14:51.849] [amf_sbi] [info] HTTP message Body: [{"op":"replace","path":"/nfStatus","value":"REGISTERED"}]
+[2025-06-20 11:14:51.849] [amf_sbi] [debug] Send a simple HTTP request
+[2025-06-20 11:14:51.851] [amf_sbi] [info] Get response with HTTP code (204)
+[2025-06-20 11:14:51.851] [amf_sbi] [info] Could not get JSON content from the response
+[2025-06-20 11:14:51.851] [amf_sbi] [debug] NF Update, response from NRF, JSON data: 
+ null
+[2025-06-20 11:14:51.854] [amf_app] [debug] Received SBI_UPDATE_NF_INSTANCE_RESPONSE
+[2025-06-20 11:14:51.854] [amf_app] [debug] Handle NF Update response
+[2025-06-20 11:14:51.854] [amf_app] [debug] Set a timer to the next Heart-beat (10)
+[2025-06-20 11:14:59.372] [amf_app] [info] 
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |----------------------------------------------------------------------gNBs' Information---------------------------------------------------------------------|
+   |  Index |               Status               |              Global Id             |              gNB Name              |                PLMN                |
+   |    1   |              Connected             |               0x0100               |                                    |               208,95               |
+   |    2   |              Connected             |               0x0200               |                                    |               208,95               |
+   |    3   |              Connected             |               0x0300               |                                    |               208,95               |
+   |    4   |              Connected             |               0x0400               |                                    |               208,95               |
+   |    5   |              Connected             |               0x0500               |                                    |               208,95               |
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |---------------------------------------------------------------------UEs' Information----------------------------------------------------------------------|
+   |  Index |     5GMM State     |        IMSI        |        GUTI        |   RAN UE NGAP ID   |   AMF UE NGAP ID   |        PLMN        |       Cell Id      |
+   |    1   |   5GMM-REGISTERED  |   208950000000031  |20895010041372800554|        0x00        |        0x03        |       208,95       |      000004001     |
+   |    2   |   5GMM-REGISTERED  |   208950000000032  |20895010041977047435|        0x00        |        0x04        |       208,95       |      000008001     |
+   |    3   |   5GMM-REGISTERED  |   208950000000033  |20895010041290854175|        0x00        |        0x01        |       208,95       |      00000c001     |
+   |    4   |   5GMM-REGISTERED  |   208950000000034  |20895010041219315990|        0x00        |        0x02        |       208,95       |      000010001     |
+   |    5   |   5GMM-REGISTERED  |   208950000000035  |20895010041159606502|        0x00        |        0x05        |       208,95       |      000014001     |
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
