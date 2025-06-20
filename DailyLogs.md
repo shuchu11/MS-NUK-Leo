@@ -31,7 +31,7 @@ docker-compose -f docker compose/docker compose-basic-vpp.yaml up --build  # 開
 >![image](https://github.com/user-attachments/assets/5d68b84e-6451-4979-ab60-191f001d3e95)
 
 **solution :** \
-follow the advice blew the warning `sudo snap install docker`\
+follow the advice blew the warning `sudo snap install docker`
 
 Again, Enter the command \
 `docker compose -f docker-compose/docker-compose-basic-vpp.yaml up --build  # 開始建構並啟動 OAI 所有 container`
