@@ -26,7 +26,8 @@ git checkout develop
 docker-compose -f docker compose/docker compose-basic-vpp.yaml up --build  # 開始建構並啟動 OAI 所有 container
 ```
 >[!Caution]
->`Command 'docker-compose' not found, but can be installed with: ... `
+>`Command 'docker-compose' not found, but can be installed with: ... ` \
 > **solution :** `sudo apt install docker-compose-plugin`
 
---> Again, Enter the command `docker-compose -f docker compose/docker compose-basic-vpp.yaml up --build  # 開始建構並啟動 OAI 所有 container`
+--> Again, Enter the command \
+`docker-compose -f docker compose/docker compose-basic-vpp.yaml up --build  # 開始建構並啟動 OAI 所有 container`
