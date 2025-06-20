@@ -11,3 +11,24 @@ sudo apt install git cmake build-essential pkg-config -y
 mkdir -p ~/openairinterface
 cd ~/openairinterface
 ```
+**Installing the 5G Core Network (OAI 5GC)** \
+
+* Download the OAI 5G Core source code
+```
+git clone https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-fed.git
+cd oai-cn5g-fed
+git checkout develop
+
+```
+* Set up the Docker environment
+```
+sudo apt install docker-compose-plugin    # 安裝 docker-compose
+./scripts/syncComponents.sh  # 下載各核心模組
+
+
+
+
+
+docker-compose -f docker compose/docker compose-basic-vpp.yaml up --build  # 開始建構並啟動 OAI 所有 container
+
+```
