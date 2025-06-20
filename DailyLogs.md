@@ -95,3 +95,22 @@ docker compose -f docker-compose/docker-compose-gnbsim.yaml up -d
 >docker-compose 檔案中指定的 gnbsim 映像名稱為 gnbsim，但電腦端或 Docker Hub 找不到這個映像
 ![image](https://github.com/user-attachments/assets/0a1cbca7-e1b7-4ff2-8b96-85d074120e98)
 
+**solution :**
+ref : https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-fed/-/blob/master/docs/DEPLOY_SA5G_MINI_WITH_GNBSIM.md?utm_source=chatgpt.com#6-getting-a-gnbsim-docker-image \
+
+follow steps blew : \
+* 拉取 image：
+```
+docker pull rohankharade/gnbsim
+```
+* 建立 tag 以符合 docker-compose 使用的名稱：
+```
+docker image tag rohankharade/gnbsim:latest gnbsim:latest
+```
+* 執行模擬器：
+```
+docker compose -f docker-compose/docker-compose-gnbsim.yaml up -d
+```
+這樣 docker-compose 裡寫的 image: gnbsim 就會成功對應到本機的 gnbsim:latest  (下圖為成功啟動gNB畫面)。
+![image](https://github.com/user-attachments/assets/04f2380f-8f2e-4286-82c7-b3b64dea5bf6)
+
