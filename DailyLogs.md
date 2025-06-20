@@ -113,4 +113,8 @@ docker compose -f docker-compose/docker-compose-gnbsim.yaml up -d
 ```
 這樣 docker-compose 裡寫的 image: gnbsim 就會成功對應到本機的 gnbsim:latest  (下圖為成功啟動gNB畫面)。
 ![image](https://github.com/user-attachments/assets/04f2380f-8f2e-4286-82c7-b3b64dea5bf6)
+成功啟動 gnbsim 模擬器，畫面顯示：
 
+*  6 個 gnbsim 容器都已啟動（包括 gnbsim、gnbsim2～5、gnbsim-fqdn）
+* 沒有錯誤
+* 所有容器都顯示 Started，這代表 gnbsim 映像設定正確，Docker Compose 執行成功！
