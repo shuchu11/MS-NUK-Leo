@@ -61,5 +61,7 @@ open /home/codebind/openairinterface/oai-cn5g-fed/docker-compose/docker-compose-
 `docker compose -f docker-compose/docker-compose-basic-vpp-pcf-steering.yaml up -d`
 ![image](https://github.com/user-attachments/assets/59e60734-8867-42fd-9c32-2a282089bfc6)
 
+enter `docker ps`check the containers status (the result is blew)
+![image](https://github.com/user-attachments/assets/7b53a69a-5905-4e35-96c0-81dfa201378c)
 
 
