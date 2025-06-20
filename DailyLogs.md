@@ -55,6 +55,7 @@ open /home/codebind/openairinterface/oai-cn5g-fed/docker-compose/docker-compose-
 
 按 Ctrl + C 停止 (以下為成功停止 docker compose 的畫面)
 ![image](https://github.com/user-attachments/assets/f566575e-bcdb-48c6-aed7-3d692921525f)
+
 **solution :** \
 改用以下指令可以在背景模式下運行容器，僅顯示運行狀態 \
 `docker compose -f docker-compose/docker-compose-basic-vpp-pcf-steering.yaml up -d`
