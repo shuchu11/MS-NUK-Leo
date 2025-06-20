@@ -37,7 +37,7 @@ Again, Enter the command \
 `docker compose -f docker-compose/docker-compose-basic-vpp.yaml up --build  # 開始建構並啟動 OAI 所有 container`
 
 >[!Caution]
->表示你執行的指令語法是正確的，但系統找不到指定的 docker-compose-basic-vpp.yaml 檔案
+>表示執行的指令語法是正確的，但系統找不到指定的 docker-compose-basic-vpp.yaml 檔案
 ```
 codebind@codebind:~/openairinterface/oai-cn5g-fed$ docker compose -f docker-compose/docker-compose-basic-vpp.yaml up --build
 open /home/codebind/openairinterface/oai-cn5g-fed/docker-compose/docker-compose-basic-vpp.yaml: no such file or directory
@@ -46,3 +46,5 @@ open /home/codebind/openairinterface/oai-cn5g-fed/docker-compose/docker-compose-
 執行以下指令，列出 docker-compose 資料夾的內容 \
 `ls -l docker-compose`
 ![image](https://github.com/user-attachments/assets/125b98fb-a9db-4c1d-804f-34147f469207)
+證實 docker-compose-basic-vpp.yaml 確實不存在 ，隨機選取資料夾中的 docker-compose-basic-vpp-pcf-steering.yaml 開啟 \
+`docker compose -f docker-compose/docker-compose-basic-vpp-pcf-steering.yaml up --build`
