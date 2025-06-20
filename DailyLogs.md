@@ -64,4 +64,19 @@ open /home/codebind/openairinterface/oai-cn5g-fed/docker-compose/docker-compose-
 enter `docker ps`check the containers status (the result is blew)
 ![image](https://github.com/user-attachments/assets/7b53a69a-5905-4e35-96c0-81dfa201378c)
 
+目前的 OAI 5G Core 所有 container 都已經：
+
+✅ 啟動成功
+✅ 健康檢查狀態為 (healthy)
+✅ 開啟了關鍵 Port，包括：
+
+AMF: SCTP 38412
+
+SMF: GTPU 8805
+
+UPF: GTPU 2152
+
+其他服務皆啟用 8080 / 9090（管理與 API）
+
+這代表你現在的 5G 核心網路平台已經完全準備好，接下來你可以模擬「基地台（gNB）」與「用戶裝置（UE）」的附著與上網行為。
 
