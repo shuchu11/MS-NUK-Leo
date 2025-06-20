@@ -30,7 +30,7 @@ docker-compose -f docker compose/docker compose-basic-vpp.yaml up --build  # 開
 >`Command 'docker-compose' not found, but can be installed with: ... ` \
 >![image](https://github.com/user-attachments/assets/5d68b84e-6451-4979-ab60-191f001d3e95)
 
-> **solution :** follow the advice blew the warning `sudo snap install docker`
+**solution :** follow the advice blew the warning `sudo snap install docker`
 
 --> Again, Enter the command \
 `docker compose -f docker-compose/docker-compose-basic-vpp.yaml up --build  # 開始建構並啟動 OAI 所有 container`
@@ -41,4 +41,7 @@ docker-compose -f docker compose/docker compose-basic-vpp.yaml up --build  # 開
 codebind@codebind:~/openairinterface/oai-cn5g-fed$ docker compose -f docker-compose/docker-compose-basic-vpp.yaml up --build
 open /home/codebind/openairinterface/oai-cn5g-fed/docker-compose/docker-compose-basic-vpp.yaml: no such file or directory
 ```
-> 執行以下指令，列出 docker-compose 資料夾的內容
+**solution :** 執行以下指令，列出 docker-compose 資料夾的內容 \
+`ls -l docker-compose`
+
+![image](https://github.com/user-attachments/assets/125b98fb-a9db-4c1d-804f-34147f469207)
