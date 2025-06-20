@@ -25,6 +25,7 @@ git checkout develop
 ./scripts/syncComponents.sh  # 下載各核心模組
 docker-compose -f docker compose/docker compose-basic-vpp.yaml up --build  # 開始建構並啟動 OAI 所有 container
 ```
+
 >[!Caution]
 >`Command 'docker-compose' not found, but can be installed with: ... ` \
 >![image](https://github.com/user-attachments/assets/5d68b84e-6451-4979-ab60-191f001d3e95)
@@ -33,6 +34,7 @@ docker-compose -f docker compose/docker compose-basic-vpp.yaml up --build  # 開
 
 --> Again, Enter the command \
 `docker compose -f docker-compose/docker-compose-basic-vpp.yaml up --build  # 開始建構並啟動 OAI 所有 container`
+
 >[!Caution]
 ```
 codebind@codebind:~/openairinterface/oai-cn5g-fed$ docker compose -f docker-compose/docker-compose-basic-vpp.yaml up --build
