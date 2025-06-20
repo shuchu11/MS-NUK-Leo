@@ -52,6 +52,7 @@ open /home/codebind/openairinterface/oai-cn5g-fed/docker-compose/docker-compose-
 ![image](https://github.com/user-attachments/assets/00311281-57e7-4556-8749-651afca808d0)
 >[!WARNING] 
 >docker 會「前景模式」運行所有 container，並把 container 的 log 寫到你的終端機上（如上圖），導致**無法在同一個終端機再輸入其他指令**。\
+
 按 Ctrl + C 停止 (以下為成功停止 docker compose 的畫面)
 ![image](https://github.com/user-attachments/assets/f566575e-bcdb-48c6-aed7-3d692921525f)
 **solution :** \
