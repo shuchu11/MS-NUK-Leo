@@ -118,3 +118,5 @@ docker compose -f docker-compose/docker-compose-gnbsim.yaml up -d
 *  6 個 gnbsim 容器都已啟動（包括 gnbsim、gnbsim2～5、gnbsim-fqdn）
 * 沒有錯誤
 * 所有容器都顯示 Started，這代表 gnbsim 映像設定正確，Docker Compose 執行成功！
+
+**確認 UE 是否成功與 AMF 建立連線（UE attach）**
