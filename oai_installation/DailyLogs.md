@@ -124,9 +124,9 @@ docker compose -f docker-compose/docker-compose-gnbsim.yaml up -d
 執行以下兩條指令觀察 log：
 
 1. 查看 gnbsim 的 log
-   ```
+```
 docker logs gnbsim
-   ```
+```
 result : [ gnbsim log .txt ]https://github.com/shuchu11/MS-NUK-Leo/blob/77fc5a8b66d33b298418a05ee4a493e50176f7ad/oai_installation/gNB_log.txt
 
 ![image](https://github.com/user-attachments/assets/4dbb0bfe-4a2e-48dc-b9a4-db027856412f)
