@@ -271,7 +271,7 @@ docker logs oai-amf | grep -i "5GMM"
 ```
 docker logs oai-amf | grep -i "deregister\|context\|registration"
 ```
-顯示
+顯示 (以下為部分訊息)
 ```
 
 [2025-06-20 11:26:12.731] [amf_n1] [debug] Set 5GMM state to 5GMM-DEREGISTERED
@@ -309,3 +309,20 @@ docker logs oai-amf | grep -i "deregister\|context\|registration"
    |    4   |  5GMM-DEREGISTERED |   208950000000034  |20895010041219315990|        0x00        |        0x02        |       208,95       |      000010001     |
    |    5   |   5GMM-REGISTERED  |   208950000000035  |20895010041159606502|        0x00        |        0x05        |       208,95       |      000014001     |
 ```
+ 表示 gnbsim 容器有成功傳送 Registration Complete，但 AMF 仍然將 UE 狀態顯示為 5GMM-DEREGISTERED。這表示「表面上完成註冊流程，但 AMF 沒有認為該 UE 真正完成註冊」。
+
+ 需要確認 `Security Mode Complete` 是否有成功，\
+ 目前只 ` grep 了 Registration Complete`，但 AMF 還需要：\
+`Authentication Request` \
+`Authentication Response`\
+`Security Mode Command`\
+`Security Mode Complete`\
+
+使用以下指令確認是否有 `Security Mode Complete`
+```
+docker logs oai-amf | grep -i "Security Mode\|Authentication\|Initial Context\|Registration"
+```
+顯示 : 目前看到所有 UE 都停在 5GMM-DEREGISTERED，而且 AMF log 也顯示收到了 Registration Complete，表示 AMF 收到 UE 註冊完成的訊息，但狀態沒有更新成 5GMM-REGISTERED。
+
+查看 AMF 完整註冊流程
+ 
