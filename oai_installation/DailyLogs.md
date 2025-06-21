@@ -163,7 +163,7 @@ UE address: 12.1.1.4
 1. GTP-U peer address（UPF）：192.168.72.201
 2. GTP-U TEID（上下行）：已成功交換
 
-**總結：你成功完成了一次完整的模擬 UE 附著、建立 PDU Session 並獲得 IP，核心網路與 gnbsim 功能都正常！**
+**總結：成功完成了一次完整的模擬 UE 附著、建立 PDU Session 並獲得 IP，核心網路與 gnbsim 功能都正常！**
 
 
 2. 查看 oai-amf 的 log（這邊會顯示 UE 註冊事件）
