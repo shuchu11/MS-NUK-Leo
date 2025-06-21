@@ -131,8 +131,181 @@ result : [ gnbsim log .txt ]https://github.com/shuchu11/MS-NUK-Leo/blob/77fc5a8b
 
 ![image](https://github.com/user-attachments/assets/4dbb0bfe-4a2e-48dc-b9a4-db027856412f)
 
+這段 gnbsim log 顯示，成功完成了一次完整的 5G UE 附著與 PDU Session 建立流程！
+
+UE 成功註冊（Registration Complete），並完成以下訊息交換：
+```
+* Message Type: Registration Accept (0x42)
+5G-GUTI: ...
+```
+1. Initial UE Message
+2. Authentication Request → Response
+3. Security Mode Command → Complete
+4. Registration Accept
+5. InitialContextSetup (AMF to gNB)
+
+* PDU Session 建立成功，獲得 IP 位址
+```
+PDU session type: IPv4(1)
+PDU address information: 12.1.1.4
+```
+1. PDU Session Establishment Accept
+2. UE 被指派 IP：12.1.1.4（IPv4）
+
+
+GTP-U 通道建立成功
+```
+GTP-U local addr: 192.168.70.3
+GTP-U peer addr : 192.168.72.201
+GTP-U Peer TEID: 10876129
+UE address: 12.1.1.4
+```
+1. GTP-U peer address（UPF）：192.168.72.201
+2. GTP-U TEID（上下行）：已成功交換
+
+**總結：你成功完成了一次完整的模擬 UE 附著、建立 PDU Session 並獲得 IP，核心網路與 gnbsim 功能都正常！**
+
+
 2. 查看 oai-amf 的 log（這邊會顯示 UE 註冊事件）
 ```
 docker logs oai-amf
 ```
+https://github.com/shuchu11/MS-NUK-Leo/blob/2ce4c607800a411633a9814f2df17188eb3866bb/oai_installation/oai_amf_log.txt
 ![image](https://github.com/user-attachments/assets/a7137769-f356-49da-b30a-404f9fa50320)
+>[!Caution]
+>1. AMF 收到 SCTP 關閉事件（SCTP Shutdown）數次。
+>2. AMF 回報 No NAS context、No existing nas_context with amf_ue_ngap_id。
+>3. 多個 UE 顯示為 5GMM-DEREGISTERED 狀態。
+>4. 多個 gNB 顯示為 Disconnected。
+
+可能是註冊失敗， 查詢 log 是否送出 Registration Complete
+```
+docker logs gnbsim | grep -i "Registration Complete"
+```
+result : 指令 docker logs gnbsim | grep -i "Registration Complete" 沒有任何符合的輸出，代表 UE 根本沒有送出 Registration Complete (0x43) 這個訊息。
+**嘗試以下解法**
+1. 開啟 gnbsim 的 YAML 設定檔，並確保在每一個 UE 區段中都啟用了 `SendRegComplete: true`
+
+用 `ls -l gnbsim.yaml`查看是否有 nbsim.yml 類似名稱的設定檔  --> 無
+用 `ls -l docker-compose`查看docker compose中是否有 nbsim.yml 類似名稱的設定檔 \ 
+--> 顯示 `-rw-rw-r-- 1 codebind codebind  6185 Jun 20 09:44 docker-compose-gnbsim.yaml` \
+它是 Docker Compose 配置檔（.yaml 結尾），不是 gnbsim 的 UE 設定檔 gnbsim.yaml ，仍需要建立 UE 設定檔 gnbsim.yaml，放在正確位置，然後將它掛進 docker-compose-gnbsim.yaml 中。\
+
+a. 在當前目錄建立 gnbsim.yaml 檔案
+```
+nano gnbsim.yaml
+```
+貼上以下內容
+```
+gnbsim:
+  UEs:
+    - SUPI: "001010000000001"
+      DNN: "internet"
+      KEY: "8B9D8D5C9A8F6B49D73ACD2E293A6CBE"
+      OP_TYPE: "OPC"
+      OPC: "E8ED289DEBA952E4283B54E88E6183CA"
+      AMF: "8000"
+      HPLMN:
+        MCC: "208"
+        MNC: "95"
+      Slice:
+        SST: 1
+        SD: "000001"
+      Session:
+        SendRegComplete: true
+        DEREG_AFTER: 3600
+
+```
+儲存並離開（ nano 中按 `Ctrl + O` 存檔，`Enter`，`Ctrl+X` 離開）
+
+b.  編輯 docker-compose-gnbsim.yaml 並加入 volume 掛載
+在剛剛看到的 docker-compose-gnbsim.yaml 裡找到 gnbsim 的 service 區塊，加上如下掛載\
+```
+ls
+cd docker-compose
+nano docker-compose-gnbsim.yaml
+docker logs oai-amf | grep -i "Initial Registration"
+
+```
+發現總共有 gnbsim1 ~ gnbsim5 的多個模擬 UE 實例
+![螢幕擷取畫面 2025-06-21 104946](https://github.com/user-attachments/assets/9266078c-9d30-423f-9e52-4d6e76698243)
+
+為每個 gnbsim加上``\
+Example : \
+```
+        environment:
+            - MCC=208
+            - MNC=95
+            - GNBID=1
+            - TAC=0x00a000
+            - SST=222
+            - SD=00007b
+            - PagingDRX=v32
+            - RANUENGAPID=0
+            - SendRegComplete=true  # 👈 add this line !!!!
+            - IMEISV=35609204079514
+
+```
+需要重新啟動 gnbsim 容器並確保變數生效 (目前位置 : `~/openairinterface/oai-cn5g-fed/docker-compose`)
+```
+docker-compose -f docker-compose-gnbsim.yaml down
+docker-compose -f docker-compose-gnbsim.yaml up -d
+```
+![image](https://github.com/user-attachments/assets/de5b42bf-3241-453d-93d7-c020cf62bb3f)
+
+檢查以下 : 
+* 查看是否有產生 `Registration Complete`
+```
+docker logs oai-amf | grep -i "Registration Complete"
+```
+![image](https://github.com/user-attachments/assets/de6695c1-3930-472c-a970-1d80aa3b616c)
+代表所有 5 個 gnbsim UE 都已成功送出並由 AMF 接收到 Registration Complete 訊息。這表示gnbsim 配置中已正確加入 SendRegComplete=true 環境變數，且流程無誤。
+* 確認 AMF 是否顯示 UE 狀態為 `5GMM-REGISTERED`（表示註冊成功）
+```
+docker logs oai-amf | grep -i "5GMM"
+```
+![image](https://github.com/user-attachments/assets/d97579a0-4260-4e18-ac4d-dfa1148b9f72)
+出現大量 `5GMM-DEREGISTERED`（表示註冊失敗）
+**代表在docker-compose 的 enviroment 中加入`- SendRegComplete=true`沒有用**
+* 檢查是否有錯誤或 AMF 拒絕註冊
+```
+docker logs oai-amf | grep -i "deregister\|context\|registration"
+```
+顯示
+```
+
+[2025-06-20 11:26:12.731] [amf_n1] [debug] Set 5GMM state to 5GMM-DEREGISTERED
+   |  Index |     5GMM State     |        IMSI        |        GUTI        |   RAN UE NGAP ID   |   AMF UE NGAP ID   |        PLMN        |       Cell Id      |
+   |    1   |   5GMM-REGISTERED  |   208950000000031  |20895010041372800554|        0x00        |        0x03        |       208,95       |      000004001     |
+   |    2   |   5GMM-REGISTERED  |   208950000000032  |20895010041977047435|        0x00        |        0x04        |       208,95       |      000008001     |
+   |    3   |  5GMM-DEREGISTERED |   208950000000033  |20895010041290854175|        0x00        |        0x01        |       208,95       |      00000c001     |
+   |    4   |   5GMM-REGISTERED  |   208950000000034  |20895010041219315990|        0x00        |        0x02        |       208,95       |      000010001     |
+   |    5   |   5GMM-REGISTERED  |   208950000000035  |20895010041159606502|        0x00        |        0x05        |       208,95       |      000014001     |
+[2025-06-20 11:26:12.731] [amf_app] [debug] The UE's state (IMSI 208950000000033, State 5GMM-DEREGISTERED) has been successfully updated!
+[2025-06-20 11:26:12.937] [amf_app] [debug] The UE's state (IMSI 208950000000034, State 5GMM-DEREGISTERED) has been successfully updated!
+[2025-06-20 11:26:12.937] [amf_n1] [debug] Set 5GMM state to 5GMM-DEREGISTERED
+   |  Index |     5GMM State     |        IMSI        |        GUTI        |   RAN UE NGAP ID   |   AMF UE NGAP ID   |        PLMN        |       Cell Id      |
+   |    1   |   5GMM-REGISTERED  |   208950000000031  |20895010041372800554|        0x00        |        0x03        |       208,95       |      000004001     |
+   |    2   |   5GMM-REGISTERED  |   208950000000032  |20895010041977047435|        0x00        |        0x04        |       208,95       |      000008001     |
+   |    3   |  5GMM-DEREGISTERED |   208950000000033  |20895010041290854175|        0x00        |        0x01        |       208,95       |      00000c001     |
+   |    4   |  5GMM-DEREGISTERED |   208950000000034  |20895010041219315990|        0x00        |        0x02        |       208,95       |      000010001     |
+   |    5   |   5GMM-REGISTERED  |   208950000000035  |20895010041159606502|        0x00        |        0x05        |       208,95       |      000014001     |
+[2025-06-20 11:26:12.937] [amf_app] [debug] The UE's state (IMSI 208950000000034, State 5GMM-DEREGISTERED) has been successfully updated!
+[2025-06-20 11:26:13.145] [amf_app] [debug] The UE's state (IMSI 208950000000031, State 5GMM-DEREGISTERED) has been successfully updated!
+[2025-06-20 11:26:13.145] [amf_n1] [debug] Set 5GMM state to 5GMM-DEREGISTERED
+   |  Index |     5GMM State     |        IMSI        |        GUTI        |   RAN UE NGAP ID   |   AMF UE NGAP ID   |        PLMN        |       Cell Id      |
+   |    1   |  5GMM-DEREGISTERED |   208950000000031  |20895010041372800554|        0x00        |        0x03        |       208,95       |      000004001     |
+   |    2   |   5GMM-REGISTERED  |   208950000000032  |20895010041977047435|        0x00        |        0x04        |       208,95       |      000008001     |
+   |    3   |  5GMM-DEREGISTERED |   208950000000033  |20895010041290854175|        0x00        |        0x01        |       208,95       |      00000c001     |
+   |    4   |  5GMM-DEREGISTERED |   208950000000034  |20895010041219315990|        0x00        |        0x02        |       208,95       |      000010001     |
+   |    5   |   5GMM-REGISTERED  |   208950000000035  |20895010041159606502|        0x00        |        0x05        |       208,95       |      000014001     |
+[2025-06-20 11:26:13.145] [amf_app] [debug] The UE's state (IMSI 208950000000031, State 5GMM-DEREGISTERED) has been successfully updated!
+[2025-06-20 11:26:13.349] [amf_app] [debug] The UE's state (IMSI 208950000000032, State 5GMM-DEREGISTERED) has been successfully updated!
+[2025-06-20 11:26:13.349] [amf_n1] [debug] Set 5GMM state to 5GMM-DEREGISTERED
+   |  Index |     5GMM State     |        IMSI        |        GUTI        |   RAN UE NGAP ID   |   AMF UE NGAP ID   |        PLMN        |       Cell Id      |
+   |    1   |  5GMM-DEREGISTERED |   208950000000031  |20895010041372800554|        0x00        |        0x03        |       208,95       |      000004001     |
+   |    2   |  5GMM-DEREGISTERED |   208950000000032  |20895010041977047435|        0x00        |        0x04        |       208,95       |      000008001     |
+   |    3   |  5GMM-DEREGISTERED |   208950000000033  |20895010041290854175|        0x00        |        0x01        |       208,95       |      00000c001     |
+   |    4   |  5GMM-DEREGISTERED |   208950000000034  |20895010041219315990|        0x00        |        0x02        |       208,95       |      000010001     |
+   |    5   |   5GMM-REGISTERED  |   208950000000035  |20895010041159606502|        0x00        |        0x05        |       208,95       |      000014001     |
+```
