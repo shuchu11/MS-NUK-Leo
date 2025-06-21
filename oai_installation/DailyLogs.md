@@ -187,8 +187,8 @@ result : 指令 docker logs gnbsim | grep -i "Registration Complete" 沒有任�
 1. 開啟 gnbsim 的 YAML 設定檔，並確保在每一個 UE 區段中都啟用了 `SendRegComplete: true`
 
 用 `ls -l gnbsim.yaml`查看是否有 nbsim.yml 類似名稱的設定檔  --> 無 \
-用 `ls -l docker-compose`查看docker compose中是否有 nbsim.yml 類似名稱的設定檔 \ 
---> 顯示 `-rw-rw-r-- 1 codebind codebind  6185 Jun 20 09:44 docker-compose-gnbsim.yaml` \
+用 `ls -l docker-compose`查看docker compose中是否有 nbsim.yml 類似名稱的設定檔 --> \ 
+顯示 `-rw-rw-r-- 1 codebind codebind  6185 Jun 20 09:44 docker-compose-gnbsim.yaml` \
 它是 Docker Compose 配置檔（.yaml 結尾），不是 gnbsim 的 UE 設定檔 gnbsim.yaml ，仍需要建立 UE 設定檔 gnbsim.yaml，放在正確位置，然後將它掛進 docker-compose-gnbsim.yaml 中。\
 
 a. 在當前目錄建立 gnbsim.yaml 檔案
