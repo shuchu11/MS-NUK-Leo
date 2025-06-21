@@ -321,5 +321,6 @@ docker logs oai-amf | grep -i "deregister\|context\|registration"
 ```
 docker logs oai-amf | grep -i "Security Mode\|Authentication\|Initial Context\|Registration"
 ```
-顯示 : 目前看到所有 UE 都停在 5GMM-DEREGISTERED，而且 AMF log 也顯示收到了 Registration Complete，表示 AMF 收到 UE 註冊完成的訊息，但狀態沒有更新成 5GMM-REGISTERED。
+## 。
+顯示 : 目前看到所有 UE 都停在 `5GMM-DEREGISTERED`，而且 AMF log 也顯示收到了 `Registration Complete`，表示 AMF 收到 UE 註冊完成的訊息，但狀態沒有更新成 `5GMM-REGISTERED`。
 
