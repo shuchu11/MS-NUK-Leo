@@ -182,7 +182,7 @@ https://github.com/shuchu11/MS-NUK-Leo/blob/2ce4c607800a411633a9814f2df17188eb38
 ```
 docker logs gnbsim | grep -i "Registration Complete"
 ```
-result : 指令 docker logs gnbsim | grep -i "Registration Complete" 沒有任何符合的輸出，代表 UE 根本沒有送出 Registration Complete (0x43) 這個訊息。
+result : 指令 `docker logs gnbsim | grep -i "Registration Complete"` 沒有任何符合的輸出，代表 UE 根本沒有送出 Registration Complete (0x43) 這個訊息。
 **嘗試以下解法**
 1. 開啟 gnbsim 的 YAML 設定檔，並確保在每一個 UE 區段中都啟用了 `SendRegComplete: true`
 
