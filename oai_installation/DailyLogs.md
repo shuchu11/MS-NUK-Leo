@@ -120,7 +120,7 @@ docker compose -f docker-compose/docker-compose-gnbsim.yaml up -d
 * 沒有錯誤
 * 所有容器都顯示 Started，這代表 gnbsim 映像設定正確，Docker Compose 執行成功！
 
-**確認 UE 是否成功與 AMF 建立連線（UE attach）**
+**查看 UE 是否成功與 AMF 建立連線（UE attach）**
 執行以下兩條指令觀察 log：
 
 1. 查看 gnbsim 的 log
@@ -218,8 +218,7 @@ gnbsim:
 ```
 儲存並離開（ nano 中按 `Ctrl + O` 存檔，`Enter`，`Ctrl+X` 離開）
 
-b.  編輯 docker-compose-gnbsim.yaml 並加入 volume 掛載
-在剛剛看到的 docker-compose-gnbsim.yaml 裡找到 gnbsim 的 service 區塊，加上如下掛載\
+b.  編輯 docker-compose-gnbsim.yaml
 ```
 ls
 cd docker-compose
@@ -260,7 +259,7 @@ docker logs oai-amf | grep -i "Registration Complete"
 ```
 ![image](https://github.com/user-attachments/assets/de6695c1-3930-472c-a970-1d80aa3b616c)
 代表所有 5 個 gnbsim UE 都已成功送出並由 AMF 接收到 Registration Complete 訊息。這表示gnbsim 配置中已正確加入 SendRegComplete=true 環境變數，且流程無誤。
-* 確認 AMF 是否顯示 UE 狀態為 `5GMM-REGISTERED`（表示註冊成功）
+* 查看 AMF 是否顯示 UE 狀態為 `5GMM-REGISTERED`（表示註冊成功）
 ```
 docker logs oai-amf | grep -i "5GMM"
 ```
@@ -324,5 +323,3 @@ docker logs oai-amf | grep -i "Security Mode\|Authentication\|Initial Context\|R
 ```
 顯示 : 目前看到所有 UE 都停在 5GMM-DEREGISTERED，而且 AMF log 也顯示收到了 Registration Complete，表示 AMF 收到 UE 註冊完成的訊息，但狀態沒有更新成 5GMM-REGISTERED。
 
-查看 AMF 完整註冊流程
- 
