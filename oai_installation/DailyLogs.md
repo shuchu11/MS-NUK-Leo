@@ -230,8 +230,8 @@ docker logs oai-amf | grep -i "Initial Registration"
 發現總共有 gnbsim1 ~ gnbsim5 的多個模擬 UE 實例
 ![螢幕擷取畫面 2025-06-21 104946](https://github.com/user-attachments/assets/9266078c-9d30-423f-9e52-4d6e76698243)
 
-為每個 gnbsim加上``\
-Example : \
+為每個 gnbsim 的 enviroment 內加上`- SendRegComplete=true ` 
+Example : 
 ```
         environment:
             - MCC=208
