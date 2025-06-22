@@ -325,8 +325,8 @@ docker logs oai-amf | grep -i "Security Mode\|Authentication\|Initial Context\|R
 顯示 : 目前看到所有 UE 都停在 `5GMM-DEREGISTERED`，而且 AMF log 也顯示收到了 `Registration Complete`，表示 AMF 收到 UE 註冊完成的訊息，但狀態沒有更新成 `5GMM-REGISTERED`。
 
 **嘗試以下方法** 
-1. gnbsim.yaml (位置 : `~/openairinterface/oai-cn5g-fed`)中，`DERED_AFTER=3600` 表示模擬的 UE 在註冊後 3600 秒會自動發送 `Deregistration Request`
-   將`DERED_AFTER=3600`調大以維持註冊狀態
+1. 將`DERED_AFTER=3600`調大以維持註冊狀態。\
+   gnbsim.yaml (位置 : `~/openairinterface/oai-cn5g-fed`)中，`DERED_AFTER=3600` 表示模擬的 UE 在註冊後 3600 秒會自動發送 `Deregistration Request`
    
    ```
    DERED_AFTER=86400  # 一整天
