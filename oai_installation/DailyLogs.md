@@ -336,5 +336,13 @@ docker logs oai-amf | grep -i "Security Mode\|Authentication\|Initial Context\|R
 ```
 docker-compose -f docker-compose/docker-compose-gnbsim.yaml down
 docker-compose -f docker-compose/docker-compose-gnbsim.yaml up -d
-
 ```
+再次查看 AMF 是否顯示 UE 狀態為 5GMM-REGISTERED（表示註冊成功）
+```
+docker logs oai-amf | grep -i "5GMM"
+```
+以下為部分截圖(從某一時間開始 `REGISTERED`狀態 變為 `DEREGISTERED`狀態 )
+![image](https://github.com/user-attachments/assets/af42a901-56b2-431e-9910-caef6aa9eac2)
+
+2. 使用 **Wireshark** 驗證是否是 AMF 或其他 CN 元件主動發送 `Deregistration`
+   
