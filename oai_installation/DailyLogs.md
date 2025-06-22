@@ -327,6 +327,7 @@ docker logs oai-amf | grep -i "Security Mode\|Authentication\|Initial Context\|R
 **嘗試以下方法** 
 1. gnbsim.yaml (位置 : `~/openairinterface/oai-cn5g-fed`)中，`DERED_AFTER=3600` 表示模擬的 UE 在註冊後 3600 秒會自動發送 `Deregistration Request`
    將`DERED_AFTER=3600`調大以維持註冊狀態
+   
    ```
    DERED_AFTER=86400  # 一整天
    ```
