@@ -187,11 +187,11 @@ result : 指令 `docker logs gnbsim | grep -i "Registration Complete"` 沒有任
 1. 開啟 gnbsim 的 YAML 設定檔，並確保在每一個 UE 區段中都啟用了 `SendRegComplete: true`
 
 用 `ls -l gnbsim.yaml`查看是否有 nbsim.yml 類似名稱的設定檔  --> 無 \
-用 `ls -l docker-compose`查看docker compose中是否有 nbsim.yml 類似名稱的設定檔 --> \ 
-顯示 `-rw-rw-r-- 1 codebind codebind  6185 Jun 20 09:44 docker-compose-gnbsim.yaml` \
-它是 Docker Compose 配置檔（.yaml 結尾），不是 gnbsim 的 UE 設定檔 gnbsim.yaml ，仍需要建立 UE 設定檔 gnbsim.yaml，放在正確位置，然後將它掛進 docker-compose-gnbsim.yaml 中。\
+用 `ls -l docker-compose`查看docker compose中是否有 nbsim.yml 類似名稱的設定檔 
+--> 顯示 `-rw-rw-r-- 1 codebind codebind  6185 Jun 20 09:44 docker-compose-gnbsim.yaml` \
+它是 Docker Compose 配置檔（.yaml 結尾），不是 gnbsim 的 UE 設定檔 gnbsim.yaml ，仍需要建立 UE 設定檔 gnbsim.yaml，放在正確位置，然後將它掛進 docker-compose-gnbsim.yaml 中。
 
-a. 在當前目錄建立 gnbsim.yaml 檔案
+a. 在當前目錄建立 gnbsim.yaml 檔案 (目前位置 : `~/openairinterface/oai-cn5g-fed`)
 ```
 nano gnbsim.yaml
 ```
@@ -324,3 +324,9 @@ docker logs oai-amf | grep -i "Security Mode\|Authentication\|Initial Context\|R
 ## problem 
 顯示 : 目前看到所有 UE 都停在 `5GMM-DEREGISTERED`，而且 AMF log 也顯示收到了 `Registration Complete`，表示 AMF 收到 UE 註冊完成的訊息，但狀態沒有更新成 `5GMM-REGISTERED`。
 
+**嘗試以下方法** 
+1. gnbsim.yaml (位置 : `~/openairinterface/oai-cn5g-fed`)中，`DERED_AFTER=3600` 表示模擬的 UE 在註冊後 3600 秒會自動發送 `Deregistration Request`
+   將`DERED_AFTER=3600`調大以維持註冊狀態
+   ```
+   DERED_AFTER=86400  # 一整天
+   ```
