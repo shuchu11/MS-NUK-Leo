@@ -345,4 +345,42 @@ docker logs oai-amf | grep -i "5GMM"
 ![image](https://github.com/user-attachments/assets/af42a901-56b2-431e-9910-caef6aa9eac2)
 
 2. 使用 **Wireshark** 驗證是否是 AMF 或其他 CN 元件主動發送 `Deregistration`
-   
+install wireshark
+```
+sudo apt update
+sudo apt install wireshark -y
+```
+讓目前使用者可以抓取封包
+```
+sudo usermod -aG wireshark $USER
+newgrp wireshark
+```
+啟動 Wireshark 圖形介面
+```
+wireshark &
+```
+![image](https://github.com/user-attachments/assets/1eb924af-8283-440d-9681-045e44e4e037)
+雙擊 `any` ，開始從所有介面擷取封包(以下為擷取結果)
+![image](https://github.com/user-attachments/assets/f07a3161-074d-489c-b2d3-17bd65ee50c8)
+
+目前擷取到的封包主要是：
+
+1. DNS 封包（向 connectivity-check.ubuntu.com 查詢）
+2. TCP 封包與 HTTP 回應（ubuntu 預設連線檢查）
+3. ICMPv6 封包與 ARP 封包
+4. 沒有任何 SCTP、NGAP、NAS_5GS、PFCP、GTP-U 相關封包（也就是與 5G Core 相關的訊息）
+
+啟動gnbsim ( wireshark保持開啟狀態 )
+```
+docker-compose -f docker-compose-gnbsim.yaml up -d
+```
+![image](https://github.com/user-attachments/assets/a1ef413d-cf95-4623-897f-846283d69612)
+* 所有封包都是從 127.0.0.1 → 127.0.0.1（loopback）
+* 大量的 TCP [SYN] 嘗試連線，但立即收到 [RST, ACK]（連線重置）
+這代表：\
+Docker container 中的某些服務（如 AMF、NRF、UDM 等）在 gnbsim 嘗試連接時並未正確啟動或在 localhost 上沒有對應 port 在 listen，導致 gnbsim 建立連線失敗。
+
+檢查 Core Network container 有正常啟動，執行以下指令，確保以下 container 都在「start」狀態
+```
+docker ps
+```
