@@ -380,7 +380,7 @@ docker-compose -f docker-compose-gnbsim.yaml up -d
 這代表：\
 Docker container 中的某些服務（如 AMF、NRF、UDM 等）在 gnbsim 嘗試連接時並未正確啟動或在 localhost 上沒有對應 port 在 listen，導致 gnbsim 建立連線失敗。
 
-檢查 Core Network container 有正常啟動，執行以下指令，確保以下 container 都在「start」狀態
+檢查 Core Network container 有正常啟動，執行以下指令，確保以下 container 都在「started」狀態
 ```
 docker ps
 ```
