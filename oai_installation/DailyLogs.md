@@ -517,12 +517,13 @@ Pull OAI CN5G docker images
 cd ~/oai-cn5g
 docker compose pull
 ```
+![image](https://github.com/user-attachments/assets/4b11bb19-071b-4009-a5f3-19f79b6d9e6b)
 Start OAI CN5G
 ```
 cd ~/oai-cn5g
 docker compose up -d
 ```
-![image](https://github.com/user-attachments/assets/4b11bb19-071b-4009-a5f3-19f79b6d9e6b)
+![image](https://github.com/user-attachments/assets/85891516-4fdd-4946-a7ee-f9deae8d1a42)
 
 Stop OAI CN5G
 ```
