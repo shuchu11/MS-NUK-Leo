@@ -476,8 +476,8 @@ docker-compose -f docker-compose-gnbsim.yaml up -d
 docker ps                             # 查看容器名稱
 docker logs gnbsim                    
 ```
-用途	過濾器
-觀察 SCTP / NGAP	sctp
-觀察 UE 註冊流程	`ngap
-觀察與 gnbsim IP 互動	ip.addr == 192.168.70.3
-觀察 SCTP 38412 port	`tcp.port == 38412
+| 用途	|過濾器 |
+觀察 SCTP / NGAP	|sctp
+觀察 UE 註冊流程	| ngap
+觀察與 gnbsim IP 互動 | ip.addr == 192.168.70.3
+觀察 SCTP 38412 port| tcp.port == 38412
