@@ -435,7 +435,7 @@ Docker-compose 網路要一致\
 networks:
   public_net:   # 必須與 oai-amf 所屬的 network 相同
 ```
-oai_amf (  [docker-compose-mini-nonrf.yaml](https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-fed/-/blob/master/docker-compose/docker-compose-mini-nonrf.yaml?ref_type=heads/)
+oai_amf (  [docker-compose-mini-nonrf.yaml](https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-fed/-/blob/master/docker-compose/docker-compose-mini-nonrf.yaml?ref_type=heads)
 ```
 
 ```
