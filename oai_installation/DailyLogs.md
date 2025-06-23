@@ -449,9 +449,16 @@ oai_amf (  [docker-compose-mini-nonrf.yaml](https://gitlab.eurecom.fr/oai/cn5g/o
 
 **確認 AMF 與 gnbsim 確實一致**
 
-[omec-gnbsim-config.yaml]https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-fed/-/blob/master/docker-compose/omec-gnbsim-config.yaml?ref_type=heads
+將[omec-gnbsim-config.yaml](https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-fed/-/blob/master/docker-compose/omec-gnbsim-config.yaml?ref_type=heads)
+中 customProfiles1 的 iteration3 註解掉 ( `#` 表註解 )
+```
+iterations:
+          ...
+         # "next":  "iteration3"
+         #- "name": "iteration3"
+         # "1": "UE-INITIATED-DEREGISTRATION-PROCEDURE 10"
 
-
+```
 
 開始重新測試
 
@@ -468,6 +475,9 @@ docker-compose -f docker-compose-gnbsim.yaml up -d
 # 等待10秒後查看 log
 docker ps                             # 查看容器名稱
 docker logs gnbsim                    
-docker logs oai-amf
 ```
-**在上述這步驟發現確實沒打開 Core Network container，需要重新執行一遍上面的步驟並開啟wireshark**
+用途	過濾器
+觀察 SCTP / NGAP	sctp
+觀察 UE 註冊流程	`ngap
+觀察與 gnbsim IP 互動	ip.addr == 192.168.70.3
+觀察 SCTP 38412 port	`tcp.port == 38412
