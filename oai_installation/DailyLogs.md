@@ -360,6 +360,7 @@ newgrp wireshark
 wireshark &
 ```
 ![image](https://github.com/user-attachments/assets/1eb924af-8283-440d-9681-045e44e4e037)
+
 雙擊 `any` ，開始從所有介面擷取封包(以下為擷取結果)
 ![image](https://github.com/user-attachments/assets/f07a3161-074d-489c-b2d3-17bd65ee50c8)
 
