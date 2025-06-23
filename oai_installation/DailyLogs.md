@@ -376,12 +376,74 @@ wireshark &
 docker-compose -f docker-compose-gnbsim.yaml up -d
 ```
 ![image](https://github.com/user-attachments/assets/a1ef413d-cf95-4623-897f-846283d69612)
-* 所有封包都是從 127.0.0.1 → 127.0.0.1（loopback）
+>[!Caution]
+>* 所有封包都是從 127.0.0.1 → 127.0.0.1（loopback）
+**solution :**\
+打開` /docker-compose/omec-gnbsim-config.yaml `(https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-fed/-/blob/master/docker-compose/omec-gnbsim-config.yaml?ref_type=heads)\
+把 AMF 的 IP 改成與 gnbsim 不同( 填 `127.0.0.1` 會變成 gnbsim 嘗試連接「自己」的 localhost ) \
+以下為`omec-gnbsim-config.yaml`目前內容
+```
+defaultAmf:
+  hostName: oai-amf # Host name of AMF
+  ipAddr: # AMF IP address
+  port: 38412 # AMF port
+```
+ `AMF IP address` 是空的，請改成以下
+```
+defaultAmf:
+  hostName: oai-amf
+  ipAddr: oai-amf   # 或用實際 AMF container IP
+  port: 38412   # AMF port
+```
+開啟 customProfile 中的測試用戶
+```
+customProfiles:
+  customProfiles1:
+    enable: true
+```
+gNB 和 UE Profile 的 PLMN 不一致，統一修改成以下
+```
+mcc: 208  
+mnc: 95
+```
+
+sequenceNumber 長度改為 8 bytes
+```
+sequenceNumber: "16f3b3f70fc2abcd"
+```
+有時 OAI 期望為 8 bytes（64bit），如果長度不符合可能導致 NAS 計數同步有問題。
+
+開啟 `httpServer` 觀察 gnbsim 內部狀態( 可進一步在外部呼叫 HTTP API，例如查詢註冊狀態 )
+```
+httpServer:
+  enable: true    # <--- 此為修改處
+  ipAddr: "<gnbsim 容器 IP>"
+  port: 8080
+```
+
+
+
+
+
+
+
+
+
+Docker-compose 網路要一致\
+確認 docker-compose-gnbsim.yaml 中
+```
+networks:
+  demo-oai:   # 必須與 oai-amf 所屬的 network 相同
+```
+
+
 * 大量的 TCP [SYN] 嘗試連線，但立即收到 [RST, ACK]（連線重置）
 這代表：\
 Docker container 中的某些服務（如 AMF、NRF、UDM 等）在 gnbsim 嘗試連接時並未正確啟動或在 localhost 上沒有對應 port 在 listen，導致 gnbsim 建立連線失敗。
 
-檢查 Core Network container 有正常啟動，執行以下指令，確保以下 container 都在「started」狀態
+檢查 Core Network container 是否正常啟動，執行以下指令，確保以下 container 都在「 up 」狀態
 ```
+docker compose -f docker-compose/docker-compose-basic-vpp-pcf-steering.yaml up -d
 docker ps
 ```
+**在上述這步驟發現確實沒打開 Core Network container，需要重新執行一遍上面的步驟並開啟wireshark**
