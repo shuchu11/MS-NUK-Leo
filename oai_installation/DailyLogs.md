@@ -378,6 +378,10 @@ docker-compose -f docker-compose-gnbsim.yaml up -d
 ![image](https://github.com/user-attachments/assets/a1ef413d-cf95-4623-897f-846283d69612)
 >[!Caution]
 >* 所有封包都是從 127.0.0.1 → 127.0.0.1（loopback）
+>* * 大量的 TCP [SYN] 嘗試連線，但立即收到 [RST, ACK]（連線重置）
+這代表：\
+Docker container 中的某些服務（如 AMF、NRF、UDM 等）在 gnbsim 嘗試連接時並未正確啟動或在 localhost 上沒有對應 port 在 listen，導致 gnbsim 建立連線失敗。
+
 **solution :**\
 打開` /docker-compose/omec-gnbsim-config.yaml `(https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-fed/-/blob/master/docker-compose/omec-gnbsim-config.yaml?ref_type=heads)\
 把 AMF 的 IP 改成與 gnbsim 不同( 填 `127.0.0.1` 會變成 gnbsim 嘗試連接「自己」的 localhost ) \
@@ -421,32 +425,49 @@ httpServer:
   port: 8080
 ```
 
-
-
-
-
-
-
-
-
 Docker-compose 網路要一致\
 確認 docker-compose-gnbsim.yaml 中
 ```
 networks:
   public_net:   # 必須與 oai-amf 所屬的 network 相同
 ```
-oai_amf (  [docker-compose-mini-nonrf.yaml](https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-fed/-/blob/master/docker-compose/docker-compose-mini-nonrf.yaml?ref_type=heads)
+oai_amf (  [docker-compose-mini-nonrf.yaml](https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-fed/-/blob/master/docker-compose/docker-compose-mini-nonrf.yaml?ref_type=heads) )
+```
+ oai-amf:
+        container_name: "oai-amf"
+        image: oaisoftwarealliance/oai-amf:v2.1.0
+        volumes:
+            - ./conf/mini_nonrf_config.yaml:/openair-amf/etc/config.yaml
+        environment:
+            - TZ=Europe/Paris
+        depends_on:
+            - mysql
+        networks:
+            public_net:
+                ipv4_address: 192.168.70.132
 ```
 
-```
+**確認 AMF 與 gnbsim 確實一致**
 
-* 大量的 TCP [SYN] 嘗試連線，但立即收到 [RST, ACK]（連線重置）
-這代表：\
-Docker container 中的某些服務（如 AMF、NRF、UDM 等）在 gnbsim 嘗試連接時並未正確啟動或在 localhost 上沒有對應 port 在 listen，導致 gnbsim 建立連線失敗。
+[omec-gnbsim-config.yaml]https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-fed/-/blob/master/docker-compose/omec-gnbsim-config.yaml?ref_type=heads
+
+
+
+開始重新測試
 
 檢查 Core Network container 是否正常啟動，執行以下指令，確保以下 container 都在「 up 」狀態
 ```
-docker compose -f docker-compose/docker-compose-basic-vpp-pcf-steering.yaml up -d
-docker ps
+cd ~/openairinterface/oai-cn5g-fed/docker-compose
+
+# 停止舊容器
+docker-compose -f docker-compose-gnbsim.yaml down
+
+# 重新啟動
+docker-compose -f docker-compose-gnbsim.yaml up -d
+
+# 等待10秒後查看 log
+docker ps                             # 查看容器名稱
+docker logs gnbsim                    
+docker logs oai-amf
 ```
 **在上述這步驟發現確實沒打開 Core Network container，需要重新執行一遍上面的步驟並開啟wireshark**
