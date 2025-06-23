@@ -433,9 +433,12 @@ Docker-compose 網路要一致\
 確認 docker-compose-gnbsim.yaml 中
 ```
 networks:
-  demo-oai:   # 必須與 oai-amf 所屬的 network 相同
+  public_net:   # 必須與 oai-amf 所屬的 network 相同
+```
+oai_amf (  [docker-compose-mini-nonrf.yaml](https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-fed/-/blob/master/docker-compose/docker-compose-mini-nonrf.yaml?ref_type=heads/)
 ```
 
+```
 
 * 大量的 TCP [SYN] 嘗試連線，但立即收到 [RST, ACK]（連線重置）
 這代表：\
