@@ -590,3 +590,7 @@ VBoxManage.exe modifyvm "Ubuntu22.04" --paravirtprovider none --hwvirtex off --n
 VBoxManage.exe setextradata "Ubuntu22.04" VBoxInternal/CPUM/IsaExts/AVX 1
 VBoxManage.exe setextradata "Ubuntu22.04" VBoxInternal/CPUM/IsaExts/AVX2 1
 ```
+>[!Caution]
+>失敗
+從以下步驟開始試錯(目前使用 : Ubuntu24 , )，
+1. ****
