@@ -568,9 +568,19 @@ cd ~/openairinterface5g/cmake_targets
 
 # nrscope dependencies
 sudo apt install -y libforms-dev libforms-bin
-
+```
+```
 # Build OAI gNB
 cd ~/openairinterface5g/cmake_targets
 ./build_oai -w USRP --ninja --nrUE --gNB --build-lib "nrscope" -C
 
+```
+
+AVX 無法在 VirtualBox 中啟用
+ref : https://forums.virtualbox.org/viewtopic.php?t=109776
+
+在主機(非虛擬機)找到 Windows PowerShell ，按右鍵選擇以系統管理員身分執行，輸入以下
+```
+bcdedit /set hypervisorlaunchtype off
+bcdedit /set xsavedisable 1
 ```
