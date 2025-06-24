@@ -476,16 +476,16 @@ docker-compose -f docker-compose-gnbsim.yaml up -d
 docker ps                             # 查看容器名稱
 docker logs gnbsim                    
 ```
-| 用途	|過濾器 |
-|觀察 SCTP / NGAP	|sctp|
-|觀察 UE 註冊流程	| ngap|
-|觀察與 gnbsim IP 互動 | ip.addr == 192.168.70.3|
-|觀察 SCTP 38412 port| tcp.port == 38412|
+
+
+
 
 ## 做不出來，換下一個方法
 
-ref : \
+ref : 
+
 https://gitlab.eurecom.fr/oai/openairinterface5g/-/blob/develop/doc/NR_SA_Tutorial_OAI_CN5G.md?ref_type=heads \
+
 https://gitlab.eurecom.fr/oai/openairinterface5g/-/blob/develop/doc/NR_SA_Tutorial_OAI_nrUE.md \
 
 OAI CN5G pre-requisites
@@ -533,9 +533,9 @@ cd ~/oai-cn5g
 docker compose down
 ```
 **Run 5G NR SA end-to-end setup with OAI gNB**
-## 1.Testing with COTS UE ?????????????????????/
 
-## 2. Testing with OAI nrUE
+
+## 1. Testing with OAI nrUE
 OAI gNB and OAI nrUE pre-requisites
 ```
 # https://files.ettus.com/manual/page_build_guide.html
@@ -695,7 +695,7 @@ sudo ./nr-uesoftmodem -r 106 --numerology 1 --band 78 -C 3619200000 --uicc0.imsi
 
 
 >[!Warning]
-> 若想停止CN和UE( `Ctrl + c`) 卻無法停止，可以透過以下程式碼找到正在進行的ip並強制刪除 (將``換成找到的ip名稱)
+> 若想停止CN和UE( `Ctrl + c`) 卻無法停止，可以透過以下程式碼找到正在進行的ip並強制刪除 (將`{ip 名稱}`換成找到的ip名稱)
 
 ```
  ps aux | grep softmodem   # 找 ip
