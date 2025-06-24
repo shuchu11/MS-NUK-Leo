@@ -484,7 +484,9 @@ docker logs gnbsim
 
 ## 做不出來，換下一個方法
 
-ref : https://gitlab.eurecom.fr/oai/openairinterface5g/-/blob/develop/doc/NR_SA_Tutorial_OAI_CN5G.md?ref_type=heads \
+ref : \
+https://gitlab.eurecom.fr/oai/openairinterface5g/-/blob/develop/doc/NR_SA_Tutorial_OAI_CN5G.md?ref_type=heads \
+https://gitlab.eurecom.fr/oai/openairinterface5g/-/blob/develop/doc/NR_SA_Tutorial_OAI_nrUE.md \
 
 OAI CN5G pre-requisites
 ```
@@ -601,4 +603,106 @@ VBoxManage.exe setextradata "Ubuntu22.04" VBoxInternal/CPUM/IsaExts/AVX2 1
 2. 改安裝**Ubuntu 20**(Desktop image) 於VirtualBox7.1.0  https://releases.ubuntu.com/focal/
 3. 改安裝**VMware-player-full-17.5.1-** (學姊提供) 並安裝Ubuntu20 、 Ubuntu22、Ubuntu24
 
-以上方法皆失敗，已開啟BIOS確認無誤。
+以上方法皆失敗，已開啟BIOS確認無誤。**確認此問題已花費10hr 此電腦cpu問題無法解決**
+**改以google remote連接他人電腦，以完成oai安裝筆記優先**
+
+>[!Caution]
+> 在下面同樣command遇到問題 `yaml-cpp`未被正確安裝
+```
+# Build OAI gNB
+cd ~/openairinterface5g/cmake_targets
+./build_oai -w USRP --ninja --nrUE --gNB --build-lib "nrscope" -C
+```
+![螢幕擷取畫面 2025-06-24 175425](https://github.com/user-attachments/assets/266534ca-9182-4f41-b446-9db887736d6f)
+
+清除錯誤的 `yaml-cpp` 安裝
+```
+sudo rm -rf /usr/local/lib/libyaml-cpp* /usr/local/include/yaml-cpp
+```
+
+用 apt 安裝正確版本 `yaml-cpp`
+```
+sudo apt update
+sudo apt install libyaml-cpp-dev
+```
+查看是否有正確的 CMake config 檔案
+```
+ls /usr/lib/x86_64-linux-gnu/cmake/yaml-cpp/
+```
+確認出現 `yaml-cpp-config.cmake  yaml-cpp-config-version.cmake `
+
+>[!Caution]
+> 仍無法執行。 CMake 找到 yaml-cpp-config.cmake，它產生的是一個 IMPORTED 而非 GLOBAL target，所以仍無法建立 ALIAS。
+>修改 OAI 原始碼
+```
+nano ~/openairinterface5g/common/config/yaml/CMakeLists.txt
+```
+修改為以下
+```
+find_package(yaml-cpp)
+
+if (NOT yaml-cpp_FOUND)
+  CPMAddPackage("gh:jbeder/yaml-cpp#yaml-cpp-0.7.0@0.7.0")
+  set(YAML_TARGET yaml-cpp::yaml-cpp)
+else()
+  if (TARGET yaml-cpp::yaml-cpp)
+    set(YAML_TARGET yaml-cpp::yaml-cpp)  
+  elseif(TARGET yaml-cpp)
+    set(YAML_TARGET yaml-cpp)
+  else()
+    message(FATAL_ERROR "yaml-cpp target not found.")
+  endif()
+endif()
+
+add_library(params_yaml_static config_yaml.cpp)
+target_link_libraries(params_yaml_static PUBLIC UTIL ${YAML_TARGET})
+
+if (ENABLE_TESTS)
+  add_subdirectory(tests)
+endif()
+
+add_library(params_yaml MODULE config_yaml.cpp)
+target_link_libraries(params_yaml PUBLIC UTIL ${YAML_TARGET})
+set_target_properties(params_yaml PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
+
+```
+編譯成功
+![螢幕擷取畫面 2025-06-24 184319](https://github.com/user-attachments/assets/1e1e5dba-6fd5-4707-be24-1b9703d460ce)
+**成功解決** ，下一步 \
+Run OAI CN5G and OAI gNB  **( 開啟第二個Terminal分頁，分別執行以下兩步驟 )**
+
+* **CN**
+```
+# Run OAI CN5G
+cd ~/oai-cn5g
+docker compose up -d
+
+# RFsimulator
+cd ~/openairinterface5g/cmake_targets/ran_build/build
+sudo ./nr-softmodem -O ../../../targets/PROJECTS/GENERIC-NR-5GC/CONF/gnb.sa.band78.fr1.106PRB.usrpb210.conf --gNBs.[0].min_rxtxtime 6 --rfsim
+```
+![螢幕擷取畫面 2025-06-24 185833](https://github.com/user-attachments/assets/c0490e4d-5964-4c7a-a892-97f28c1f4821)
+![螢幕擷取畫面 2025-06-24 185924](https://github.com/user-attachments/assets/b7e00b92-480c-4b31-a1c0-853121ac29be)
+
+* **Run OAI nrUE**
+```
+cd ~/openairinterface5g/cmake_targets/ran_build/build
+sudo ./nr-uesoftmodem -r 106 --numerology 1 --band 78 -C 3619200000 --uicc0.imsi 001010000000001 --rfsim
+```
+![螢幕擷取畫面 2025-06-24 191335](https://github.com/user-attachments/assets/243dee4e-4a53-4a96-a1ce-e02370835a85)
+![螢幕擷取畫面 2025-06-24 192654](https://github.com/user-attachments/assets/7cab53e1-d9e7-42eb-a6ff-c62593dc8308)
+
+
+>[!Warning]
+> 若想停止CN和UE( `Ctrl + c`) 卻無法停止，可以透過以下程式碼找到正在進行的ip並強制刪除 (將``換成找到的ip名稱)
+
+```
+ ps aux | grep softmodem   # 找 ip
+ sudo kill -9 {ip 名稱}
+```
+**開啟第三個Terminal分頁，執行 End-to-end connectivity test** \
+Ping test from the UE host to the CN5G
+```
+ping 192.168.70.135 -I oaitun_ue1
+```
+![螢幕擷取畫面 2025-06-24 194035](https://github.com/user-attachments/assets/70368fa0-f16f-42df-a917-406fe524a3a8)
