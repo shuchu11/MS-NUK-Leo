@@ -554,8 +554,8 @@ sudo make install
 sudo ldconfig
 sudo uhd_images_downloader
 ```
-![image](https://github.com/user-attachments/assets/aa7483e5-ccce-474b-bd91-54e7fd2b64b2)
 
+![image](https://github.com/user-attachments/assets/aa7483e5-ccce-474b-bd91-54e7fd2b64b2)
 
 Build OAI gNB and OAI nrUE
 ```
