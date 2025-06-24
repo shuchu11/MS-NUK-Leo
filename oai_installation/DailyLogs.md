@@ -578,12 +578,17 @@ cd ~/openairinterface5g/cmake_targets
 
 ```
 
-AVX 無法在 VirtualBox 中啟用
-ref :\ 
+>[!Caution]
+>**AVX 無法在 VirtualBox 中啟用**，（花費時間甚多，已照下方所附的連結依序嘗試）未解決，改以在mini PC上繼續實作。
+ref :
+ 
 https://forums.virtualbox.org/viewtopic.php?t=109776 \
+
 https://hackmd.io/@coding-guy/tf-04 \
+
 https://blog.csdn.net/qq_45644284/article/details/128763867 \
-https://docs.pingcode.com/baike/3290820 \
+
+https://docs.pingcode.com/baike/3290820 
 
 在主機(非虛擬機)找到 Windows PowerShell ，按右鍵選擇以系統管理員身分執行，輸入以下
 ```
