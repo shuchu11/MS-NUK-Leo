@@ -577,7 +577,11 @@ cd ~/openairinterface5g/cmake_targets
 ```
 
 AVX 無法在 VirtualBox 中啟用
-ref : https://forums.virtualbox.org/viewtopic.php?t=109776
+ref :\ 
+https://forums.virtualbox.org/viewtopic.php?t=109776 \
+https://hackmd.io/@coding-guy/tf-04 \
+https://blog.csdn.net/qq_45644284/article/details/128763867 \
+https://docs.pingcode.com/baike/3290820 \
 
 在主機(非虛擬機)找到 Windows PowerShell ，按右鍵選擇以系統管理員身分執行，輸入以下
 ```
@@ -592,5 +596,9 @@ VBoxManage.exe setextradata "Ubuntu22.04" VBoxInternal/CPUM/IsaExts/AVX2 1
 ```
 >[!Caution]
 >失敗
-從以下步驟開始試錯(目前使用 : Ubuntu24 , )，
-1. ****
+從以下步驟開始試錯(目前環境 : Ubuntu24.04.2 , VirtualBox7.1.0 )， 
+1. 改安裝**Ubuntu 22**(Desktop image) 於VirtualBox7.1.0   https://releases.ubuntu.com/jammy/
+2. 改安裝**Ubuntu 20**(Desktop image) 於VirtualBox7.1.0  https://releases.ubuntu.com/focal/
+3. 改安裝**VMware-player-full-17.5.1-** (學姊提供) 並安裝Ubuntu20 、 Ubuntu22、Ubuntu24
+
+以上方法皆失敗，已開啟BIOS確認無誤。
