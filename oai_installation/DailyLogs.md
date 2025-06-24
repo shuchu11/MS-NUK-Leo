@@ -584,3 +584,9 @@ ref : https://forums.virtualbox.org/viewtopic.php?t=109776
 bcdedit /set hypervisorlaunchtype off
 bcdedit /set xsavedisable 1
 ```
+設定 VirtualBox 虛擬機參數（使用 VBoxManage） ，在主機(非虛擬機)輸入
+```
+VBoxManage.exe modifyvm "Ubuntu22.04" --paravirtprovider none --hwvirtex off --nested-hw-virt off
+VBoxManage.exe setextradata "Ubuntu22.04" VBoxInternal/CPUM/IsaExts/AVX 1
+VBoxManage.exe setextradata "Ubuntu22.04" VBoxInternal/CPUM/IsaExts/AVX2 1
+```
