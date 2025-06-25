@@ -97,11 +97,7 @@ cd ~/openairinterface5g/cmake_targets
 
 >[!Caution]
 > `yaml-cpp`未被正確安裝
-```
-# Build OAI gNB
-cd ~/openairinterface5g/cmake_targets
-./build_oai -w USRP --ninja --nrUE --gNB --build-lib "nrscope" -C
-```
+
 ![螢幕擷取畫面 2025-06-24 175425](https://github.com/user-attachments/assets/266534ca-9182-4f41-b446-9db887736d6f)
 
 清除錯誤的 `yaml-cpp` 安裝
