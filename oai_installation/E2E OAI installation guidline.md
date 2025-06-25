@@ -71,8 +71,8 @@ sudo make install
 sudo ldconfig
 sudo uhd_images_downloader
 ```
+![螢幕擷取畫面 2025-06-25 100641](https://github.com/user-attachments/assets/ad38ba45-dbd7-41c4-aa98-d1376a03f3b1)
 
-![image](https://github.com/user-attachments/assets/aa7483e5-ccce-474b-bd91-54e7fd2b64b2)
 
 Build OAI gNB and OAI nrUE
 ```
