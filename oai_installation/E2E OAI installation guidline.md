@@ -49,10 +49,10 @@ Stop OAI CN5G
 cd ~/oai-cn5g
 docker compose down
 ```
+
 **Run 5G NR SA end-to-end setup with OAI gNB**
 
-
-## 1. Testing with OAI nrUE
+1. Testing with OAI nrUE
 OAI gNB and OAI nrUE pre-requisites
 ```
 # https://files.ettus.com/manual/page_build_guide.html
