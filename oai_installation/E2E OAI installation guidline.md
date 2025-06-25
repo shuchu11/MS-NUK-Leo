@@ -165,7 +165,9 @@ docker compose up -d
 cd ~/openairinterface5g/cmake_targets/ran_build/build
 sudo ./nr-softmodem -O ../../../targets/PROJECTS/GENERIC-NR-5GC/CONF/gnb.sa.band78.fr1.106PRB.usrpb210.conf --gNBs.[0].min_rxtxtime 6 --rfsim
 ```
+**下圖中持續輸出slot表示未連上UE (在下一步開啟UE)**
 ![螢幕擷取畫面 2025-06-24 185833](https://github.com/user-attachments/assets/c0490e4d-5964-4c7a-a892-97f28c1f4821)
+**成功連上AMF**
 ![螢幕擷取畫面 2025-06-24 185924](https://github.com/user-attachments/assets/b7e00b92-480c-4b31-a1c0-853121ac29be)
 
 * **Run OAI nrUE**
@@ -173,8 +175,8 @@ sudo ./nr-softmodem -O ../../../targets/PROJECTS/GENERIC-NR-5GC/CONF/gnb.sa.band
 cd ~/openairinterface5g/cmake_targets/ran_build/build
 sudo ./nr-uesoftmodem -r 106 --numerology 1 --band 78 -C 3619200000 --uicc0.imsi 001010000000001 --rfsim
 ```
+**下面兩圖為CN**
 ![螢幕擷取畫面 2025-06-24 194615](https://github.com/user-attachments/assets/5f1283c8-2a38-4566-81c2-a06f6c961707)
-
 ![螢幕擷取畫面 2025-06-24 192654](https://github.com/user-attachments/assets/7cab53e1-d9e7-42eb-a6ff-c62593dc8308)
 
 
