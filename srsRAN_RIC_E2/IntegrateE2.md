@@ -157,10 +157,27 @@ cmake .. -DCMAKE_THREAD_LIBS_INIT="-lpthread" -DCMAKE_HAVE_THREADS_LIBRARY=1 -DC
 > 缺少SCTP 套件
 
 ![alt text](image-1.png)
+要連接核心網（如 **open5gs**, OAI CN5G），SCTP 是必須的，因為 NGAP/S1AP 都基於 SCTP。
 
+**solution :** 安裝 SCTP 套件
+```
+sudo apt install libsctp-dev lksctp-tools
+```
+安裝後建議重新執行一次 CMake
+```
+cd ~/srsRAN_Project/build
+cmake .. -DCMAKE_THREAD_LIBS_INIT="-lpthread" \
+         -DCMAKE_HAVE_THREADS_LIBRARY=1 \
+         -DCMAKE_USE_WIN32_THREADS_INIT=0 \
+         -DCMAKE_USE_PTHREADS_INIT=1 \
+         -DENABLE_EXPORT=ON \
+         -DENABLE_ZEROMQ=ON
+```
+----------------------------------------
 
-
-
+---------------------------------
+-------------------------
+-------------------
 p.s \
 **`cmake ../` 和 `cd ..`** 的差別
 前者可以不離開當前目錄僅打開檔案\
@@ -208,3 +225,38 @@ nano my_file.txt
 | `-j`         | 指定「同時可以啟動幾個編譯工作（jobs）」來加速。                |
 | `$(nproc)`   | Linux 指令，回傳 **CPU 核心數**（例如 4、8、16）。       |
 | `-j$(nproc)` | 結果會像 `-j8` 或 `-j4`，表示一次啟動 8 或 4 個工作來平行處理。 |
+
+## Ubuntu內網路不穩
+先更新 DNS \
+手動指定一個穩定的 DNS（例如 Google DNS）來解決問題
+```
+sudo nano /etc/resolv.conf
+```
+然後把內容改成這樣
+```
+nameserver 8.8.8.8
+nameserver 1.1.1.1
+```
+檢查是否有網路 ?（測試 DNS）
+```
+# ping 網域
+ping -c 3 google.com
+
+# ping IP
+ping 8.8.8.8
+```
+* 如果能 ping 到 IP（但不能 ping 網域），就是 DNS 問題。
+
+* 如果連 IP 都 ping 不到，那就是整個網路沒通。
+
+**P.S** 什麼是 DNS？ \
+DNS（Domain Name System，網域名稱系統）
+是把人類看得懂的網址（像是 google.com）
+轉換成電腦能懂的 IP 位址（EX : 142.250.72.14）的系統。\
+電腦之間透過 IP 位址 溝通。
+
+**常見的 DNS 伺服器**
+| 提供者        | DNS IP 位址           | 備註            |
+| ---------- | ------------------- | ------------- |
+| Google     | `8.8.8.8`、`8.8.4.4` | 全球使用最廣的公用 DNS |
+
