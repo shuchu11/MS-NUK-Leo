@@ -33,7 +33,7 @@ docker compose up
 ![alt text](image-4.png)
 
 在剛開始的`git clone https://github.com/srsran/oran-sc-ric  `
-可以用git log 找到想要的 commit / 查看之間版本
+可以用git log 找到想要的 commit 查看之前的版本
 ```
 git log
 ```
@@ -169,6 +169,49 @@ cmake .. -DCMAKE_THREAD_LIBS_INIT="-lpthread" \
          -DENABLE_EXPORT=ON \
          -DENABLE_ZEROMQ=ON
 ```
+
+
+
+# 20250706 因為連線問題重架虛擬機
+以下為osc-ric 的 log，發現沒有更早之前的版本，全為2025年份的。不知道此筆記一開始是麼找到更早之前的版本
+![alt text](image-5.png)
+
+重新git clone後又出現了
+
+執行 `compose up` 但僅`python_xapp_runner` 與 `rtmgr_sim`沒有啟動
+
+
+再次使用git log，發現log檔可以可用向下鍵滑動查看(不可用滑鼠)，這次終於找到 `i-released`
+![alt text](image-6.png)
+
+```
+git checkout -b i-release 0b545d9
+```
+![alt text](image-7.png)
+
+> [!Warning]
+> 失敗
+回到主分支啟動容器(用最新版ric沒關係)
+```
+git checkout main
+docker compose up
+```
+![alt text](image-8.png)
+![alt text](image-9.png)
+
+成功
+
+## install ZMQ
+
+## install srsRAN
+
+### pre-required
+**REF :** https://docs.srsran.com/projects/project/en/latest/user_manuals/source/installation.html
+
+```
+sudo apt-get install cmake make gcc g++ pkg-config libfftw3-dev libmbedtls-dev libsctp-dev libyaml-cpp-dev libgtest-dev
+```
+
 ----------------------------------------
 
 ---------------------------------
@@ -318,3 +361,35 @@ DNS（Domain Name System，網域名稱系統）
 | ---------- | ------------------- | ------------- |
 | Google     | `8.8.8.8`、`8.8.4.4` | 全球使用最廣的公用 DNS |
 
+
+## 查看所有分支(在 `git clone {URL}`後查看)
+## git clone
+會在當前目錄創建資料夾 (自動以URL 連結的結尾當作資料夾名稱)
+```
+git clone {URL}
+```
+EX : 下載整份檔案至當前目錄下的`oran-sc-ric`資料夾
+```
+git clone https://github.com/srsran/oran-sc-ric.git
+```
+1. 下載整個 Git 倉庫的所有提交歷史 (所有分支皆會被下載)
+
+2. 只建立一個分支的本地追蹤分支（通常是 main 或 master）
+
+3. 其他分支的內容也有下載，但不會自動建立本地分支
+
+在 git clone 後自動創建的檔案內
+
+*僅下載特定分支的方法* `-b`
+```
+git clone -b <branch-name> <repository-url>
+```
+or 
+```
+git clone --branch <branch-name> <repository-url>
+```
+
+查看所有分支
+```
+git branch -r
+```
