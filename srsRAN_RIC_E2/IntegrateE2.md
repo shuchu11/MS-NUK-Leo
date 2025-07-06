@@ -211,6 +211,77 @@ docker compose up
 ```
 sudo apt-get install cmake make gcc g++ pkg-config libfftw3-dev libmbedtls-dev libsctp-dev libyaml-cpp-dev libgtest-dev
 ```
+install srsran
+```
+git clone https://github.com/srsran/srsRAN_Project.git
+cd srsRAN_Project
+mkdir build
+cd build
+cmake ../ -DENABLE_EXPORT=ON -DENABLE_ZEROMQ=ON # 通常在你想要用 srsRAN 串接 xApp 或做模擬外部監控時才會開
+```
+這次沒一堆鳥問題，但"缺少sctp"的問題還是在
+![alt text](image-10.png)
+
+要連接核心網（如 **open5gs**, OAI CN5G），SCTP 是必須的，因為 NGAP/S1AP 都基於 SCTP。
+
+**solution :** 安裝 SCTP 套件
+```
+sudo apt install libsctp-dev lksctp-tools
+```
+安裝後建議重新執行一次 CMake
+```
+cd ~/srsRAN_Project/build
+cmake .. -DCMAKE_THREAD_LIBS_INIT="-lpthread" \
+         -DCMAKE_HAVE_THREADS_LIBRARY=1 \
+         -DCMAKE_USE_WIN32_THREADS_INIT=0 \
+         -DCMAKE_USE_PTHREADS_INIT=1 \
+         -DENABLE_EXPORT=ON \
+         -DENABLE_ZEROMQ=ON
+```
+執行後仍顯示 "缺少sctp"。**暫時略過**
+
+```
+make -j$(nproc)
+```
+> [!Warning]
+> GCC套件可能太舊，導致無法編譯
+檢查GCC版本
+```
+gcc --version
+```
+![alt text](image-11.png)
+
+版本過舊，升級\
+
+```
+# 加入 Ubuntu Toolchain PPA
+sudo apt install software-properties-common
+sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+sudo apt update
+
+# 安裝 gcc 11
+sudo apt install gcc-11 g++-11
+```
+
+切換 GCC 11 為預設版本
+```
+sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-11 110
+sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-11 110
+```
+查看GCC版本是否更新
+```
+gcc --version
+```
+![alt text](image-12.png)
+**成功**
+
+再次執行
+```
+make -j$(nproc)
+```
+![alt text](image-13.png)
+**成功**
+
 
 ----------------------------------------
 
