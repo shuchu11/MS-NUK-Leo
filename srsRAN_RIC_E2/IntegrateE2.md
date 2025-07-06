@@ -28,18 +28,14 @@ git clone https://github.com/srsran/oran-sc-ric
 cd ./oran-sc-ric
 docker compose up
 ```
-
-```
-docker compose ps
-```
-
-`????????????????`
-
+> [!Warning]
+> 容器無法成功運作，原因是指令 `git clone https://github.com/srsran/oran-sc-ric`會下載全部新舊版本的oran-sc-ric，必須依照要求手動切換到舊版本
+![alt text](image-4.png)
 
 在剛開始的`git clone https://github.com/srsran/oran-sc-ric  `
 可以用git log 找到想要的 commit / 查看之間版本
 ```
-git tag
+git log
 ```
 會看到類似這樣的輸出
 ```
