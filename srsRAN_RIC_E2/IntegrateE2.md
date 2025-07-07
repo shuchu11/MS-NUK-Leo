@@ -282,7 +282,136 @@ make -j$(nproc)
 ![alt text](image-13.png)
 **成功**
 
+### 修改 srsRAN 內 gNB 內 config 
 
+在 `srsRAN-Project` 輸入 `ls` 
+![alt text](image-15.png)
+
+```
+cd configs
+ls
+```
+![alt text](image-16.png)
+
+用`wget`獲得官方提供gnb設定檔
+
+gnb : [gnb_config](https://docs.srsran.com/projects/project/en/latest/_downloads/cd7bc1de5ec01c261b2b112e21700e77/gnb_zmq.yaml)
+
+```
+cd ~/srsRAN_Project/configs
+
+wget https://docs.srsran.com/projects/project/en/latest/_downloads/cd7bc1de5ec01c261b2b112e21700e77/gnb_zmq.yaml
+
+```
+
+開始運行 gNB  和 RIC
+
+* ric (
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    ~/oran-sc-ric)
+```
+cd ~/oran-sc-ric
+docker compose up
+```
+查看是否出現以下 log ，代表成功
+```
+ric_submgr          | RMR is ready now ...
+```
+* gNB
+理論上應該要執行以下 : (位置:`~/srsRAN_Project/build/apps/gnb/`)
+```
+sudo ./gnb -c gnb_zmq.yaml e2 --addr="10.0.2.10" --bind_addr="10.0.2.1"
+```
+| 部分                       | 意思與功能說明                                        |
+| ------------------------ | ---------------------------------------------- |
+| `sudo`                   | 以 **管理員權限** 執行，因為 gNB 涉及網路介面與權限操作              |
+| `./gnb`                  | 執行 gNodeB 執行檔（假設你位於 `build/` 資料夾中）             |
+| `-c gnb_zmq.yaml`        | 指定使用的 **設定檔**，這裡用的是 ZMQ + E2 的設定檔              |
+| `e2`                     | 啟用 **E2 Agent 模組**（用來和 Near-RT RIC 溝通）         |
+| `--addr="10.0.2.10"`     | **指定 gNB 連線至 RIC 的「RIC IP 地址」 → RIC 的 E2 port 位置** |
+| `--bind_addr="10.0.2.1"` | **指定 gNB 本地 E2 socket 綁定的 IP 位址（即 DU 自己的 IP）**     |
+
+所以應該執行以下:
+```
+sudo ./gnb -c gnb_zmq.yaml e2 --addr="127.0.0.1" --bind_addr="127.0.0.1"
+```
+> [!Warning]
+> 在該資料夾內找不到
+![alt text](image-17.png)
+
+```
+sudo ./gnb -c /home/codebind/srsRAN_Project/configs/gnb_zmq.yaml e2 --addr=127.0.0.1 --bind_addr=127.0.0.1
+```
+> [!Warning]
+> INI was not able to parse metrics.rlc_report_period
+下面這行srsRAN 的解析器判定為格式錯誤或不被支援的參數
+```
+metrics:
+  rlc_report_period: 1000
+```
+**solution :** 先將上面這行註解( 位置 :`~/srsRAN_Project/configs/gnb_zmq.yaml` )
+
+> [!Warning]
+> `nof_non_rt_threads` 不能大於 `nof_cores`。srsRAN gNB 預設會啟用 4 條非即時執行緒（non-RT threads），但目前虛擬機只配置了 3 核心（CPU cores）。
+```
+Invalid expert execution config: nof_non_rt_threads=4 must not exceed nof_cores=3
+```
 ----------------------------------------
 
 ---------------------------------
@@ -464,3 +593,9 @@ git clone --branch <branch-name> <repository-url>
 ```
 git branch -r
 ```
+
+## 如何在nano後在檔案內關鍵字搜尋
+
+Ctrl + `W`
+
+離開: ctrl + x
