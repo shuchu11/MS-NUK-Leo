@@ -37,7 +37,7 @@ docker compose up
 ```
 git log
 ```
-會看到類似這樣的輸出
+會看到類似這樣的輸出。
 ```
 commit 1234abcd5678ef90...    ← 這是 commit hash（你只需要前7碼）
 Author: ...
