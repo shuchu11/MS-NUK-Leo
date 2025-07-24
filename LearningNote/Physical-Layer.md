@@ -7,7 +7,10 @@
 
 <br>
 
+
+
 - Here is Parameter Help
+- 
 : You may notice that the frequency **unit in the table is 100 kHz**, rather than MHz.
 <br>
 
