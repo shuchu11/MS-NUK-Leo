@@ -1,9 +1,17 @@
 # Problem
-Blew are the pics in TMA - cell search ， I want to know what do the parameters mean ? 
+- Blew are the pics in TMA - cell search ， I want to know what do the parameters mean ? 
 
 <br>
 
 <img width="1416" height="717" alt="螢幕擷取畫面 2025-07-20 134239" src="https://github.com/user-attachments/assets/abf18574-91a6-4813-9039-cb9143506b55" />
+
+<br>
+
+- Here is Parameter Help
+: You may notice that the frequency **unit in the table is 100 kHz**, rather than MHz.
+<br>
+
+<img width="787" height="636" alt="image" src="https://github.com/user-attachments/assets/2e1fb008-0eb0-4d6d-a882-a12c67496896" />
 
 <br>
 
@@ -18,9 +26,14 @@ Blew are the pics in TMA - cell search ， I want to know what do the parameters
 | **SSB Subcarrier Spacing** `1`           | SSB subcarrier spacing (0=15kHz, 1=30kHz, ...)                                           |      gNB & UE                 | Affects UE's resolution in sync signal detection              |
 | **Cell ID** `0`                          | NR Cell Identity; used for cell identification                                           |         UE                    | Used to identify gNB after synchronization                    |
 | **Number of receive antennas** `4`       | Number of receive antennas at gNB                                                        |         gNB                   | Affects MIMO capability and link performance                  |
-| **Uplink carrier frequency** *(not set)* | Uplink carrier frequency                                                                 |    UE (if uplink is required) | If different from DL, UE needs config for uplink transmission |
 
 
 ## Downlink carrier frequency & System bandwidth 
+
+| Category | Abbreviation      | Frequency Range        | Description                                                                                                                           |
+|:--------:|:-----------------:|:----------------------:|:------------------------------------------------------------------------------------------------------------------------------------- |
+| **FR1**  | Frequency Range 1 | **410 MHz – 7125 MHz** | Also known as **Sub-6 GHz**, covering most early commercial 5G bands; strong penetration, suitable for wide-area coverage.            |
+| **FR2**  | Frequency Range 2 | **24.25 GHz – 71 GHz** | Also known as **millimeter wave (mmWave)**; offers large bandwidth and high speed but has weak penetration and limited coverage area. |
+
 
 
