@@ -8,8 +8,8 @@ Blew are the pics in TMA - cell search ， I want to know what do the parameters
 <br>
 
 # Q / A
-
-|            :**Parameter Name**:          |                                          :**Description**:                               |      :**Affected Entity**:    |                          :**Note**:                           |
+ 
+|             **Parameter Name**           |                                           **Description**                                |       **Affected Entity**     |                           **Note**                            |
 |:----------------------------------------:|:----------------------------------------------------------------------------------------:|:-----------------------------:|:-------------------------------------------------------------:|
 | **Downlink carrier frequency** `37497`   | Downlink carrier frequency (MHz); UE must scan this frequency to sync and connect to gNB |      gNB & UE                 | Starting point for UE scanning and sync                       |
 | **System bandwidth** `100`               | System bandwidth (MHz); defines available RBs                                            |      gNB & UE                 | Larger bandwidth → higher throughput but harder sync          |
