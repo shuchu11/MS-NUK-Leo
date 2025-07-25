@@ -65,5 +65,12 @@ The table below lists the frequency bands and channel bandwidths of the 5G NR st
 | n79                   | 30 kHz           | Case C                | 8480 – <16> – 8880<sup>7</sup>                  | 	10, 20, 30, 40, 50, 60, 70, 80, 90, 100         |
 |                       |                  |                       | 8475 – <1> – 8884<sup>8</sup>                   |                      //                          |
 
+## point A 
+Tool 1 : [5G NR SSref (SSB) Frequency to GSCN Calculator](https://5g-tools.com/5g-nr-gscn-calculator/) \
+Tool 2 : [NR Reference Point A](https://www.sqimway.com/nr_refA.php) \
+
+
+- **Downlink carrier frequency** `3708.48`MHz  ------> 5G NR GSCN `7991`MHz , ARFCN for GSCN Frequency `647232`MHz
+<img width="1128" height="492" alt="image" src="https://github.com/user-attachments/assets/64dff2e7-d84a-4ee6-bce3-2a22af35abed" />
 
 
