@@ -33,17 +33,31 @@
 
 ## Downlink carrier frequency & System bandwidth 
 
+**Downlink carrier frequency** `37497`kHz  ---->   **FR1-n78** (Table 1)
+
+**System bandwidth** `100`   ---->  Channel bandwidth compliant with n78 (Table 2)
+
+
+
+
+*  **Table 1**
 | Category | Abbreviation      | Frequency Range        | Description                                                                                                                           |
 |:--------:|:-----------------:|:----------------------:|:------------------------------------------------------------------------------------------------------------------------------------- |
 | **FR1**  | Frequency Range 1 | **410 MHz – 7125 MHz** | Also known as **Sub-6 GHz**, covering most early commercial 5G bands; strong penetration, suitable for wide-area coverage.            |
 | **FR2**  | Frequency Range 2 | **24.25 GHz – 71 GHz** | Also known as **millimeter wave (mmWave)**; offers large bandwidth and high speed but has weak penetration and limited coverage area. |
 
+* **Table 2**
+ref 1 : https://5g-tools.com/5g-nr-gscn-calculator/   \
+ref 2: https://zh.wikipedia.org/zh-tw/5G_NR%E9%A2%91%E6%AE%B5 \
+The table below lists the frequency bands and channel bandwidths of the 5G NR standard in the latest released 3GPP technical specification TS 38.101, Release 18.
+
+| **NR operating band** | **SS Block SCS** | **SS Block pattern** | **Range of GSCN** *(First – <Step size> – Last)* |         Channel Bandwidth (MHz)                  |
+|:---------------------:|:----------------:|:--------------------:|:------------------------------------------------:|:------------------------------------------------:|
+| n76                   | 15 kHz           | Case A                | 3572 – <1> – 3574                               |                   5                              |
+| n77                   | 30 kHz           | Case C                | 7711 – <1> – 8329                               | 10, 15, 20, 25, 30, 40, 50, 60, 70, 80, 90, 100  |
+| n78                   | 30 kHz           | Case C                | 7711 – <1> – 8051                               |  10, 15, 20, 25, 30, 40, 50, 60, 70, 80, 90, 100 |
+| n79                   | 30 kHz           | Case C                | 8480 – <16> – 8880<sup>7</sup>                  | 	10, 20, 30, 40, 50, 60, 70, 80, 90, 100         |
+|                       |                  |                       | 8475 – <1> – 8884<sup>8</sup>                   |                      //                          |
 
 
-| **NR operating band** | **SS Block SCS** | **SS Block pattern** | **Range of GSCN** *(First – <Step size> – Last)* |
-|:---------------------:|:----------------:|:--------------------:|:------------------------------------------------:|
-| n257                  | 120 kHz          | A                    | 222720 – <48> – 228768                           |
-| n258                  | 120 kHz          | A                    | 201168 – <48> – 207264                           |
-| n260                  | 120 kHz          | A                    | 222768 – <48> – 231264                           |
-| n261                  | 240 kHz          | B                    | 255744 – <96> – 266688                           |
 
