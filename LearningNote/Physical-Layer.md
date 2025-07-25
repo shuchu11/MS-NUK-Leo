@@ -33,9 +33,13 @@
 
 ## Downlink carrier frequency & System bandwidth 
 
-**Downlink carrier frequency** `37497`kHz  ---->   **FR1-n78** (Table 1)
 
-**System bandwidth** `100`   ---->  Channel bandwidth compliant with n78 (Table 2)
+> [!NOTE]
+> Useful information that users should know, even when skimming content.
+>
+>**Downlink carrier frequency** `37497`kHz  ---->   **FR1-n78** (Table 1)
+>
+>**System bandwidth** `100`   ---->  Channel bandwidth compliant with n78 (Table 2)
 
 
 
