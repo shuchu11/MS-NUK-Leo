@@ -51,7 +51,7 @@ ref 1 : https://5g-tools.com/5g-nr-gscn-calculator/   \
 ref 2: https://zh.wikipedia.org/zh-tw/5G_NR%E9%A2%91%E6%AE%B5 \
 The table below lists the frequency bands and channel bandwidths of the 5G NR standard in the latest released 3GPP technical specification TS 38.101, Release 18.
 
-| **NR operating band** | **SS Block SCS** | **SS Block pattern** | **Range of GSCN** *(First–<Stepsize>–Last)*      |         Channel Bandwidth (MHz)                  |
+| **NR operating band** | **SS Block SCS** | **SS Block pattern** | **Range of GSCN** *(First–'Stepsize'–Last)*      |         Channel Bandwidth (MHz)                  |
 |:---------------------:|:----------------:|:--------------------:|:------------------------------------------------:|:------------------------------------------------:|
 | n76                   | 15 kHz           | Case A                | 3572 – <1> – 3574                               |                   5                              |
 | n77                   | 30 kHz           | Case C                | 7711 – <1> – 8329                               | 10, 15, 20, 25, 30, 40, 50, 60, 70, 80, 90, 100  |
