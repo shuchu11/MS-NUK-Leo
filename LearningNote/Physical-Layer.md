@@ -40,9 +40,11 @@
 
 
 
-*  **Table 1** \
+*  **Table 1**
+
+  
 | Category | Abbreviation      | Frequency Range        | Description                                                                                                                           |
-|:--------:|:-----------------:|:----------------------:|:------------------------------------------------------------------------------------------------------------------------------------- |
+|:--------:|:-----------------:|:----------------------:|:-------------------------------------------------------------------------------------------------------------------------------------:|
 | **FR1**  | Frequency Range 1 | **410 MHz – 7125 MHz** | Also known as **Sub-6 GHz**, covering most early commercial 5G bands; strong penetration, suitable for wide-area coverage.            |
 | **FR2**  | Frequency Range 2 | **24.25 GHz – 71 GHz** | Also known as **millimeter wave (mmWave)**; offers large bandwidth and high speed but has weak penetration and limited coverage area. |
 
