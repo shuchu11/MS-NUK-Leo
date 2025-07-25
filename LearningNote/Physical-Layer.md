@@ -39,7 +39,7 @@
 >
 >**Downlink carrier frequency** `37497`kHz  ---->   **FR1-n78** (Table 1)
 >
->**System bandwidth** `100`   ---->  Channel bandwidth compliant with n78 (Table 2)
+>**System bandwidth** `100` kHz  ---->  Channel bandwidth compliant with n78 (Table 2)
 
 
 
