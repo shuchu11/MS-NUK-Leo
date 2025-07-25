@@ -71,8 +71,13 @@ Tool 2 : [NR Reference Point A](https://www.sqimway.com/nr_refA.php) \
 
 
 - **Downlink carrier frequency** `3708.48`MHz  ------> 5G NR GSCN `7991`MHz , ARFCN for GSCN Frequency `647232`MHz
-<img width="1128" height="492" alt="image" src="https://github.com/user-attachments/assets/64dff2e7-d84a-4ee6-bce3-2a22af35abed" />
+<img width="1140" height="281" alt="image" src="https://github.com/user-attachments/assets/e3aa25f8-9533-46a6-9f9a-d66bb312c61b" />
 
-<img width="1422" height="857" alt="image" src="https://github.com/user-attachments/assets/956fb7b6-5627-4b89-bb3e-32c4e584930c" />
+
+
+<img width="1467" height="865" alt="image" src="https://github.com/user-attachments/assets/a0e7470e-9a89-4355-90cc-92be1ae3fb69" />
+
+
+
 
 
