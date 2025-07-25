@@ -40,7 +40,7 @@
 
 
 
-*  **Table 1**
+*  **Table 1** \
 | Category | Abbreviation      | Frequency Range        | Description                                                                                                                           |
 |:--------:|:-----------------:|:----------------------:|:------------------------------------------------------------------------------------------------------------------------------------- |
 | **FR1**  | Frequency Range 1 | **410 MHz – 7125 MHz** | Also known as **Sub-6 GHz**, covering most early commercial 5G bands; strong penetration, suitable for wide-area coverage.            |
