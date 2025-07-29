@@ -1,3 +1,6 @@
+
+# PC 
+
 Blew is the screen attach to each server
 ![114547](https://github.com/user-attachments/assets/16a4a39e-8dc5-4b0b-8d43-b38cd743c7c8)
 
@@ -6,3 +9,6 @@ You can use the buttom here to switch the screen to your server system
 
 > [!Caution]
 > You need prepare another keyboard for the PC . The keyboard above linking to screen doesn't work. 
+
+# Reinstall server
+- Insert the Ubuntu USB 
