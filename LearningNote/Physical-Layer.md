@@ -53,8 +53,6 @@
 | **FR2**  | Frequency Range 2 | **24.25 GHz – 71 GHz** | Also known as **millimeter wave (mmWave)**; offers large bandwidth and high speed but has weak penetration and limited coverage area. |
 
 * **Table 2** \
-ref 1 : https://5g-tools.com/5g-nr-gscn-calculator/   \
-ref 2: https://zh.wikipedia.org/zh-tw/5G_NR%E9%A2%91%E6%AE%B5 \
 The table below lists the frequency bands and channel bandwidths of the 5G NR standard in the latest released 3GPP technical specification TS 38.101, Release 18.
 
 | **NR operating band** | **SS Block SCS** | **SS Block pattern** | **Range of GSCN** *(First–'Stepsize'–Last)*      |         Channel Bandwidth (MHz)                  |
