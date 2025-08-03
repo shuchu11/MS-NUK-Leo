@@ -37,9 +37,9 @@
 > [!NOTE]
 > Useful information that users should know, even when skimming content.
 >
->**Downlink carrier frequency** `37497`kHz  ---->   **FR1-n78** (Table 1)
+>**Downlink carrier frequency** `37497` 100kHz  ---->   **FR1-n78** (Table 1)
 >
->**System bandwidth** `100` kHz  ---->  Channel bandwidth compliant with n78 (Table 2)
+>**System bandwidth** `100` 100kHz  ---->  Channel bandwidth compliant with n78 (Table 2)
 
 
 
