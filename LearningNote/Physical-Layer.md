@@ -68,7 +68,7 @@ Tool 1 : [5G NR SSref (SSB) Frequency to GSCN Calculator](https://5g-tools.com/5
 Tool 2 : [NR Reference Point A](https://www.sqimway.com/nr_refA.php) \
 
 
-- **Downlink carrier frequency** `3708.48`MHz  ------> 5G NR ARFCN `649980`MHz
+- **Downlink carrier frequency** `3749.7`MHz  ------> 5G NR ARFCN `649980`MHz
 <pr>
 <img width="1140" height="281" alt="image" src="https://github.com/user-attachments/assets/e3aa25f8-9533-46a6-9f9a-d66bb312c61b" />
 <pr>
