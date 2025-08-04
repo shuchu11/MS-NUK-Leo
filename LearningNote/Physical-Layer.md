@@ -89,6 +89,57 @@ As the result, you can find this Point A `3708.48 MHz` compliant to the list.
 <img width="1697" height="711" alt="螢幕擷取畫面 2025-08-01 155126" src="https://github.com/user-attachments/assets/d2fddd39-4002-4c0f-9e3c-e171ee4bd8b9" />
 <pr>
 
+
+
+### Parameter Help: Force PLMN
+
+| Field     | Value  |
+|-----------|--------|
+| DataType  | String |
+| Min       | 5      |
+| Max       | 6      |
+| Default   |        |
+
+---
+
+**Parameter:** Force PLMN  
+**Description:**  
+- Force use of a particular PLMN. Initial registration is attempted to the specified PLMN.  
+- PLMN is provided in a string of **5 or 6 decimal digits**.  
+- The **leading 3 digits** provide the **Mobile Country Code (MCC)**.  
+- The **next 2 or 3 digits** (depending on *MNC length*) provide the **Mobile Network Code (MNC)**.
+
+
+
+
+### Parameter Help: Radio Access Type
+
+
+|   Field     |   Value  |
+|:-----------:|:--------:|
+| DataType    |   Enum   |
+| Min         |   0      |
+| Max         |   4      |
+| Default     |   3      |
+
+---
+
+**Parameter:** Radio Access Type  
+**Description:**  
+- Values **0**, **1**, and **2** are reserved for future use.  
+- **3** = NG-RAN  
+- **4** = SATELLITE NG-RAN  
+- **Note:** This parameter is **not used for LTE (4G)**.
+
+
+
+
+
+# Config NR NAS Capabilities
+<pr>
+<img width="1746" height="823" alt="image" src="https://github.com/user-attachments/assets/22c28d9f-eec6-47d1-9899-159877115449" />
+<pr>
+
 | 參數名稱                                                | 說明                                                        |
 |:---------------------------------------------------:|:--------------------------------------------------------------:|
 | **NrNasAptConfigCapability**                        | 主設定項目（Required），代表UE的NR NAS能力配置                     |
@@ -116,10 +167,4 @@ As the result, you can find this Point A `3708.48 MHz` compliant to the list.
 FORW MTE NRNASAPTCONFIGCAPABILITY 0 [] [0xe0] [0xe0] [] [] [] [1] [1] [] []
 ```
 這部分設定屬於 5G UE 的 NAS（Non-Access Stratum）能力配置，主要用來定義 UE 在註冊到網路時通報的安全與協定功能，包括 支援的加密與完整性演算法（如 NEA/NIA 系列）、NAS 協定版本、使用者平面的完整性保護速率（上/下行），以及是否啟用 Reflective QoS 與 DRX（省電接收）參數。這些設定將會影響 UE 與核心網（如 AMF）之間的訊息處理與安全機制，並且透過底部的 Command Preview 生成實際指令發送給模擬或測試平台（如 TM500 或 OAI UE 模擬器）。掌握這些參數有助於測試各種網路場景下的註冊、保安與 QoS 行為。
-
-# Config NR NAS Capabilities
-<pr>
-<img width="1746" height="823" alt="image" src="https://github.com/user-attachments/assets/22c28d9f-eec6-47d1-9899-159877115449" />
-<pr>
-
 
