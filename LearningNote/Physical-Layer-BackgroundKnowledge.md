@@ -68,7 +68,7 @@ Here is the English translation:
 
 ---
 
-The table below lists the **key parameters of the 5G network's physical layer frame structure** under different numerologies (denoted by μ).
+The table below lists the **key parameters of the 5G network's physical layer frame structure** under different numerologies (denoted by μ).\
 In 5G, **"numerology"** is used to define the following parameters:
 
 - Subcarrier Spacing
@@ -76,8 +76,8 @@ In 5G, **"numerology"** is used to define the following parameters:
 - Cyclic Prefix Duration
 - Total OFDM Symbol Duration (including cyclic prefix)
 
-The numerology values range from 0 to 4, corresponding to subcarrier spacings of 15, 30, 60, 120, and 240 kHz, respectively.
-**A higher numerology indicates a wider subcarrier spacing.** As the numerology increases, **both the OFDM symbol duration and the cyclic prefix duration become shorter**, resulting in a shorter overall OFDM symbol duration (including the cyclic prefix).
+The numerology values range from 0 to 4, corresponding to subcarrier spacings of 15, 30, 60, 120, and 240 kHz, respectively.\
+**A higher numerology indicates a wider subcarrier spacing.** As the numerology increases, **both the OFDM symbol duration and \ the cyclic prefix duration become shorter**, resulting in a shorter overall OFDM symbol duration (including the cyclic prefix).
 
 <pr>
 <img width="1002" height="132" alt="image" src="https://github.com/user-attachments/assets/592b6e3c-b3a4-449d-bce0-29f2343705d3" />
@@ -92,7 +92,7 @@ T = 1 / freq \
 --> OFDM Symbol Duration = 1 / Subcarrier Spacing \
     = 1 / 15kHz = 66.67 (us)
     
-**Q.** Why Cyclic Prefix Duration = 4.69 (us)
+**Q.** Why Cyclic Prefix Duration = 4.69 (us)\
 **A.** Cyclic Prefix Duration = OFDM Symbol Duration x 7%
 
 
