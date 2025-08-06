@@ -65,9 +65,6 @@ Subcarrier Spacing Options: 15, 30, 60, 120, 240, 480, 960 kHz (LTE only support
 <pr>
 
 ## OFDM Symbol Duration
-Here is the English translation:
-
----
 
 The table below lists the **key parameters of the 5G network's physical layer frame structure** under different numerologies (denoted by μ).\
 In 5G, **"numerology"** is used to define the following parameters:
