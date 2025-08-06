@@ -26,7 +26,7 @@ Higher μ → larger subcarrier spacing → shorter slot duration
 
 ## 📐 Hierarchy of 5G Frame Structure
 > [!tip]
-> Resource Grid : A 2D grid formed by **frequency domin**(RBs) and **time domin**(OFDM symbols)
+> *Resource Grid* : A 2D grid formed by **frequency domin**(RBs) and **time domin**(OFDM symbols)
 - **time domin**
 Hierarchy of Frame Structure : Frame(Radio Frame) > SubFrame > Slot (Same as in LTE) > OFDM Symbol
 
