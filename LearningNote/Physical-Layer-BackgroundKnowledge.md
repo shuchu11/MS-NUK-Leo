@@ -136,3 +136,10 @@ A slot typically consists of 14 OFDM symbols (with Normal Cyclic Prefix).
     - Almost infinite symbol combinations are possible in theory.
     - 3GPP standardizes only 61 predefined combinations, known as Slot Formats.
     - These Slot Formats are essential for flexible and dynamic scheduling, especially in TDD operation.
+
+## TDD vs FDD
+| Characteristic       | TDD                                               | FDD                                           |
+|:--------------------:|:-------------------------------------------------:|:---------------------------------------------:|
+| Frequency Usage      | UL/DL share the same frequency alternately        | UL and DL use different frequency bands       |
+| Hardware Requirement | Simpler (single RF path)                          | More complex (dual RF paths)                  |
+| Applicable Scenario  | Asymmetric traffic, high frequency (e.g., mmWave) | Symmetric traffic, low frequency              |
