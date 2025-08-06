@@ -1,4 +1,4 @@
-<img width="863" height="672" alt="image" src="https://github.com/user-attachments/assets/5dcac57d-ad8f-4c92-bb6c-358b422a7d0d" />
+<img width="847" height="667" alt="image" src="https://github.com/user-attachments/assets/2563bfc0-2661-4587-aacb-4152dfe49087" />
 
 # Frame Structure
 Unlike LTE’s fixed frame design, **5G NR adapts dynamically** to each service’s requirements.\
@@ -134,3 +134,8 @@ A slot typically consists of 14 OFDM symbols (with Normal Cyclic Prefix).
     - D (Downlink): for downlink transmission
     - U (Uplink): for uplink transmission
     - F (Flexible): can be used as either DL or UL depending on the scheduling
+
+- Theoretical flexibility:
+    - Almost infinite symbol combinations are possible in theory.
+    - 3GPP standardizes only 61 predefined combinations, known as Slot Formats.
+    - These Slot Formats are essential for flexible and dynamic scheduling, especially in TDD operation.
