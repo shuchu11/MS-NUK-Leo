@@ -1,4 +1,4 @@
-<img width="847" height="667" alt="image" src="https://github.com/user-attachments/assets/2563bfc0-2661-4587-aacb-4152dfe49087" />
+<img width="1322" height="737" alt="image" src="https://github.com/user-attachments/assets/3a337a10-c276-426b-9f49-b7dffa8558f1" />
 
 # Frame Structure
 Unlike LTE’s fixed frame design, **5G NR adapts dynamically** to each service’s requirements.\
@@ -106,9 +106,6 @@ So, what should be changed to accommodate the physical characteristics of differ
 The answer is to **adjust the number of slots** within each Subframe.
 
 A Slot with a Normal Cyclic Prefix (CP) contains 14 symbols, while a Slot with an Extended CP contains 12 symbols.
-
-<img width="863" height="672" alt="image" src="https://github.com/user-attachments/assets/ed3ea602-943e-4f8d-a8d0-232f6f935979" />
-
 
 ### < Normal CP, Numerology = 0 >
 <img width="1322" height="737" alt="image" src="https://github.com/user-attachments/assets/3a337a10-c276-426b-9f49-b7dffa8558f1" />
