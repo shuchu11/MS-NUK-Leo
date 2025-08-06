@@ -18,9 +18,9 @@ This structure enables simultaneous support for:
 - Low-latency applications (e.g., autonomous driving)
 
 ⏱️ **Slot-Based Design**
-Each slot contains 14 OFDM symbols (normal CP)
+    - Each slot contains 14 OFDM symbols (normal CP)
 
-Slot duration varies with numerology (μ):
+    - Slot duration varies with numerology (μ):
 
 Higher μ → larger subcarrier spacing → shorter slot duration
 
