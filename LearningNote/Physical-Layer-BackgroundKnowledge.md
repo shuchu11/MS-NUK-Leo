@@ -111,16 +111,16 @@ A Slot with a Normal Cyclic Prefix (CP) contains 14 symbols, while a Slot with a
 
 
 ### < Normal CP, Numerology = 0 >
-<img width="863" height="672" alt="image" src="https://github.com/user-attachments/assets/22c66859-0027-47b4-8368-75151657fe3a" />
+<img width="1322" height="737" alt="image" src="https://github.com/user-attachments/assets/3a337a10-c276-426b-9f49-b7dffa8558f1" />
 
 ### < Normal CP, Numerology = 1 >
-<img width="858" height="678" alt="image" src="https://github.com/user-attachments/assets/eeaf1355-d03f-43b5-901c-7ff0783dd546" />
+<img width="1247" height="708" alt="image" src="https://github.com/user-attachments/assets/8e6e1e9c-3852-4fdf-8a67-a15958c36f15" />
 
 ### < Normal CP, Numerology = 2 >
-<img width="812" height="682" alt="image" src="https://github.com/user-attachments/assets/da386ec4-73e8-44a0-84fa-ffa77aefc2e6" />
+<img width="1373" height="716" alt="image" src="https://github.com/user-attachments/assets/463268e4-f81e-42a1-a096-f551f5c74a06" />
 
 ### < Normal CP, Numerology = 3 >
-<img width="780" height="735" alt="image" src="https://github.com/user-attachments/assets/7ebd0680-ebbc-4578-aaa4-3c80ec62e751" />
+<img width="1415" height="797" alt="image" src="https://github.com/user-attachments/assets/98a8ab34-7c4a-4ffb-b8d1-93f10d5bec19" />
 
 
 
