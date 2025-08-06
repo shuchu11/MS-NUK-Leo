@@ -1,3 +1,5 @@
+<img width="863" height="672" alt="image" src="https://github.com/user-attachments/assets/5dcac57d-ad8f-4c92-bb6c-358b422a7d0d" />
+
 # Frame Structure
 Unlike LTE’s fixed frame design, **5G NR adapts dynamically** to each service’s requirements.\
 This flexibility allows the network to optimize performance for both high-throughput and ultra-low-latency use cases.
@@ -96,11 +98,39 @@ T = 1 / freq \
 **Q.** Why Cyclic Prefix Duration = 4.69 (us)\
 **A.** Cyclic Prefix Duration = OFDM Symbol Duration x 7%
 
+## Radio Frame Structure
+Regardless of the numerology, the length of a Radio Frame is always 10 ms, and the length of a Subframe is always 1 ms.
+
+So, what should be changed to accommodate the physical characteristics of different numerologies?
+
+The answer is to **adjust the number of slots** within each Subframe.
+
+A Slot with a Normal Cyclic Prefix (CP) contains 14 symbols, while a Slot with an Extended CP contains 12 symbols.
+
+<img width="863" height="672" alt="image" src="https://github.com/user-attachments/assets/ed3ea602-943e-4f8d-a8d0-232f6f935979" />
+
+
+### < Normal CP, Numerology = 0 >
+<img width="863" height="672" alt="image" src="https://github.com/user-attachments/assets/22c66859-0027-47b4-8368-75151657fe3a" />
+
+### < Normal CP, Numerology = 1 >
+<img width="858" height="678" alt="image" src="https://github.com/user-attachments/assets/eeaf1355-d03f-43b5-901c-7ff0783dd546" />
+
+### < Normal CP, Numerology = 2 >
+<img width="812" height="682" alt="image" src="https://github.com/user-attachments/assets/da386ec4-73e8-44a0-84fa-ffa77aefc2e6" />
+
+### < Normal CP, Numerology = 3 >
+<img width="780" height="735" alt="image" src="https://github.com/user-attachments/assets/7ebd0680-ebbc-4578-aaa4-3c80ec62e751" />
 
 
 
+## Slot Format
+<img width="498" height="842" alt="image" src="https://github.com/user-attachments/assets/9e3082d0-4e64-42dc-b0b5-79859249d3e5" />
 
-
-
-
-
+📌 Definition
+Slot Format defines how each symbol within a slot is used.\
+A slot typically consists of 14 OFDM symbols (with Normal Cyclic Prefix).
+- Each symbol can be labeled as:
+    - D (Downlink): for downlink transmission
+    - U (Uplink): for uplink transmission
+    - F (Flexible): can be used as either DL or UL depending on the scheduling
