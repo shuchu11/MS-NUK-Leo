@@ -37,7 +37,7 @@ Hierarchy of Frame Structure : Frame(Radio Frame) > SubFrame > Slot (Same as in 
 | **OFDM Symbol**   | Each slot contains **14 symbols** (for normal cyclic prefix)                |
 
 - **frequency domin**
-- 
+
 | Layer             | Description                                                                |
 |:-----------------:|:--------------------------------------------------------------------------:|
 | **Resource Block**| Each RB contains **12 subcarriers** (same as LTE)                          |
