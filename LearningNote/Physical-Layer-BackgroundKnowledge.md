@@ -3,9 +3,9 @@ Unlike LTE’s fixed frame design, **5G NR adapts dynamically** to each service�
 This flexibility allows the network to optimize performance for both high-throughput and ultra-low-latency use cases.
 
 🧱 **Time-Frequency Resource Allocation**
-The time-frequency domain is divided into:
+- The time-frequency domain is divided into:
 
-Resource Blocks (RBs): 12 subcarriers in frequency
+    - Resource Blocks (RBs): 12 subcarriers in frequency
 
 OFDM Symbols: units in time
 
