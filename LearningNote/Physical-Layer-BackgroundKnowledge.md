@@ -127,7 +127,7 @@ A Slot with a Normal Cyclic Prefix (CP) contains 14 symbols, while a Slot with a
 ## Slot Format
 <img width="498" height="842" alt="image" src="https://github.com/user-attachments/assets/9e3082d0-4e64-42dc-b0b5-79859249d3e5" />
 
-📌 Definition
+📌 Definition\
 Slot Format defines how each symbol within a slot is used.\
 A slot typically consists of 14 OFDM symbols (with Normal Cyclic Prefix).
 - Each symbol can be labeled as:
