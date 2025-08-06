@@ -9,7 +9,7 @@ This flexibility allows the network to optimize performance for both high-throug
 
     - OFDM Symbols: units in time
 
-    - Together they form the resource grid, the basic unit for scheduling and transmission.
+    - Together they form the **resource grid**, the basic unit for scheduling and transmission.
 
 This structure enables simultaneous support for:
 
