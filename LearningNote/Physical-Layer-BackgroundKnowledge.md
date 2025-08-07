@@ -286,7 +286,7 @@ SS Block（SSB）主要用來建立**下行同步**，是 UE 接入 5G NR 網路
 
 ---
 
-## 📘 RRC 配置參數
+#### 📘 RRC 配置參數
 
 | 參數名稱 | 說明 |
 |----------|------|
@@ -298,7 +298,7 @@ SS Block（SSB）主要用來建立**下行同步**，是 UE 接入 5G NR 網路
 - `RRCConnectionReconfiguration`（適用於 NSA 模式）
 
 
-### 📡 SSB 傳送模式與 ssb-PositionInBurst 的用途
+#### 📡 SSB 傳送模式與 ssb-PositionInBurst 的用途
 上方圖示所示的 SSB 傳送是「全部 SSB 都傳送」的情況，但實際上並不需要傳送所有 SSB。\根據網路的需求，gNB 可以選擇性地傳送部分 SSB，並透過 RRC 訊息告知 UE 哪些 SSB 有傳送、哪些沒有。
 
 
@@ -309,7 +309,7 @@ SS Block（SSB）主要用來建立**下行同步**，是 UE 接入 5G NR 網路
 
 第二個位元 → SSB#1
 
-## 主要差異：週期性（Periodicity）
+#### 主要差異：週期性（Periodicity）
 - 在 LTE 中：
 
     - PSS/SSS（同步訊號） 每 5 毫秒傳送一次
@@ -323,3 +323,28 @@ SS Block（SSB）主要用來建立**下行同步**，是 UE 接入 5G NR 網路
     - SS（PSS + SSS）與 PBCH 是一起傳送的，週期完全一致
 
 → NR 中的 SS Block（SSB）是同步訊號與 PBCH 的整合傳送
+
+## MIB / SIB1
+
+<img width="786" height="415" alt="image" src="https://github.com/user-attachments/assets/62a6b92d-2769-44ca-9f66-3b80a1605630" />
+
+在 5G NR 的獨立模式（SA）中，UE 在嘗試連接前最重要的訊號是 MIB 與 SIB1。 UE 要能夠「駐留（camp）在某個 cell」，最低要求就是能成功解碼 MIB 與 SIB1。
+
+MIB（Master Information Block） 是透過物理通道 PBCH 傳送，而 PBCH 是 SSB 的一部分。
+
+SIB1（System Information Block Type 1） 則是透過物理通道 PDSCH 傳送。
+
+
+### MIB 與 SIB1 的內容與功能
+
+- 🧩 MIB 包含的資訊：
+    - 參考子載波間距（subcarrier spacing）
+    - 控制通道配置（用於 SIB1 的 PDSCH）
+    - DMRS 位置（下行導頻）
+    - 是否允許 cell 駐留（cellBarred）
+    - 是否允許同頻重選（intraFreqReselection）
+
+- 📦 SIB1 包含的資訊：
+    - UE 進行初始連線（initial attachment）所需的基本資訊，至少到 RRC Setup 階段
+    - 其他 SIB 的排程資訊（是否週期性傳送或按需傳送）
+    - 是否支援 On-Demand SIB（UE 可請求特定 SIB）
