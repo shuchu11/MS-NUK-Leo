@@ -231,6 +231,9 @@ Two consecutive OFDM symbols are ideally transmitted without issue.\
 <img width="783" height="247" alt="image" src="https://github.com/user-attachments/assets/9a6061e8-b884-4c1a-b698-8ad501a1f561" />
 <pr>
 
+To reduce this issue, we copy a part of signal from the end and paste it into this gap. This copied portion prepended at the beginning is called **'Cyclic Prefix'**.
+<img width="868" height="363" alt="image" src="https://github.com/user-attachments/assets/72ab3ef5-5d27-49d3-9644-76714561ed42" />
+
 ### SA
 <img width="836" height="802" alt="image" src="https://github.com/user-attachments/assets/10ac9b27-002f-42e8-9470-6d81d73b6723" />
 
