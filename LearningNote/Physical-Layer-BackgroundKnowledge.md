@@ -231,4 +231,92 @@ Two consecutive OFDM symbols are ideally transmitted without issue.\
 <img width="783" height="247" alt="image" src="https://github.com/user-attachments/assets/9a6061e8-b884-4c1a-b698-8ad501a1f561" />
 <pr>
 
-### 
+### SA
+<img width="836" height="802" alt="image" src="https://github.com/user-attachments/assets/10ac9b27-002f-42e8-9470-6d81d73b6723" />
+
+### SSB
+# 📡 SS Block（同步訊號區塊）簡介
+
+## 🔍 它的用途是什麼？
+SS Block（SSB）主要用來建立**下行同步**，是 UE 接入 5G NR 網路的**第一步**。
+
+---
+
+## 🧩 SSB 的組成元件
+
+| 元件 | 說明 |
+|------|------|
+| **PSS** (Primary Synchronization Signal) | 主要同步訊號 |
+| **SSS** (Secondary Synchronization Signal) | 次要同步訊號 |
+| **PBCH** (Physical Broadcast Channel) | 實體廣播通道 |
+
+這三個部分共同構成 **SSB**，並作為一個整體在無線框架中傳送。
+
+---
+
+## 📐 頻域中的位置
+- SSB 在頻域中的位置是**可配置的**，不一定要位於中心頻率。  
+- 這種設計提供了**頻率配置的彈性**，特別適合**多頻段部署**。
+
+---
+
+## ⏱️ 傳送週期（Periodicity）
+- 可選週期：`5ms`、`10ms`、`20ms`、`40ms`、`80ms`、`160ms`  
+- **最常見配置為 `20ms`**（即每 20 毫秒傳送一次 SSB）
+
+---
+
+## 🔢 最多連續 SSB 數量
+
+| 頻段 | 最大連續 SSB 數量 |
+|------|------------------|
+| **FR1**（Sub-6GHz） | 最多 4 或 8 個 |
+| **FR2**（mmWave） | 最多 64 個 |
+
+---
+
+> [!tip]
+>  🎯 **連續 SSB 的主要用途**
+> 用於 **波束管理（Beam Management）**
+> 每個 SSB 可以透過**不同波束方向**傳送
+> 協助 UE **尋找最佳接收方向**
+
+---
+
+## 📘 RRC 配置參數
+
+| 參數名稱 | 說明 |
+|----------|------|
+| `ssb-PositionsInBurst` | 指定 SSB 在 burst 中的位置與 bitmap |
+| `ssb-periodicityServingCell` | 指定 SSB 傳送週期（如 `ms20`） |
+
+這些參數可在 RRC 訊息中配置，例如：
+- `SIB1`（適用於 SA 模式）
+- `RRCConnectionReconfiguration`（適用於 NSA 模式）
+
+
+### 📡 SSB 傳送模式與 ssb-PositionInBurst 的用途
+上方圖示所示的 SSB 傳送是「全部 SSB 都傳送」的情況，但實際上並不需要傳送所有 SSB。\根據網路的需求，gNB 可以選擇性地傳送部分 SSB，並透過 RRC 訊息告知 UE 哪些 SSB 有傳送、哪些沒有。
+
+
+
+#### 每個 Bitmap 的位元代表一個 SSB 的傳送狀態：
+
+第一個位元 → SSB#0
+
+第二個位元 → SSB#1
+
+## 主要差異：週期性（Periodicity）
+- 在 LTE 中：
+
+    - PSS/SSS（同步訊號） 每 5 毫秒傳送一次
+
+    - PBCH（實體廣播通道） 每 10 毫秒傳送一次
+
+→ 同步訊號與廣播訊號的週期不同
+
+- 在 NR 中：
+
+    - SS（PSS + SSS）與 PBCH 是一起傳送的，週期完全一致
+
+→ NR 中的 SS Block（SSB）是同步訊號與 PBCH 的整合傳送
