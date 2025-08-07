@@ -281,6 +281,10 @@ SS Block（SSB）主要用來建立**下行同步**，是 UE 接入 5G NR 網路
 > 每個 SSB 可以透過**不同波束方向**傳送
 > 協助 UE **尋找最佳接收方向**
 
+簡易圖 :
+<pr>
+<img width="622" height="255" alt="image" src="https://github.com/user-attachments/assets/a8b55e94-46c1-4e0d-91ff-ae52d2c55411" />
+<pr>
 ---
 
 ## 📘 RRC 配置參數
