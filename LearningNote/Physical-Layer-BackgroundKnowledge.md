@@ -148,7 +148,7 @@ A slot typically consists of 14 OFDM symbols (with Normal Cyclic Prefix).
 
 
 
-# 📡 supportedSubcarrierSpacingDL Summary
+## 📡 supportedSubcarrierSpacingDL Summary
 ```
 FeatureSetDownlinkPerCC ::= SEQUENCE {
    supportedSubcarrierSpacingDL               SubcarrierSpacing,
@@ -160,7 +160,7 @@ FeatureSetDownlinkPerCC ::= SEQUENCE {
 ```
 This field defines the supported **downlink (DL) sub-carrier spacing** by the UE. It describes the UE’s capabilities in Carrier Aggregation (CA) scenarios involving multiple numerologies.
 
-## 🔑 Key Points
+### Key Points
 
 - **General Definition**:
   - Indicates the sub-carrier spacing(s) supported by the UE for DL.
@@ -181,11 +181,44 @@ This field defines the supported **downlink (DL) sub-carrier spacing** by the UE
 - **Optional Support**:
   - In other cases not mentioned above, supporting different numerologies is **optional**.
 
-## Capability Summary
+### Capability Summary
 
-| Scenario                        | Numerology Support | Mandatory | Notes                            |
-|---------------------------------|---------------------|-----------|----------------------------------|
+| Scenario                        | Numerology Support | Mandatory | Notes                              |
+|---------------------------------|---------------------|-----------|-----------------------------------|
 | All FR1/FR2 bands               | All mandated SCS    | ✅        | Baseline requirement             |
-| Intraband CA (contiguous/non)  | Same numerology      | ✅        | Applies to both FR1 and FR2      |
+| Intraband CA (contiguous/non)   | Same numerology     | ✅        | Applies to both FR1 and FR2      |
 | Inter-band CA (FR1 + FR2)       | Mixed numerologies  | ✅        | Only if inter-band CA supported  |
 | Other configurations            | Varies              | ❌        | Optional support                 |
+
+
+## 5G/NR - Waveform
+### 📡 OFDM Overview – Orthogonal Frequency Division Multiplexing
+OFDM stands for Orthogonal Frequency Division Multiplexing. To understand OFDM, it helps to break down its three core components:
+
+- **Orthogonal** – Subcarriers are mathematically orthogonal, meaning they don’t  with each other.
+- **Frequency Division** – A wide frequency band is split into many narrow sub-bands.
+- **Multiplexing** – Data is transmitted simultaneously across all subcarriers.
+
+<pr>
+<img width="1005" height="657" alt="image" src="https://github.com/user-attachments/assets/8c31868c-e505-4f2c-a148-06f246c4a539" />
+<pr>
+
+
+### Orthogonality
+Orthogonality ensures that each subcarrier does not interfere with others, even though they are closely spaced.
+
+- At the sampling points of one subcarrier, all other subcarriers have zero amplitude.
+- This allows dense packing of subcarriers without mutual interference.
+
+### Frequency Drift & Challenges
+
+**Key Summary**
+
+- **OFDM efficiency** depends on **precise subcarrier spacing**.
+- **Frequency drift** (e.g., from Doppler effect or channel fading) can **disrupt subcarrier alignment** and **break orthogonality**.
+- **Design consideration**: account for **tolerable frequency drift** to maintain performance and **minimize inter-carrier interference (ICI)**.
+
+**frequency drift :**
+<img width="1143" height="737" alt="image" src="https://github.com/user-attachments/assets/ee91b7f3-9884-496d-8af6-82113762ef88" />
+
+
