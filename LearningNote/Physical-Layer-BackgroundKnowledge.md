@@ -234,46 +234,7 @@ Two consecutive OFDM symbols are ideally transmitted without issue.\
 ### SA
 <img width="836" height="802" alt="image" src="https://github.com/user-attachments/assets/10ac9b27-002f-42e8-9470-6d81d73b6723" />
 
-### SSB
-# 📡 SS Block（同步訊號區塊）簡介
-
-## 🔍 它的用途是什麼？
-SS Block（SSB）主要用來建立**下行同步**，是 UE 接入 5G NR 網路的**第一步**。
-
----
-
-## 🧩 SSB 的組成元件
-
-| 元件 | 說明 |
-|------|------|
-| **PSS** (Primary Synchronization Signal) | 主要同步訊號 |
-| **SSS** (Secondary Synchronization Signal) | 次要同步訊號 |
-| **PBCH** (Physical Broadcast Channel) | 實體廣播通道 |
-
-這三個部分共同構成 **SSB**，並作為一個整體在無線框架中傳送。
-
----
-
-## 📐 頻域中的位置
-- SSB 在頻域中的位置是**可配置的**，不一定要位於中心頻率。  
-- 這種設計提供了**頻率配置的彈性**，特別適合**多頻段部署**。
-
----
-
-## ⏱️ 傳送週期（Periodicity）
-- 可選週期：`5ms`、`10ms`、`20ms`、`40ms`、`80ms`、`160ms`  
-- **最常見配置為 `20ms`**（即每 20 毫秒傳送一次 SSB）
-
----
-
-## 🔢 最多連續 SSB 數量
-
-| 頻段 | 最大連續 SSB 數量 |
-|------|------------------|
-| **FR1**（Sub-6GHz） | 最多 4 或 8 個 |
-| **FR2**（mmWave） | 最多 64 個 |
-
----
+### SSB （同步訊號區塊）簡介
 
 > [!tip]
 >  🎯 **連續 SSB 的主要用途**
@@ -285,6 +246,44 @@ SS Block（SSB）主要用來建立**下行同步**，是 UE 接入 5G NR 網路
 <pr>
 <img width="622" height="255" alt="image" src="https://github.com/user-attachments/assets/a8b55e94-46c1-4e0d-91ff-ae52d2c55411" />
 <pr>
+---
+
+#### 🔍 它的用途是什麼？
+SS Block（SSB）主要用來建立**下行同步**，是 UE 接入 5G NR 網路的**第一步**。
+
+---
+
+#### 🧩 SSB 的組成元件
+
+| 元件 | 說明 |
+|------|------|
+| **PSS** (Primary Synchronization Signal) | 主要同步訊號 |
+| **SSS** (Secondary Synchronization Signal) | 次要同步訊號 |
+| **PBCH** (Physical Broadcast Channel) | 實體廣播通道 |
+
+這三個部分共同構成 **SSB**，並作為一個整體在無線框架中傳送。
+
+---
+
+#### 📐 頻域中的位置
+- SSB 在頻域中的位置是**可配置的**，不一定要位於中心頻率。  
+- 這種設計提供了**頻率配置的彈性**，特別適合**多頻段部署**。
+
+---
+
+#### ⏱️ 傳送週期（Periodicity）
+- 可選週期：`5ms`、`10ms`、`20ms`、`40ms`、`80ms`、`160ms`  
+- **最常見配置為 `20ms`**（即每 20 毫秒傳送一次 SSB）
+
+---
+
+#### 🔢 最多連續 SSB 數量
+
+| 頻段 | 最大連續 SSB 數量 |
+|------|------------------|
+| **FR1**（Sub-6GHz） | 最多 4 或 8 個 |
+| **FR2**（mmWave） | 最多 64 個 |
+
 ---
 
 ## 📘 RRC 配置參數
