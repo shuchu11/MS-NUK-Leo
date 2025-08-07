@@ -348,3 +348,6 @@ SIB1（System Information Block Type 1） 則是透過物理通道 PDSCH 傳送�
     - UE 進行初始連線（initial attachment）所需的基本資訊，至少到 RRC Setup 階段
     - 其他 SIB 的排程資訊（是否週期性傳送或按需傳送）
     - 是否支援 On-Demand SIB（UE 可請求特定 SIB）
+
+##### 3GPP 定義的 SIB 數量
+目前 3GPP 定義了 21 個 SIB（System Information Blocks），但這個數量可能會隨著版本演進而增加
