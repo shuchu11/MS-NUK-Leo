@@ -222,3 +222,13 @@ Orthogonality ensures that each subcarrier does not interfere with others, even 
 <img width="1143" height="737" alt="image" src="https://github.com/user-attachments/assets/ee91b7f3-9884-496d-8af6-82113762ef88" />
 
 
+### Inter Symbol Interference (ISI) in the time domain
+Two consecutive OFDM symbols are ideally transmitted without issue.\
+  However, if the **first symbol is slightly delayed**, its **tail may overlap** with the next symbol.\
+  This type of interference between different symbols is called **Inter Symbol Interference (ISI)**.
+
+<pr>
+<img width="783" height="247" alt="image" src="https://github.com/user-attachments/assets/9a6061e8-b884-4c1a-b698-8ad501a1f561" />
+<pr>
+
+### 
