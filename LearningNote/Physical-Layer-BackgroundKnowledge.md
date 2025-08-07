@@ -143,3 +143,49 @@ A slot typically consists of 14 OFDM symbols (with Normal Cyclic Prefix).
 | Frequency Usage      | UL/DL share the same frequency alternately        | UL and DL use different frequency bands       |
 | Hardware Requirement | Simpler (single RF path)                          | More complex (dual RF paths)                  |
 | Applicable Scenario  | Asymmetric traffic, high frequency (e.g., mmWave) | Symmetric traffic, low frequency              |
+
+
+
+
+
+# 📡 supportedSubcarrierSpacingDL Summary
+```
+FeatureSetDownlinkPerCC ::= SEQUENCE {
+   supportedSubcarrierSpacingDL               SubcarrierSpacing,
+   supportedBandwidthDL                       SupportedBandwidth,
+   channelBW-90mhz                            ENUMERATED {supported} OPTIONAL,
+   maxNumberMIMO-LayersPDSCH                  MIMO-LayersDL OPTIONAL,
+   supportedModulationOrderDL                 ModulationOrder OPTIONAL
+}
+```
+This field defines the supported **downlink (DL) sub-carrier spacing** by the UE. It describes the UE’s capabilities in Carrier Aggregation (CA) scenarios involving multiple numerologies.
+
+## 🔑 Key Points
+
+- **General Definition**:
+  - Indicates the sub-carrier spacing(s) supported by the UE for DL.
+  - Allows simultaneous reception of carriers with **same or different numerologies**.
+
+- **Mandatory Requirements**:
+  - UE **shall support all mandatory sub-carrier spacing** values for:
+    - **FR1 (Frequency Range 1)**
+    - **FR2 (Frequency Range 2)**
+
+- **Intraband NR-CA** (Same band, both contiguous and non-contiguous):
+  - **Same numerology is mandatory**.
+  - Support required in both **FR1 and FR2**.
+
+- **Inter-band NR-CA** (Different bands: FR1 + FR2):
+  - Support for **two mixed numerologies in DL** is **mandatory** **if** UE supports inter-band CA.
+
+- **Optional Support**:
+  - In other cases not mentioned above, supporting different numerologies is **optional**.
+
+## Capability Summary
+
+| Scenario                        | Numerology Support | Mandatory | Notes                            |
+|---------------------------------|---------------------|-----------|----------------------------------|
+| All FR1/FR2 bands               | All mandated SCS    | ✅        | Baseline requirement             |
+| Intraband CA (contiguous/non)  | Same numerology      | ✅        | Applies to both FR1 and FR2      |
+| Inter-band CA (FR1 + FR2)       | Mixed numerologies  | ✅        | Only if inter-band CA supported  |
+| Other configurations            | Varies              | ❌        | Optional support                 |
