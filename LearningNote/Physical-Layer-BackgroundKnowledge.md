@@ -234,13 +234,13 @@ Two consecutive OFDM symbols are ideally transmitted without issue.\
 ### SA
 <img width="836" height="802" alt="image" src="https://github.com/user-attachments/assets/10ac9b27-002f-42e8-9470-6d81d73b6723" />
 
-### SSB （同步訊號區塊）簡介
+### SSB (Synchronization Signal Block) Overview
 
 > [!tip]
->  🎯 **連續 SSB 的主要用途**
-> 用於 **波束管理（Beam Management）**
-> 每個 SSB 可以透過**不同波束方向**傳送
-> 協助 UE **尋找最佳接收方向**
+> 🎯 **Main Purpose of Consecutive SSBs**  
+> Used for **Beam Management**  
+> Each SSB can be transmitted in a **different beam direction**  
+> Helps the UE **find the optimal reception direction**
 
 簡易圖 :
 <pr>
@@ -248,106 +248,121 @@ Two consecutive OFDM symbols are ideally transmitted without issue.\
 <pr>
 ---
 
-#### 🔍 它的用途是什麼？
-SS Block（SSB）主要用來建立**下行同步**，是 UE 接入 5G NR 網路的**第一步**。
+#### 🔍 What Is Its Purpose?
+The **SS Block (SSB)** is mainly used to establish **downlink synchronization** and is the **first step** for the UE to access a 5G NR network.
 
 ---
 
-#### 🧩 SSB 的組成元件
+#### 🧩 Components of the SSB
 
-| 元件 | 說明 |
-|------|------|
-| **PSS** (Primary Synchronization Signal) | 主要同步訊號 |
-| **SSS** (Secondary Synchronization Signal) | 次要同步訊號 |
-| **PBCH** (Physical Broadcast Channel) | 實體廣播通道 |
+| Component | Description |
+|----------|-------------|
+| **PSS** (Primary Synchronization Signal) | Provides primary synchronization |
+| **SSS** (Secondary Synchronization Signal) | Provides secondary synchronization |
+| **PBCH** (Physical Broadcast Channel) | Transmits the Master Information Block (MIB) |
 
-這三個部分共同構成 **SSB**，並作為一個整體在無線框架中傳送。
-
----
-
-#### 📐 頻域中的位置
-- SSB 在頻域中的位置是**可配置的**，不一定要位於中心頻率。  
-- 這種設計提供了**頻率配置的彈性**，特別適合**多頻段部署**。
+These three components form the **SSB** and are transmitted as a whole within the radio frame.
 
 ---
 
-#### ⏱️ 傳送週期（Periodicity）
-- 可選週期：`5ms`、`10ms`、`20ms`、`40ms`、`80ms`、`160ms`  
-- **最常見配置為 `20ms`**（即每 20 毫秒傳送一次 SSB）
+#### 📐 Frequency Domain Location
+- The SSB’s position in the frequency domain is **configurable** and does not need to be centered.
+- This design enables **flexible frequency planning**, especially suitable for **multi-band deployments**.
 
 ---
 
-#### 🔢 最多連續 SSB 數量
-
-| 頻段 | 最大連續 SSB 數量 |
-|------|------------------|
-| **FR1**（Sub-6GHz） | 最多 4 或 8 個 |
-| **FR2**（mmWave） | 最多 64 個 |
+#### ⏱️ Transmission Periodicity
+- Available periodicities: `5ms`, `10ms`, `20ms`, `40ms`, `80ms`, `160ms`
+- The **most common configuration is `20ms`**, meaning the SSB is transmitted every 20 milliseconds.
 
 ---
 
-#### 📘 RRC 配置參數
+#### 🔢 Maximum Number of Consecutive SSBs
 
-| 參數名稱 | 說明 |
-|----------|------|
-| `ssb-PositionsInBurst` | 指定 SSB 在 burst 中的位置與 bitmap |
-| `ssb-periodicityServingCell` | 指定 SSB 傳送週期（如 `ms20`） |
+| Frequency Range | Max Consecutive SSBs |
+|-----------------|----------------------|
+| **FR1** (Sub-6GHz) | Up to 4 or 8 |
+| **FR2** (mmWave)   | Up to 64 |
 
-這些參數可在 RRC 訊息中配置，例如：
-- `SIB1`（適用於 SA 模式）
-- `RRCConnectionReconfiguration`（適用於 NSA 模式）
+---
 
+#### 📘 RRC Configuration Parameters
 
-#### 📡 SSB 傳送模式與 ssb-PositionInBurst 的用途
-上方圖示所示的 SSB 傳送是「全部 SSB 都傳送」的情況，但實際上並不需要傳送所有 SSB。\根據網路的需求，gNB 可以選擇性地傳送部分 SSB，並透過 RRC 訊息告知 UE 哪些 SSB 有傳送、哪些沒有。
+| Parameter | Description |
+|-----------|-------------|
+| `ssb-PositionsInBurst` | Indicates the position and bitmap of SSBs within a burst |
+| `ssb-periodicityServingCell` | Defines the periodicity of SSB transmission (e.g., `ms20`) |
 
+These parameters are included in RRC messages such as:
+- `SIB1` (for SA mode)
+- `RRCConnectionReconfiguration` (for NSA mode)
 
+---
 
-#### 每個 Bitmap 的位元代表一個 SSB 的傳送狀態：
+#### 📡 SSB Transmission Mode & Purpose of `ssb-PositionsInBurst`
+In the diagram above, all SSBs are shown as transmitted, but in practice, not all SSBs need to be sent.  
+Depending on network needs, the **gNB can selectively transmit a subset of SSBs** and inform the UE via RRC signaling which SSBs are active or inactive.
 
-第一個位元 → SSB#0
+---
 
-第二個位元 → SSB#1
+#### 📊 Bit Mapping in the Bitmap Field
 
-#### 主要差異：週期性（Periodicity）
-- 在 LTE 中：
+Each bit in the bitmap indicates the transmission status of a specific SSB:
 
-    - PSS/SSS（同步訊號） 每 5 毫秒傳送一次
+- First bit → SSB#0  
+- Second bit → SSB#1  
+- And so on...
 
-    - PBCH（實體廣播通道） 每 10 毫秒傳送一次
+---
 
-→ 同步訊號與廣播訊號的週期不同
+#### 🔄 Key Difference: Periodicity in LTE vs NR
 
-- 在 NR 中：
+- **In LTE**:
+  - **PSS/SSS (sync signals)**: transmitted every **5 ms**
+  - **PBCH (broadcast channel)**: transmitted every **10 ms**
+  → **Sync and broadcast signals have different periodicities**
 
-    - SS（PSS + SSS）與 PBCH 是一起傳送的，週期完全一致
+- **In NR**:
+  - **SS (PSS + SSS)** and **PBCH** are transmitted **together** with the **same periodicity**
+  → In NR, the **SS Block (SSB)** integrates both sync signals and PBCH into a **unified transmission block**
 
-→ NR 中的 SS Block（SSB）是同步訊號與 PBCH 的整合傳送
 
 ## MIB / SIB1
 
 <img width="786" height="415" alt="image" src="https://github.com/user-attachments/assets/62a6b92d-2769-44ca-9f66-3b80a1605630" />
 
-在 5G NR 的獨立模式（SA）中，UE 在嘗試連接前最重要的訊號是 MIB 與 SIB1。 UE 要能夠「駐留（camp）在某個 cell」，最低要求就是能成功解碼 MIB 與 SIB1。
+## 📡 MIB and SIB1 in 5G NR Standalone (SA) Mode
 
-MIB（Master Information Block） 是透過物理通道 PBCH 傳送，而 PBCH 是 SSB 的一部分。
+In 5G NR **Standalone (SA)** mode, the most critical signals for the UE before attempting to connect are **MIB** and **SIB1**.  
+To **camp on a cell**, the UE must at minimum be able to successfully decode both MIB and SIB1.
 
-SIB1（System Information Block Type 1） 則是透過物理通道 PDSCH 傳送。
+---
 
+## 🔗 How MIB and SIB1 Are Transmitted
 
-### MIB 與 SIB1 的內容與功能
+- **MIB (Master Information Block)** is transmitted via the physical channel **PBCH**, which is part of the **SSB** (Synchronization Signal Block).
+- **SIB1 (System Information Block Type 1)** is transmitted via the physical channel **PDSCH**.
 
-- 🧩 MIB 包含的資訊：
-    - 參考子載波間距（subcarrier spacing）
-    - 控制通道配置（用於 SIB1 的 PDSCH）
-    - DMRS 位置（下行導頻）
-    - 是否允許 cell 駐留（cellBarred）
-    - 是否允許同頻重選（intraFreqReselection）
+---
 
-- 📦 SIB1 包含的資訊：
-    - UE 進行初始連線（initial attachment）所需的基本資訊，至少到 RRC Setup 階段
-    - 其他 SIB 的排程資訊（是否週期性傳送或按需傳送）
-    - 是否支援 On-Demand SIB（UE 可請求特定 SIB）
+## 🧩 Contents and Functions of MIB and SIB1
 
-##### 3GPP 定義的 SIB 數量
-目前 3GPP 定義了 21 個 SIB（System Information Blocks），但這個數量可能會隨著版本演進而增加
+### MIB Includes:
+- Reference **subcarrier spacing**
+- **Control resource configuration** (for decoding SIB1 on PDSCH)
+- **DMRS position** (downlink reference signal)
+- Whether **cell camping is allowed** (`cellBarred`)
+- Whether **intra-frequency reselection** is allowed (`intraFreqReselection`)
+
+### SIB1 Includes:
+- Essential information for UE to perform **initial attachment**, at least up to **RRC Setup**
+- **Scheduling info** for other SIBs (e.g., periodic or on-demand transmission)
+- Whether **On-Demand SIB** is supported (UE can request specific SIBs)
+
+---
+
+## 📘 Number of SIBs Defined by 3GPP
+
+- As of now, **3GPP defines 21 SIBs (System Information Blocks)**
+- The number may increase as the specification evolves
+
