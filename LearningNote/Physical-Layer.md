@@ -140,6 +140,21 @@ As the result, you can find this Point A `3708.48 MHz` compliant to the list.
 <img width="1746" height="823" alt="image" src="https://github.com/user-attachments/assets/22c28d9f-eec6-47d1-9899-159877115449" />
 <pr>
 
+
+| DataType | Min | Max | Default |
+| -------- | --- | --- | ------- |
+| Enum     | 0   | 1   | 0       |
+
+- Parameter: Downlink Integrity protection maximum data rate
+    - Specifies the maximum data rate per UE for user-plane integrity protection for downlink.
+        - 0 = 64 kbps
+        - 1 = Full Data rate
+        - If not provided or [], the default value of 64 kbps is used.
+
+
+
+
+
 | 參數名稱                                                | 說明                                                        |
 |:---------------------------------------------------:|:--------------------------------------------------------------:|
 | **NrNasAptConfigCapability**                        | 主設定項目（Required），代表UE的NR NAS能力配置                     |
