@@ -136,20 +136,318 @@ As the result, you can find this Point A `3708.48 MHz` compliant to the list.
 
 
 # Config NR NAS Capabilities
+
 <pr>
 <img width="1746" height="823" alt="image" src="https://github.com/user-attachments/assets/22c28d9f-eec6-47d1-9899-159877115449" />
 <pr>
 
+## file introduction
 
+| DataType | none |
+|----------|------|
+| **Min**  | none |
+| **Max**  | none |
+| **Default** | Not Applicable |
+
+**NrNasAptConfigCapability**  
+
+Configures the NAS capabilities, including authentication and security options.  
+
+**SCOPE:**  
+Activation time is controlled by the Activate command.  
+
+**DESCRIPTION:**  
+APT command to configure the NAS capabilities and the ciphering/integrity algorithms supported as reported to the network.  
+
+**SYNTAX:** 
+FORW MTE NRNASAPTCONFIGCAPABILITY
+
+**TAG:** 
+Not Applicable
+
+
+## parameters
+
+- **Parameter:** Nas Release Version
+  
+| DataType | Min | Max | Default |
+| -------- | --- | --- | ------- |
+| Int      | 0   | 2   | 0       |
+
+- Sets the NAS layer 3GPP release version
+    - 0 = Release 15,
+    - 1 = Release 16,
+    - 2 = Release 17
+
+Note this provides a per-UE value overriding any default value or global value defined by a SETP.
+
+- **Parameter:** NAS Security options
+
+| DataType | Enum |
+|----------|------|
+| **Min**  | 0    |
+| **Max**  | 4    |
+| **Default** | 3 |
+
+- **0** - No Authentication procedure and no NAS security mode procedure is expected (any received Authentication Request or Security Mode Command will be ignored)  
+- **1** - No NAS security mode procedure is expected. Any received Security Mode Command will be ignored. Authentication procedure is expected.  
+- **2** - NAS security mode is expected but message contents are ignored. Security mode procedure will complete but no NAS ciphering or integrity is started. Authentication procedure is expected. NAS security headers are not used.  
+- **3** - NAS security mode is expected and UE will act on contents starting NAS integrity and ciphering if configured. Authentication procedure is expected. NAS security headers are used. This is normal 3GPP defined behaviour and is the default if the command is not used.  
+- **4** - NAS security mode is expected. Authentication procedure is not expected.
+
+
+- **Parameter:** Supported Ciphering Algorithms  
+
+| DataType | Int  |
+|----------|------|
+| **Min**  | 0    |
+| **Max**  | 0xFF |
+| **Default** | 0xE0 |
+
+
+A bitfield of 8 bits indicating the supported ciphering algorithm(s).  
+The bit allocation is as follows, where setting the bit indicates that the algorithm is supported:  
+
+| Bit Position | Algorithm                |
+|--------------|--------------------------|
+| Bit 7 (MSB)  | 5G-EA0 (no ciphering)     |
+| Bit 6        | 5G-EA1 (SNOW 3G)          |
+| Bit 5        | 5G-EA2 (AES)              |
+| Bit 4        | 5G-EA3 (ZUC)              |
+| Bit 3        | 5G-EA4 (reserved)         |
+| Bit 2        | 5G-EA5 (reserved)         |
+| Bit 1        | 5G-EA6 (reserved)         |
+| Bit 0 (LSB)  | 5G-EA7 (reserved)         |
+
+
+- **Parameter:** Supported Integrity Algorithms  
+
+| DataType | Int  |
+|----------|------|
+| **Min**  | 0    |
+| **Max**  | 0xFF |
+| **Default** | 0xE0 |
+
+
+A bitfield of 8 bits indicating the supported integrity algorithm(s).  
+The bit allocation is as follows, where setting the bit indicates that the algorithm is supported:  
+
+| Bit Position | Algorithm                 |
+|--------------|---------------------------|
+| Bit 7 (MSB)  | 5G-IA0 (Null integrity)    |
+| Bit 6        | 5G-IA1 (SNOW 3G)           |
+| Bit 5        | 5G-IA2 (AES)               |
+| Bit 4        | 5G-IA3 (ZUC)               |
+| Bit 3        | 5G-IA4 (reserved)          |
+| Bit 2        | 5G-IA5 (reserved)          |
+| Bit 1        | 5G-IA6 (reserved)          |
+| Bit 0 (LSB)  | 5G-IA7 (reserved)          |
+
+- **Parameter:** Preferred RAT  
+
+| DataType | Int |
+|----------|-----|
+| **Min**  | 0   |
+| **Max**  | 1   |
+| **Default** | 1 |
+
+Selects preferred RAT:  
+- **0** = LTE (S1 Mode)  
+- **1** = NR (N1 Mode)  
+
+
+- **Parameter:** Drx Parameters
+
+| DataType | Enum |
+|----------|------|
+| **Min**  | 0    |
+| **Max**  | 4    |
+| **Default** | 0 |
+
+Drx parameters to be negotiated. Indicates that the UE wants to use DRX and for the network to indicate the DRX cycle value to be used at paging.  
+
+- **0** = Drx value not specified  
+- **1** = Drx cycle parameter T = 32  
+- **2** = Drx cycle parameter T = 64  
+- **3** = Drx cycle parameter T = 128  
+- **4** = Drx cycle parameter T = 256  
+
+Corresponds to 3GPP spec 24.501 section 9.11.3.2A.  
+
+- **Parameter:** Reflective QoS
+
+| DataType | Enum |
+|----------|------|
+| **Min**  | 0    |
+| **Max**  | 1    |
+| **Default** | 0 |
+
+**Parameter:** Reflective QoS  
+
+Enables the Reflective QoS support.  
+- **0** = Reflective QoS support disabled  
+- **1** = Reflective QoS support enabled  
+
+- **Parameter:** Downlink/Uplink Integrity protection maximum data rate  
+
+| DataType | Enum |
+|----------|------|
+| Min      | 0    |
+| Max      | 1    |
+| Default  | 0    |
+
+Specifies the maximum data rate per UE for user-plane integrity protection for downlink/uplink.  
+0 = 64 kbps  
+1 = Full Data rate  
+If not provided or [], the default value of 64 kbps is used.
+
+# NrPhyCalibrateUlPowerScaling   
+
+| DataType | none |
+|----------|------|
+| Min      | none |
+| Max      | none |
+| Default  | Not Applicable |
+
+**Parameter:** NrPhyCalibrateUlPowerScaling  
+
+Calibrate the UL Power Scaling.  
+
+**SCOPE:**  
+This command is available in all modes (PDCP_MODE, NAS_MODE, MTS_MODE). \ 
+The effects of this command are immediate.  
+
+**DESCRIPTION:**  
+This command is used to calibrate the UL power scaling to be applied to the uplink physical channels as an alternative to using the `NrPhyConfigUlPowerScalingCommon` command.\  
+Refer to `NrPhyConfigUlPowerScalingCommon` command description for more details of the operation of the UL power scaling.\  
+`NrSetMueRadioContextCell` must be called for the radio context to be calibrated before using this command.  \
+The command takes the radio context as a parameter and calibrates the power scaling value for the associated cell based on the measured path loss between the gNB and the TM500.\  
+The value calculated by this command is applied to all the UL power scaling values for the specified radio context.\  
+The command can be repeated as necessary to calibrate against all the required radio contexts.\  
+The calibrated results are provided in the Calibrated Power Scaling indication, with a separate indication being provided for each Radio Context.\  
+The calibration formula is as follows:\
+Calibrated UL Power Scaling = DLRS Power - RSRP + Delta UL DL Physical Attenuation  
+
+Possible Failure messages:
+- "Unable to calibrate ul power scaling" if any of the individual parameter ranges are out of range or if the calibrated power scaling value obtained is out of range.  
+- "Reference signal power must not be specified for NAS/MTS modes" if Signalled SSB Reference Signal Power is provided as optional parameter in command for NAS/MTS mode.  
+- "Reference signal power must be specified as optional parameter for PDCP mode" if Signalled SSB Reference Signal Power is not provided as optional parameter for PDCP mode.  
+- Radio context value provided in radio context is out of range or if the radio context has not been configured.  
+
+Possible warning messages:
+- Delta UL DL Physical Attenuation should only be provided if you are using radio card in dedicated port configuration; otherwise, the value will be ignored.  
+- TM500 will generate the following warning and not fail the command, instead using a default value of 0 for computation:  
+I: CMPI L1 WARNING: Ignoring Delta UL DL Physical Attenuation value for Radio Context <N>.\
+This value is only applicable when using radio module in dedicated port configuration\
+where the value of N can range from 0 to 47.  
+
+- If FixedSsb Calibration mode is selected and CRC is failing for Fixed SSB index provided by the user in the command, TM500 will generate the following warning and not fail the command.  
+It will fallback to using the firstSsb calibration mode:  
+I: CMPI L1 NR Calibrate Power Scaling WARN: For Fixed SsblId CRC failed, Calibration is defaulted using first SSB (i.e., default behaviour)
+
+**SYNTAX:**  
+FORW MTE NRPHYCALIBRATEULPOWERSCALING  
+
+**TAG:**  
+Not Applicable
+
+## parameters
+
+- **Parameter:** Radio Context  
+| DataType | Int |
+|----------|-----|
+| Min      | 0   |
+| Max      | 47  |
+| Default  |     |
+
+By default, all radio context will be selected.  
+Radio context for which calibration of UL power scaling value is required.  
+Calibration for multiple radio contexts can be performed using the ALL option.
+
+- **Parameter:** Signalled SSB Reference Signal Power
+
+| DataType | Int |
+|----------|-----|
+| Min      | -60 |
+| Max      | 50  |
+| Default  |     |
+
+Signalled SSB Reference Signal Power (ss-PBCH-BlockPower) in dBm.  
+This parameter must be provided in PDCP_MODE.  
+In other modes, a value must not be provided and the cell power is read by RRC from SIB1.
+
+- **Parameter:** Delta UL DL Physical Attenuation
+
+| DataType | Int |
+|----------|-----|
+| Min      | -30 |
+| Max      | 30  |
+| Default  | 0   |
+
+Attenuation difference between UL and DL paths in dB.  
+This parameter is applicable when using a dedicated configuration wherein the physical attenuation applied in UL and DL can be different.  
+If the physical attenuation is different in UL and DL, the user must provide the delta using the formula:  
+Delta UL DL Physical Attenuation = UL Physical Attenuation - DL Physical Attenuation
+
+
+- **Parameter:** RSRP Measurement Mode
+
+| DataType | Enum |
+|----------|------|
+| Min      | 0    |
+| Max      | 1    |
+| Default  |      |
+
+Flag to select which DL RSRP measurement mode to use:  
+- `0` = Use maximum measured RSRP across all DL receive antennas (Default).  
+- `1` = Use measured RSRP averaged across DL antennas 1 and 2.
+
+
+## NrPhyConfigUlPowerScalingCommon  
+
+| DataType | none |
+|----------|------|
+| Min      | none |
+| Max      | none |
+| Default  | Not Applicable |
+
+**Parameter:** NrPhyConfigUlPowerScalingCommon  
+
+Configure the cell common parameters for UL power scaling.  
+
+**SCOPE:**  
+This command is available in all modes (PDCP_MODE, NAS_MODE, MTS_MODE).  
+The effects of this command are immediate.  
+
+**DESCRIPTION:**  
+This command is used to configure the cell common parameters for UL power scaling.  
+
+**SYNTAX:**  
+FORW MTE NRPHYCONFIGULPOWERSCALINGCOMMON
+
+
+
+
+
+
+
+
+
+
+
+
+
+- Parameter: Downlink Integrity protection maximum data rate
+  
 | DataType | Min | Max | Default |
 | -------- | --- | --- | ------- |
 | Enum     | 0   | 1   | 0       |
 
-- Parameter: Downlink Integrity protection maximum data rate
-    - Specifies the maximum data rate per UE for user-plane integrity protection for downlink.
-        - 0 = 64 kbps
-        - 1 = Full Data rate
-        - If not provided or [], the default value of 64 kbps is used.
+
+- Specifies the maximum data rate per UE for user-plane integrity protection for downlink.
+    - 0 = 64 kbps
+    - 1 = Full Data rate
+    - If not provided or [], the default value of 64 kbps is used.
 
 
 
