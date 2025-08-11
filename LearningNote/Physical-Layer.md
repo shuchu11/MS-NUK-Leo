@@ -1,4 +1,4 @@
-# Problem
+<img width="931" height="440" alt="image" src="https://github.com/user-attachments/assets/d9b8178e-d2fe-45a4-a937-b4ed4bb9488d" /># Problem
 - Blew are the pics in TMA - cell search ， I want to know what do the parameters mean ? 
 
 <br>
@@ -404,7 +404,7 @@ Flag to select which DL RSRP measurement mode to use:
 - `1` = Use measured RSRP averaged across DL antennas 1 and 2.
 
 
-## NrPhyConfigUlPowerScalingCommon  
+# NrPhyConfigUlPowerScalingCommon  
 
 | DataType | none |
 |----------|------|
@@ -425,6 +425,64 @@ This command is used to configure the cell common parameters for UL power scalin
 
 **SYNTAX:**  
 FORW MTE NRPHYCONFIGULPOWERSCALINGCOMMON
+
+
+## parameters
+
+- **Parameter:** Mode
+ 
+| DataType | Enum |
+|----------|------|
+| Min      | 0    |
+| Max      | 1    |
+| Default  |      |
+
+Specifies the mode of UL power scaling that is applied.  
+- `0` = Automatic  
+- `1` = Semi-Automatic
+
+- **Parameter:** Global Offset
+
+| DataType | Int   |
+|----------|-------|
+| Min      | -1000 |
+| Max      | 1000  |
+| Default  | 0     |
+
+Power scaling offset applied to all the channels.  
+Range: [-100, 100] dB in 0.1 dB steps.
+
+-
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
