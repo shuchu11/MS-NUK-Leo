@@ -1,4 +1,4 @@
-<img width="931" height="440" alt="image" src="https://github.com/user-attachments/assets/d9b8178e-d2fe-45a4-a937-b4ed4bb9488d" /># Problem
+
 - Blew are the pics in TMA - cell search ， I want to know what do the parameters mean ? 
 
 <br>
