@@ -518,33 +518,3 @@ Range: [-100, 100] dB in 0.1 dB steps.
 
 
 
-
-
-| 參數名稱                                                | 說明                                                        |
-|:---------------------------------------------------:|:--------------------------------------------------------------:|
-| **NrNasAptConfigCapability**                        | 主設定項目（Required），代表UE的NR NAS能力配置                     |
-| **Nas Release Version**                             | NAS協議版本，通常從0開始對應3GPP版本                              |
-| **NAS Security options**                            | NAS安全選項（例如完整性保護、加密等）                              |
-| **Supported Ciphering Algorithms**                  | 支援的NAS加密演算法（如 0xe0 表示128-NEA0, NEA1, NEA2, NEA3）     |
-| **Supported Integrity Algorithms**                  | 支援的完整性保護演算法（如 0xe0 表示128-NIA0, NIA1, NIA2, NIA3）   |
-| **Preferred RAT**                                   | 偏好的無線接入技術（Radio Access Technology），1 通常代表 NR（5G）  |
-| **Drx Parameters**                                  | 不連續接收（Discontinuous Reception）參數                         |
-| **Reflective QoS**                                  | 是否啟用 Reflective QoS 功能                                      |
-| **Uplink Integrity protection maximum data rate**   | 使用者面上行完整性保護的最大速率（0 = 64 kbps，1 = Full Data Rate） |
-| **Downlink Integrity protection maximum data rate** | 使用者面下行完整性保護的最大速率（0 = 64 kbps，1 = Full Data Rate） |
-| **Reserved**                                        | 保留欄位，通常不啟用                                              |
-
-
-- **加密與完整性保護演算法對應（Mask 說明）**
-0xe0` = 支援所有 128-bit 安全演算法
-
- - Ciphering: NEA0, NEA1, NEA2, NEA3
- - Integrity: NIA0, NIA1, NIA2, NIA3
-
-- **Command Preview 範例**
-範例配置生成的 MTE 指令如下：
-```
-FORW MTE NRNASAPTCONFIGCAPABILITY 0 [] [0xe0] [0xe0] [] [] [] [1] [1] [] []
-```
-這部分設定屬於 5G UE 的 NAS（Non-Access Stratum）能力配置，主要用來定義 UE 在註冊到網路時通報的安全與協定功能，包括 支援的加密與完整性演算法（如 NEA/NIA 系列）、NAS 協定版本、使用者平面的完整性保護速率（上/下行），以及是否啟用 Reflective QoS 與 DRX（省電接收）參數。這些設定將會影響 UE 與核心網（如 AMF）之間的訊息處理與安全機制，並且透過底部的 Command Preview 生成實際指令發送給模擬或測試平台（如 TM500 或 OAI UE 模擬器）。掌握這些參數有助於測試各種網路場景下的註冊、保安與 QoS 行為。
-
