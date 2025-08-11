@@ -1,6 +1,10 @@
-<img width="1322" height="737" alt="image" src="https://github.com/user-attachments/assets/3a337a10-c276-426b-9f49-b7dffa8558f1" />
+# You can also learn the steps for cell search first.
+[cell search NOTE](https://hackmd.io/@Johnson-72/BJh4Ew873)
 
 # Frame Structure
+
+<img width="1322" height="737" alt="image" src="https://github.com/user-attachments/assets/3a337a10-c276-426b-9f49-b7dffa8558f1" />
+
 Unlike LTE’s fixed frame design, **5G NR adapts dynamically** to each service’s requirements.\
 This flexibility allows the network to optimize performance for both high-throughput and ultra-low-latency use cases.
 
