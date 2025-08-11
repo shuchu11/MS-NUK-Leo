@@ -410,6 +410,10 @@ Flag to select which DL RSRP measurement mode to use:
 
 # NrPhyConfigUlPowerScalingCommon  
 
+<pr>
+<img width="605" height="367" alt="image" src="https://github.com/user-attachments/assets/40668db4-a9f0-4c92-ba6b-e10238e90b46" />
+<pr>
+
 | DataType | none |
 |----------|------|
 | Min      | none |
