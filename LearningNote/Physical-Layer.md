@@ -304,7 +304,7 @@ If not provided or [], the default value of 64 kbps is used.
 # NrPhyCalibrateUlPowerScaling   
 
 <pr>
-<img width="931" height="440" alt="image" src="https://github.com/user-attachments/assets/066089d1-9242-4670-beba-0ae398a0088b" />
+<img width="607" height="455" alt="image" src="https://github.com/user-attachments/assets/64b0da16-bdc8-42d8-b203-42b55844207e" />
 <pr>
  
 | DataType | none |
