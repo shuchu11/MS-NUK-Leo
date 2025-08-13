@@ -88,7 +88,7 @@ sudo reboot # Reboot server
 ## 4. 進入UI
 <img width="1742" height="1037" alt="image" src="https://github.com/user-attachments/assets/1b3335b4-6b5a-4aeb-804b-d7521a616a0c" />
 
-在 Terminal 輸入以下確認更新後 kernel 版本
+在 Terminal 輸入以下確認更新後的 kernel 版本
 ```
 uname -r
 ```
