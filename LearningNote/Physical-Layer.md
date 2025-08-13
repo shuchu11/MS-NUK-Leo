@@ -955,24 +955,3 @@ Not Applicable
 
 
 
-
-
-
-
-
-
-
-- Parameter: Downlink Integrity protection maximum data rate
-  
-| DataType | Min | Max | Default |
-| -------- | --- | --- | ------- |
-| Enum     | 0   | 1   | 0       |
-
-
-- Specifies the maximum data rate per UE for user-plane integrity protection for downlink.
-    - 0 = 64 kbps
-    - 1 = Full Data rate
-    - If not provided or [], the default value of 64 kbps is used.
-
-
-
