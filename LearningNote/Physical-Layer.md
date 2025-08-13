@@ -1,4 +1,4 @@
-
+<img width="522" height="437" alt="image" src="https://github.com/user-attachments/assets/6bf55f57-0ef4-4d75-b385-976e5ad1d21a" /><img width="526" height="390" alt="image" src="https://github.com/user-attachments/assets/cbf019fc-bb88-4236-b57e-846838062eb3" /><img width="521" height="602" alt="image" src="https://github.com/user-attachments/assets/a3e590c1-dc9a-41e0-85e6-1b9fb10e2043" /><img width="522" height="520" alt="image" src="https://github.com/user-attachments/assets/c92a0b85-7f39-412c-a285-3adc2a6d652d" />
 - Blew are the pics in TMA - cell search ， I want to know what do the parameters mean ? 
 
 <br>
@@ -538,7 +538,400 @@ The UL carrier type (of the above mentioned radio context) with which the power 
 
 
 
+# Select UE0
 
+<img width="706" height="257" alt="image" src="https://github.com/user-attachments/assets/52f2daf4-97d3-4e62-a041-27c065091a67" />
+
+# Configure USIM
+
+<img width="830" height="575" alt="image" src="https://github.com/user-attachments/assets/7349881e-ef6a-4d25-a24e-1ac0c783f854" />
+<img width="832" height="382" alt="image" src="https://github.com/user-attachments/assets/4cf3086f-424f-4836-82dc-fafeabded596" />
+
+
+| DataType | none           |
+|----------|----------------|
+| Min      | none           |
+| Max      | none           |
+| Default  | Not Applicable |
+
+**Parameter:** UsimConfig  
+
+Configures the USIM.  
+
+**SCOPE:**  
+Activation time is controlled by the Activate command. The command is only valid if the UE is not registered to the network.  
+The command can only be issued once after STRT.  
+
+**DESCRIPTION:**  
+Configures a real or simulated USIM.  
+
+**SYNTAX:**  
+FORW MTE USIMCONFIG  
+
+**TAG:**  
+Not Applicable  
+
+> [!tip]
+> -  Importance in SA Access Procedure
+> 
+>     -  Prerequisite for Authentication
+> - USIM configuration is the prerequisite for the UE to register with the network and establish a secure connection, containing information such as IMSI and > > > authentication keys.  
+> - If the USIM is not correctly configured, the UE will not be able to pass the network authentication step after completing cell search, leading to access failure.
+> 
+>     -  Impact on Subsequent Registration and Service Capability
+>         - **UsimConfig** determines whether the UE uses a real or simulated USIM, directly affecting the test scenario and access behavior.  
+>         - The configuration affects the PLMN and APN lists the UE can register with, determining the feasibility of subsequent data and voice services.
+> 
+> - Relation to Cell Search
+>     - Cell search is the first step for the UE to access the network (synchronization and obtaining MIB/SIB).  
+>     - While **UsimConfig** does not participate in the radio layer search and synchronization, it determines whether the UE can initiate NAS layer registration after > finding the target cell.  
+>     - Without correct USIM configuration, even if cell search succeeds and system information is read, the UE cannot complete the subsequent random access and > registration procedure.  
+
+
+
+## parameters
+
+- 1.**Parameter:** USIM Type (Conditional)
+
+| DataType | Choice |
+|----------|--------|
+| Min      | 0      |
+| Max      | 1      |
+| Default  |        |
+
+- `0` = Real  
+- `1` = Simulated  
+
+*Note:* Real USIM is only supported for UE 0.  
+
+
+- 1.1. **Parameter:** USIM Type_EQUAL_TO_1  
+
+| DataType | Union         |
+|----------|---------------|
+| Min      | 1             |
+| Max      | 1             |
+| Default  | Not Applicable |
+
+Configures the USIM.  
+
+**SCOPE:**  
+Activation time is controlled by the Activate command. The command is only valid if the UE is not registered to the network.  
+The command can only be issued once after STRT.  
+
+**DESCRIPTION:**  
+Configures a real or simulated USIM.  
+
+**SYNTAX:**  
+FORW MTE USIMCONFIG  
+
+**TAG:**  
+Not Applicable  
+
+
+- 1.1.1.**Parameter:** IMSI (Optional)   
+| DataType | Bool          |
+|----------|--------------|
+| Min      | 1            |
+| Max      | 1            |
+| Default  | Not Applicable |
+
+Configures the USIM.  
+
+**SCOPE:**  
+Activation time is controlled by the Activate command. The command is only valid if the UE is not registered to the network.  
+The command can only be issued once after STRT.  
+
+**DESCRIPTION:**  
+Configures a real or simulated USIM.  
+
+**SYNTAX:**  
+FORW MTE USIMCONFIG  
+
+**TAG:**  
+Not Applicable  
+
+- 1.1.1.1 **Parameter:** IMSI
+
+| DataType | String |
+|----------|--------|
+| Min      | 6      |
+| Max      | 15     |
+| Default  |        |
+
+Maximum 15 decimal digits providing the IMSI.  
+- The leading 3 digits provide the **Mobile Country Code (MCC)**.  
+- The next 2 or 3 digits (depending on *MNC length*) provide the **Mobile Network Code (MNC)**.  
+- The remaining digits provide the **Mobile Subscriber Identification Number (MSIN)**.  
+
+In **MTS_MODE**, collective configuration is required by using the `SETUEGROUPCONTEXT` command and defining a rule for generating a unique IMSI per UE. Refer to the MTS user guide for details.  
+
+*Note:* These two parameters are shown in an optional block but are in fact mandatory.  
+
+
+
+- 1.1.1.2 **Parameter:** MNC length
+
+| DataType | Int |
+|----------|-----|
+| Min      | 2   |
+| Max      | 3   |
+| Default  |     |
+
+Provides the length of the MNC in digits.  
+
+
+- 1.1.1.2 **Parameter:** Access control class (Optional)
+
+| DataType | Bool           |
+|----------|----------------|
+| Min      | Not Applicable |
+| Max      | Not Applicable |
+| Default  | Not Applicable |
+
+Configures the USIM.  
+
+**SCOPE:**  
+Activation time is controlled by the Activate command. The command is only valid if the UE is not registered to the network.  
+The command can only be issued once after STRT.  
+
+**DESCRIPTION:**  
+Configures a real or simulated USIM.  
+
+**SYNTAX:**  
+FORW MTE USIMCONFIG  
+
+**TAG:**  
+Not Applicable
+
+---------
+
+| DataType | Enum |
+|----------|------|
+| Min      | 0    |
+| Max      | 1    |
+| Default  | 0    |
+
+**Parameter:** Last RPLMN use indication  
+
+- `0` = The UE shall attempt registration on the last registered PLMN.  
+- `1` = The UE shall attempt registration on the home network.  
+
+
+- 1.1.1.3 **Parameter:** Number of APN list entries (Optional)  
+
+| DataType | Bool           |
+|----------|----------------|
+| Min      | Not Applicable |
+| Max      | Not Applicable |
+| Default  | Not Applicable |
+
+Configures the USIM.  
+
+**SCOPE:**  
+Activation time is controlled by the Activate command. The command is only valid if the UE is not registered to the network.  
+The command can only be issued once after STRT.  
+
+**DESCRIPTION:**  
+Configures a real or simulated USIM.  
+
+**SYNTAX:**  
+FORW MTE USIMCONFIG  
+
+**TAG:**  
+Not Applicable  
+
+- 1.1.1.4 **Parameter:** Frequency Type (Optional)
+
+| DataType | Bool           |
+|----------|----------------|
+| Min      | Not Applicable |
+| Max      | Not Applicable |
+| Default  | Not Applicable |
+
+Configures the USIM.  
+
+**SCOPE:**  
+Activation time is controlled by the Activate command. The command is only valid if the UE is not registered to the network.  
+The command can only be issued once after STRT.  
+
+**DESCRIPTION:**  
+Configures a real or simulated USIM.  
+
+**SYNTAX:**  
+FORW MTE USIMCONFIG  
+
+**TAG:**  
+Not Applicable  
+
+---------
+
+- **Parameter:** UAC Access Identities Configuration
+  
+| DataType | Int  |
+|----------|------|
+| Min      | 0    |
+| Max      | 0x01 |
+| Default  |      |
+
+- `b1 = 0`: UE is not configured for Multimedia Priority Service in the HPLMN, EHPLMN, or a visited PLMN of the home country.  
+- `b1 = 1`: UE is configured for Multimedia Priority Service in the HPLMN, EHPLMN, or a visited PLMN of the home country.  
+
+*Note:* 8-bit value, but only **b1** is supported at present.  
+
+
+- 1.2 **Parameter:** Number of PLMN lists (Optional)
+
+| DataType | Bool          |
+|----------|--------------|
+| Min      | 1            |
+| Max      | 1            |
+| Default  | Not Applicable |
+
+Configures the USIM.  
+
+**SCOPE:**  
+Activation time is controlled by the Activate command. The command is only valid if the UE is not registered to the network.  
+The command can only be issued once after STRT.  
+
+**DESCRIPTION:**  
+Configures a real or simulated USIM.  
+
+**SYNTAX:**  
+FORW MTE USIMCONFIG  
+
+**TAG:**  
+Not Applicable  
+
+-------
+
+- 1.2.1 **Parameter:** Reset USIM  
+
+| DataType | Enum |
+|----------|------|
+| Min      | 0    |
+| Max      | 1    |
+| Default  | 0    |
+
+- `0` = Only update supplied parameters.  
+- `1` = Reset all parameters to defaults.  
+
+Only applicable for **Simulated USIM**.  
+Defaults are test USIM parameters as defined in **34.108 Section 8**.  
+
+- 1.2.2 **Parameter:** Authentication Key  
+
+| DataType | String[Hex] |
+|----------|-------------|
+| Min      | 32          |
+| Max      | 32          |
+| Default  |             |
+
+Only applicable for **Simulated USIM**.  
+Overrides secret key `K` for authentication.  
+
+The 128-bit key is specified as a 32 hexadecimal digit number where each hexadecimal digit represents a 4-bit *nibble*.  
+Example:  ABCDEF12345678900123456789ABCDEF
+
+
+Default is test USIM parameters as defined in **34.108 Section 8**.  
+
+- 1.3 **Parameter:** OP (Optional)
+
+| DataType | Bool         |
+|----------|--------------|
+| Min      | 1            |
+| Max      | 1            |
+| Default  | Not Applicable |
+
+Configures the USIM.  
+
+**SCOPE:**  
+Activation time is controlled by the Activate command. The command is only valid if the UE is not registered to the network.  
+The command can only be issued once after STRT.  
+
+**DESCRIPTION:**  
+Configures a real or simulated USIM.  
+
+**SYNTAX:**  
+FORW MTE USIMCONFIG  
+
+**TAG:**  
+Not Applicable  
+
+
+- 1.4 **Parameter:** SMC_address (Optional)
+
+| DataType | Bool           |
+|----------|----------------|
+| Min      | Not Applicable |
+| Max      | Not Applicable |
+| Default  | Not Applicable |
+
+Configures the USIM.  
+
+**SCOPE:**  
+Activation time is controlled by the Activate command. The command is only valid if the UE is not registered to the network.  
+The command can only be issued once after STRT.  
+
+**DESCRIPTION:**  
+Configures a real or simulated USIM.  
+
+**SYNTAX:**  
+FORW MTE USIMCONFIG  
+
+**TAG:**  
+Not Applicable  
+
+
+- 1.5 **Parameter:** Number of Allowed-CSG-Entries (Optional)
+
+| DataType | Bool           |
+|----------|----------------|
+| Min      | Not Applicable |
+| Max      | Not Applicable |
+| Default  | Not Applicable |
+
+Configures the USIM.  
+
+**SCOPE:**  
+Activation time is controlled by the Activate command. The command is only valid if the UE is not registered to the network.  
+The command can only be issued once after STRT.  
+
+**DESCRIPTION:**  
+Configures a real or simulated USIM.  
+
+**SYNTAX:**  
+FORW MTE USIMCONFIG  
+
+**TAG:**  
+Not Applicable  
+
+- 1.6 **Parameter:** Protection Scheme (Optional)
+
+| DataType | Bool          |
+|----------|--------------|
+| Min      | 1            |
+| Max      | 1            |
+| Default  | Not Applicable |
+
+Configures the USIM.  
+
+**SCOPE:**  
+Activation time is controlled by the Activate command. The command is only valid if the UE is not registered to the network.  
+The command can only be issued once after STRT.  
+
+**DESCRIPTION:**  
+Configures a real or simulated USIM.  
+
+**SYNTAX:**  
+FORW MTE USIMCONFIG  
+
+**TAG:**  
+Not Applicable  
+
+
+# 
 
 
 
