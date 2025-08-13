@@ -49,9 +49,34 @@ sudo reboot # Reboot server
 <img width="1182" height="828" alt="image" src="https://github.com/user-attachments/assets/83fa17b6-5c40-4d5d-abd2-f07750020148" />
 
 
-## 2.  選擇 Advanced options for Ubuntu
+- GRUB menu( 選擇 Advanced options for Ubuntu )
 <img width="1591" height="482" alt="image" src="https://github.com/user-attachments/assets/e33413e3-c9bf-435b-b17e-08b59a09773e" />
 
+> [!caution]
+> 如果你的系統沒有顯示 GRUB menu ，系統會將你自動導向 UI，這時請你在 Terminal 開啟 GRUB menu 選項，步驟如下:
+> ```bash
+> # 永久啟用 GRUB 選單
+> sudo nano /etc/default/grub
+> ```
+> 找到：
+> ```
+> GRUB_TIMEOUT_STYLE=hidden
+> GRUB_TIMEOUT=0
+> ```
+> 改成：
+> ```
+> GRUB_TIMEOUT_STYLE=menu
+> GRUB_TIMEOUT=5   #5 秒可以讓你有時間選 kernel
+> ```
+> 更新 GRUB
+> ```
+> sudo update-grub
+> ```
+> 重新開機
+> ```
+> sudo reboot
+> ```
+> 以後在reboot後都會顯示 GRUB menu
 
 ## 3.  選 kernel (Ubuntu, with Linux 5.15.0-1032-realtime)
 > [!caution]
