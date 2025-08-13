@@ -628,7 +628,8 @@ FORW MTE USIMCONFIG
 Not Applicable  
 
 
-- 1.1.1.**Parameter:** IMSI (Optional)   
+- 1.1.1.**Parameter:** IMSI (Optional)
+
 | DataType | Bool          |
 |----------|--------------|
 | Min      | 1            |
