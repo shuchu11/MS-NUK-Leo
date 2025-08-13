@@ -64,7 +64,7 @@ The table below lists the frequency bands and channel bandwidths of the 5G NR st
 
 ## point A 
 Tool 1 : [5G NR SSref (SSB) Frequency to GSCN Calculator](https://5g-tools.com/5g-nr-gscn-calculator/) \
-Tool 2 : [NR Reference Point A](https://www.sqimway.com/nr_refA.php) \
+Tool 2 : [NR Reference Point A](https://www.sqimway.com/nr_refA.php) 
 
 
 - **Downlink carrier frequency** `3749.7`MHz  ------> 5G NR ARFCN `649980`MHz
