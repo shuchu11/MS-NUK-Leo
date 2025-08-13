@@ -434,6 +434,11 @@ This command is used to configure the cell common parameters for UL power scalin
 **SYNTAX:**  
 FORW MTE NRPHYCONFIGULPOWERSCALINGCOMMON
 
+> [!TIP]
+> Ensure that the UE can be correctly received by the gNB.
+During the initial access, the UE must transmit uplink signals during the random access (PRACH) procedure and the subsequent RRC connection establishment process.
+If the uplink power is too low, the gNB may fail to detect the signal or misinterpret it; if it is too high, it may cause interference or violate power regulations.
+The common parameters configured by NrPhyConfigUlPowerScalingCommon ensure that different UEs transmit within a reasonable power range, thereby improving the success rate of access.
 
 ## parameters
 
@@ -460,15 +465,76 @@ Specifies the mode of UL power scaling that is applied.
 Power scaling offset applied to all the channels.  
 Range: [-100, 100] dB in 0.1 dB steps.
 
--
+- **Parameter:** Radio Context  
+
+| DataType | Enum |
+|----------|------|
+| Min      | 0    |
+| Max      | 47   |
+| Default  |      |
 
 
+By default all radio context will be selected  
+The Radio context with which the power scaling common parameters are associated.  
+**Note:** The Radio Context specified here should be part of the cell for which the common parameters are being specified.  
+
+- **Parameter:** Global Offset for PUSCH  
+
+| DataType | Int   |
+|----------|-------|
+| Min      | -1000 |
+| Max      | 1000  |
+| Default  | 0     |
+
+Power scaling offset applied to PUSCH channel. The offset value applied for PUSCH is this value plus the value specified in 'Global Offset' parameter for backward compatibility.  
+**Range:** [-100, 100] dB in 0.1 dB steps.  
+
+- **Parameter:** Global Offset for PUCCH  
+
+| DataType | Int   |
+|----------|-------|
+| Min      | -1000 |
+| Max      | 1000  |
+| Default  | 0     |
+
+Power scaling offset applied to PUCCH channel. The offset value applied for PUCCH is this value plus the value specified in 'Global Offset' parameter for backward compatibility.  
+**Range:** [-100, 100] dB in 0.1 dB steps.  
 
 
+- **Parameter:** Global Offset for PRACH
 
+| DataType | Int   |
+|----------|-------|
+| Min      | -1000 |
+| Max      | 1000  |
+| Default  | 0     |
 
+Power scaling offset applied to PRACH channel. The offset value applied for PRACH is this value plus the value specified in 'Global Offset' parameter for backward compatibility.  
+**Range:** [-100, 100] dB in 0.1 dB steps.  
 
+- **Parameter:** Global Offset for SRS
 
+| DataType | Int   |
+|----------|-------|
+| Min      | -1000 |
+| Max      | 1000  |
+| Default  | 0     |
+
+Power scaling offset applied to SRS channel. The offset value applied for SRS is this value plus the value specified in 'Global Offset' parameter for backward compatibility.  
+**Range:** [-100, 100] dB in 0.1 dB steps.  
+
+- **Parameter:** UL Carrier Type
+
+| DataType | Enum |
+|----------|------|
+| Min      | 0    |
+| Max      | 2    |
+| Default  | 0    |
+
+The UL carrier type (of the above mentioned radio context) with which the power scaling common parameters are associated.  
+- `0` = apply the parameters to non-supplementary UL carrier.  
+- `1` = apply the parameters to supplementary UL carrier. All related radio context should support SUL.  
+- `2` = apply the parameters to non-supplementary and supplementary UL carrier. All related radio context should support SUL.  
 
 
 
