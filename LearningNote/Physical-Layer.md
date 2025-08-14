@@ -931,28 +931,314 @@ FORW MTE USIMCONFIG
 Not Applicable  
 
 
-# 
+# NrPhyConfigSysCap
+
+<img width="617" height="497" alt="image" src="https://github.com/user-attachments/assets/4c68d821-734b-4dbe-b1ca-632751bd7a9a" />
 
 
+| DataType | none |
+|----------|------|
+| **Min**  | none |
+| **Max**  | none |
+| **Default** | Not Applicable |
+
+**Command:** NrPhyConfigSysCap  
+
+Configure the physical layer capabilities.  
+
+**SCOPE:**  
+This command can be used in all modes. The effects of this command are immediate.  
+The command is UE dependent and must be used before any other commands are issued for dedicated UE configuration.  
+
+**DESCRIPTION:**  
+This command is used to configure or modify the capabilities of the physical layer.  
+
+**SYNTAX:**  
+FORW MTE NRPHYCONFIGSYSCAP
+
+**TAG:** Not Applicable
+
+> [!tip]
+> **NrPhyConfigSysCap** is a physical layer capability configuration command.  
+> Its purpose is to inform the UE of the physical layer capabilities it supports, such as:
+>
+> - Supported number of antennas  
+> - Supported frequency ranges  
+> - Maximum uplink/downlink duty cycle  
+> - PUCCH, PUSCH transmission features  
+> - Uplink/Downlink switching time  
+>
+> Although it is not a direct signal processing step in cell search,  
+> its configuration affects whether the UE can correctly match the network capabilities during the cell search process.
+
+## parameters
+- **Parameter:** SRS-TxPortSwitch  
+
+| DataType | Enum |
+|----------|------|
+| **Min**  | 0    |
+| **Max**  | 7    |
+| **Default** | 0 |
+
+| Value | Description |
+|-------|-------------|
+| 0 | nr_SRS_TX_PORT_SWITCH_NOT_SUPPORTED |
+| 1 | nr_SRS_TX_PORT_SWITCH_1T2R |
+| 2 | nr_SRS_TX_PORT_SWITCH_1T4R |
+| 3 | nr_SRS_TX_PORT_SWITCH_2T4R |
+| 4 | nr_SRS_TX_PORT_SWITCH_1T4R_2T4R |
+| 5 | nr_SRS_TX_PORT_SWITCH_1T1R |
+| 6 | nr_SRS_TX_PORT_SWITCH_2T2R |
+| 7 | nr_SRS_TX_PORT_SWITCH_4T4R |
 
 
+- **Parameter:** Scaling Factor DL
+
+| DataType | Enum |
+|----------|------|
+| **Min**  | 0    |
+| **Max**  | 2    |
+| **Default** |    |
+
+Configures the UE capable data rate on DL.  
+
+| Value | Description |
+|-------|-------------|
+| 0 | f0p4, 40% of full data rate |
+| 1 | f0p75, 75% of full data rate |
+| 2 | f0p8, 80% of full data rate |
+
+If not provided or left empty, the full data rate capability is used for the UE DL.
 
 
+- **Parameter:** Scaling Factor UL
+
+| DataType | Enum |
+|----------|------|
+| **Min**  | 0    |
+| **Max**  | 2    |
+| **Default** |    |
+
+Configures the UE capable data rate on UL.  
+
+| Value | Description |
+|-------|-------------|
+| 0 | f0p4, 40% of full data rate |
+| 1 | f0p75, 75% of full data rate |
+| 2 | f0p8, 80% of full data rate |
+
+If not provided or left empty, the full data rate capability is used for the UE UL.
+
+- **Parameter:** Number of UE receive antennas
+
+| DataType | Enum |
+|----------|------|
+| **Min**  | 1, 2, 4, 8 |
+| **Max**  | 1, 2, 4, 8 |
+| **Default** |   |
+
+Provides the number of receive antennas supported by the UE.  
+
+**Default:**  
+If not provided, the value for "Number of receive antennas" in the command `NrSetMueRadioContextCell` will be used in TM500.  
+
+**Note:**  
+- The value of this parameter should not exceed the value for "Number of receive antennas" in `NrSetMueRadioContextCell`.  
+- If the provided value is greater than the value in `NrSetMueRadioContextCell`, the latter will be used in TM500.  
+- The value specified for a specific UE in this command overrides the value provided in `NrSetMueRadioContextCell`.
+
+- **Parameter:** Number of UE transmit antennas
+
+| DataType | Int |
+|----------|-----|
+| **Min**  | 1   |
+| **Max**  | 2   |
+| **Default** | 2 |
+
+Provides the number of transmit antennas supported by the UE.
 
 
+- **Parameter:** MaxUplinkDutyCycle-PC2-FR1
+
+| DataType | Enum |
+|----------|------|
+| **Min**  | 0    |
+| **Max**  | 4    |
+| **Default** |   |
+
+| Value | Description |
+|-------|-------------|
+| 0 | n60, maxUplinkDutyCycle is 60% |
+| 1 | n70, maxUplinkDutyCycle is 70% |
+| 2 | n80, maxUplinkDutyCycle is 80% |
+| 3 | n90, maxUplinkDutyCycle is 90% |
+| 4 | n100, maxUplinkDutyCycle is 100% |
+
+This corresponds to 38.331 IE `maxUplinkDutyCycle-PC2-FR1` as per spec 38.331.  
+
+If not provided or left empty, this capability is not reported by the UE to the network,  
+and the value 50% is used in the TM500 for calculations as per section 6.2.4 of 38.101.
 
 
+- **Parameter:** MaxUplinkDutyCycle-FR2  
+
+| DataType | Enum |
+|----------|------|
+| **Min**  | 0    |
+| **Max**  | 10   |
+| **Default** |   |
 
 
+| Value | Description |
+|-------|-------------|
+| 0  | n15, maxUplinkDutyCycle is 15%  |
+| 1  | n20, maxUplinkDutyCycle is 20%  |
+| 2  | n25, maxUplinkDutyCycle is 25%  |
+| 3  | n30, maxUplinkDutyCycle is 30%  |
+| 4  | n40, maxUplinkDutyCycle is 40%  |
+| 5  | n50, maxUplinkDutyCycle is 50%  |
+| 6  | n60, maxUplinkDutyCycle is 60%  |
+| 7  | n70, maxUplinkDutyCycle is 70%  |
+| 8  | n80, maxUplinkDutyCycle is 80%  |
+| 9  | n90, maxUplinkDutyCycle is 90%  |
+| 10 | n100, maxUplinkDutyCycle is 100% |
+
+This corresponds to 38.331 IE `maxUplinkDutyCycle-FR2` as per spec 38.331.  
+
+If not provided or left empty, this capability is not reported by the UE to the network.  
+
+If the percentage of uplink symbols transmitted within any 1s evaluation period is larger than `maxUplinkDutyCycle-FR2`,  
+then UE behaviour is specified in **TS 38.101-2**.
+
+- **Parameter:** PUCCH Capability  
+
+| DataType | Int  |
+|----------|------|
+| **Min**  | 0x01 |
+| **Max**  | 0x7F |
+| **Default** | 0x7 |
+
+Bitmap representing different PUCCH capabilities as indicated by 38.822 Table 4.1-1.  
+BitString of 8 bits (2 nibbles).  
+
+| Bit  | Description |
+|------|-------------|
+| Bit0 | 4-19  sameSymbol in mux-SR-HARQ-ACK-CSI-PUCCH-OncePerSlot |
+| Bit1 | 4-19a mux-SR-HARQ-ACK-PUCCH |
+| Bit2 | 4-19c diffSymbol in mux-SR-HARQ-ACK-CSI-PUCCH-OncePerSlot |
+| Bit3 | 4-19b mux-SR-HARQ-ACK-CSI-PUCCH-MultiPerSlot |
+| Bit4 | 4-2   twoPUCCH-F0-2-ConsecSymbols |
+| Bit5 | 4-22  onePUCCH-LongAndShortFormat |
+| Bit6 | 4-22a twoPUCCH-AnyOthersInSlot |
+
+**Default:** `0x7` — UE reports 4-19, 4-19a, and 4-19c PUCCH capability to the network by default.
 
 
+- **Parameter:** UplinkTxSwitching Period  
+
+| DataType | Enum |
+|----------|------|
+| **Min**  | 0    |
+| **Max**  | 2    |
+| **Default** | 0 |
+
+| Value | Description |
+|-------|-------------|
+| 0 | 35 µs  |
+| 1 | 140 µs |
+| 2 | 210 µs |
+
+This corresponds to 38.331 IE `uplinkTxSwitchingPeriod-r16`.  
+Currently, only values **0** and **1** are supported.
 
 
+- **Parameter:** Ul-FullPowerTransmission-r16 (Optional)  
+
+| DataType | Bool |
+|----------|------|
+| **Min**  | Not Applicable |
+| **Max**  | Not Applicable |
+| **Default** | Not Applicable |
+
+Configure the physical layer capabilities.  
+
+**SCOPE:**  
+This command can be used in all modes. The effects of this command are immediate.  
+The command is UE dependent and must be used before any other commands are issued for dedicated UE configuration.  
+
+**DESCRIPTION:**  
+This command is used to configure or modify the capabilities of the physical layer.  
+
+**SYNTAX:**  
+FORW MTE NRPHYCONFIGSYSCAP
+
+**TAG:** Not Applicable
+
+- **Parameter:** Pusch-TransCoherence  
+
+| DataType | Enum |
+|----------|------|
+| **Min**  | 0    |
+| **Max**  | 2    |
+| **Default** | 2 |
+
+| Value | Description     |
+|-------|-----------------|
+| 0     | nonCoherent     |
+| 1     | partialCoherent |
+| 2     | fullCoherent    |
+
+This corresponds to 38.331 IE `pusch-TransCoherence`.
+
+- **Parameter:** AS Release  
+
+| DataType | Enum |
+|----------|------|
+| **Min**  | 0    |
+| **Max**  | 1    |
+| **Default** | 0 |
+
+| Value | Description |
+|-------|-------------|
+| 0 | Release 15 |
+| 1 | Release 16 |
+
+**Note:** Only applicable and used for configuration in PDCP mode.
 
 
+- **Parameter:** Pusch Different TB Per Slot  
 
+| DataType | Enum |
+|----------|------|
+| **Min**  | 0    |
+| **Max**  | 1    |
+| **Default** | 0 |
 
+| Value | Description |
+|-------|-------------|
+| 0 | Support not enabled |
+| 1 | Support enabled |
 
+This corresponds to 38.306 IE `pusch-ProcessingType1-DifferentTB-PerSlot`.
 
+- **Parameter:** MaxUplinkDutyCycle-interBandCA-PC2-r17  
 
+| DataType | Enum |
+|----------|------|
+| **Min**  | 0    |
+| **Max**  | 5    |
+| **Default** |   |
 
+| Value | Description |
+|-------|-------------|
+| 0 | n50, maxUplinkDutyCycle is 50%  |
+| 1 | n60, maxUplinkDutyCycle is 60%  |
+| 2 | n70, maxUplinkDutyCycle is 70%  |
+| 3 | n80, maxUplinkDutyCycle is 80%  |
+| 4 | n90, maxUplinkDutyCycle is 90%  |
+| 5 | n100, maxUplinkDutyCycle is 100% |
+
+This corresponds to 38.331 IE `maxUplinkDutyCycle-interBandCA-PC2-r17` as per spec 38.331.  
+
+If not provided or left empty, this capability is not reported by the UE to the network.  
+Then UE behaviour is specified in TS 38.101-1 section 6.2A.1.3.
