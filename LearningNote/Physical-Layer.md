@@ -82,57 +82,6 @@ As the result, you can find this Point A `3708.48 MHz` compliant to the list.
 <img width="930" height="870" alt="image" src="https://github.com/user-attachments/assets/7c9e6592-fe2f-41d3-bd79-9d52dc4ccbd8" />
 <pr>
 
-# Config NAS PLMN Slection 
-
-<pr>
-<img width="1697" height="711" alt="螢幕擷取畫面 2025-08-01 155126" src="https://github.com/user-attachments/assets/d2fddd39-4002-4c0f-9e3c-e171ee4bd8b9" />
-<pr>
-
-
-
-### Parameter Help: Force PLMN
-
-| Field     | Value  |
-|-----------|--------|
-| DataType  | String |
-| Min       | 5      |
-| Max       | 6      |
-| Default   |        |
-
----
-
-**Parameter:** Force PLMN  
-**Description:**  
-- Force use of a particular PLMN. Initial registration is attempted to the specified PLMN.  
-- PLMN is provided in a string of **5 or 6 decimal digits**.  
-- The **leading 3 digits** provide the **Mobile Country Code (MCC)**.  
-- The **next 2 or 3 digits** (depending on *MNC length*) provide the **Mobile Network Code (MNC)**.
-
-
-
-
-### Parameter Help: Radio Access Type
-
-
-|   Field     |   Value  |
-|:-----------:|:--------:|
-| DataType    |   Enum   |
-| Min         |   0      |
-| Max         |   4      |
-| Default     |   3      |
-
----
-
-**Parameter:** Radio Access Type  
-**Description:**  
-- Values **0**, **1**, and **2** are reserved for future use.  
-- **3** = NG-RAN  
-- **4** = SATELLITE NG-RAN  
-- **Note:** This parameter is **not used for LTE (4G)**.
-
-
-
-
 
 # Config NR NAS Capabilities
 
@@ -1242,3 +1191,127 @@ This corresponds to 38.331 IE `maxUplinkDutyCycle-interBandCA-PC2-r17` as per sp
 
 If not provided or left empty, this capability is not reported by the UE to the network.  
 Then UE behaviour is specified in TS 38.101-1 section 6.2A.1.3.
+
+
+# Config NAS PLMN Slection 
+
+<pr>
+<img width="1697" height="711" alt="螢幕擷取畫面 2025-08-01 155126" src="https://github.com/user-attachments/assets/d2fddd39-4002-4c0f-9e3c-e171ee4bd8b9" />
+<pr>
+
+
+- **Parameter:** Force PLMN  
+
+| Field     | Value  |
+|-----------|--------|
+| DataType  | String |
+| Min       | 5      |
+| Max       | 6      |
+| Default   |        |
+
+**Description:**  
+- Force use of a particular PLMN. Initial registration is attempted to the specified PLMN.  
+- PLMN is provided in a string of **5 or 6 decimal digits**.  
+- The **leading 3 digits** provide the **Mobile Country Code (MCC)**.  
+- The **next 2 or 3 digits** (depending on *MNC length*) provide the **Mobile Network Code (MNC)**.
+
+
+- **Radio Access Type**
+
+|   Field     |   Value  |
+|:-----------:|:--------:|
+| DataType    |   Enum   |
+| Min         |   0      |
+| Max         |   4      |
+| Default     |   3      |
+
+**Description:**  
+- Values **0**, **1**, and **2** are reserved for future use.  
+- **3** = NG-RAN  
+- **4** = SATELLITE NG-RAN  
+- **Note:** This parameter is **not used for LTE (4G)**.
+
+
+# Timing Type  
+
+<img width="622" height="295" alt="image" src="https://github.com/user-attachments/assets/5da11b47-87ce-4c96-9d72-ffcdecddcd5e" />
+
+| DataType | Enum |
+|----------|------|
+| Min      | -1   |
+| Max      | 1    |
+| Default  |      |
+
+
+Timing type for activation  
+- `-1` = Immediate  
+- `0` = Not supported  
+- `1` = Not supported  
+
+Immediate is assumed for activations requiring handover.
+
+## parameters
+
+- **Parameter:** Timing Type  
+
+| DataType | Enum |
+|----------|------|
+| Min      | -1   |
+| Max      | 1    |
+| Default  |      |
+
+Timing type for activation  
+- `-1` = Immediate  
+- `0` = Not supported  
+- `1` = Not supported  
+
+Immediate is assumed for activations requiring handover.
+
+- **Parameter:** Reserved  
+
+| DataType | Int  |
+|----------|------|
+| Min      | 0    |
+| Max      | 1023 |
+| Default  |      |
+
+Not used. Leave blank unless the following parameter is used, in which case '[]' must be entered.  
+Omit if 'Timing type' is -1.
+
+- **Parameter:** Activation on Frame Boundary 
+
+| DataType | Bool |
+|----------|------|
+| Min      | 0    |
+| Max      | 1    |
+| Default  | 0    | 
+
+- `0` = Activation on next available subframe.  
+- `1` = Activation on Frame Boundary (i.e. next subframe 0).
+
+# 
+<img width="660" height="291" alt="image" src="https://github.com/user-attachments/assets/ffd9f1c3-853a-4c2a-a71b-86881501626b" />
+
+| DataType | none          |
+|----------|---------------|
+| Min      | none          |
+| Max      | none          |
+| Default  | Not Applicable |
+
+**Command:** DeConfigRdaStartTestCase  
+
+Configure and start a Real Data Application Test Case  
+
+**SCOPE:**  
+This command is available in PDCP_MODE, NAS_MODE and MTS_MODE.  
+Activation is immediate.  
+The command returns a confirmation of acceptance immediately, but the final INDication of completion is deferred until the execution has completed some time later.  
+Note that no actions involving state change of Real Data Apps (such as UE attach for any UE pre-configured with Real Data Applications) can be performed until execution is complete.  
+The command completion time depends on the Test Group size – as a guide, approximately 18s for a 200UE × 3PDN connections per UE Test Group; this time increases as more UEs / PDNs / applications are provisioned.  
+
+**DESCRIPTION (continued):**  
+Additional RDA commands should not be issued until the start indication is output  
+`"I: CMPI DTE RDA TEST GROUP STARTED IND:"` or an error message is output.  
+
+**SYNTAX:**  
+FORW MTE DECONFIGRDASTARTTESTCASE
