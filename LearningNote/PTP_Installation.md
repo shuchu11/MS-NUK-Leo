@@ -33,7 +33,7 @@ hybrid_e2e             0
 >      - When use E810 NIC the tx_timestamp_timeout need to set to 50 or 100 to successful run ptp4l.
 > - **PTP grandmaster** is reachable via interafce **ens1f1np1**(need to change to your interface linked to TM500)
 
-## 3 .Stop 
+## 3 .Stop NTP
 
 If your *rms > 100 ms* or *phc offset > 100*, it is recommended to perform the following action – **Disable Network Time Protocol (NTP)**, because having both **PTP** and **NTP** enabled at the same time can result in two conflicting clocks, which may cause confusion or malfunction in ptp4l or phc2sys.
 
