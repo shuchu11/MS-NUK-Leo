@@ -40,8 +40,10 @@ If your *rms > 100 ms* or *phc offset > 100*, it is recommended to perform the f
 ```
 #Disable Network Time Protocol (NTP)
 #to check there is NTP enabled or not
+
 sudo timedatectl | grep NTP
 // NTP service: active
+
 #to disable
 sudo timedatectl set-ntp false
 ```
