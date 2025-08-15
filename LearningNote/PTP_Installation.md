@@ -54,16 +54,18 @@ sudo timedatectl | grep NTP
 ```
 
 ## 4 .Start ptp4l & phc2sys
+
 ```
-sudo ptp4l -i ens1f1np1 -m -H -2 -s -f /etc/ptp4l.conf     # start ptp4l
+sudo ptp4l -i <Net name> -m -H -2 -s -f /etc/ptp4l.conf     # start ptp4l
 ```
+you should replace `<Net name>` with the one TM500 attached.
 <img width="751" height="224" alt="image" src="https://github.com/user-attachments/assets/0b6e0018-0369-4cc9-94e6-308efa75c3ea" />
 
 start `ptp4l` successfully
 
 - Run phc2sys
 ```
-sudo phc2sys -w -m -s ens1f1np1 -R 8 -f /etc/ptp4l.conf
+sudo phc2sys -w -m -s <Net name> -R 8 -f /etc/ptp4l.conf
 ```
 
 -------------------------------------------------------------------
