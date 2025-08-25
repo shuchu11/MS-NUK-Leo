@@ -1,4 +1,9 @@
-
+# Index
+- [如何開啟SERVER螢幕](#pc)
+- [Reinstallion](#%E5%A6%82%E4%BD%95-re-install-os)
+   - [Reinstall後需安裝 ssh 和 7zip](#reinstall%E5%BE%8C%E9%9C%80%E5%AE%89%E8%A3%9D-ssh-%E5%92%8C-7zip) 
+- [Change kernel](#change--kernel)
+- [製作開機碟USB](#%E8%A3%BD%E4%BD%9C-ubuntu-%E9%96%8B%E6%A9%9F%E9%9A%A8%E8%BA%AB%E7%A2%9F)
 # PC 
 
 Blew is the screen attach to each server
@@ -36,8 +41,25 @@ You can use the buttom here to switch the screen to your server system
 > [!NOTE]
 > 若Ubuntu USB啟動失敗，畫面自動跳回BIOS介面，請嘗試以下指令 --> `F11` Invoke Boot Menu > "USB"
 
+### Reinstall後需安裝 ssh 和 7zip
+```
+--------------7 zip --------------
+sudo apt update
+sudo apt install p7zip-full
+7z x filename.7z
 
+--------------- ssh --------
 
+sudo apt update
+sudo apt install -y openssh-server
+
+---------> check info blew
+
+> sudo systemctl enable ssh
+> sudo systemctl start ssh
+> sudo systemctl status ssh
+
+```
 
 # Change  kernel 
 
@@ -77,6 +99,7 @@ sudo reboot # Reboot server
 > sudo reboot
 > ```
 > 以後在reboot後都會顯示 GRUB menu
+
 
 ## 3.  選 kernel (Ubuntu, with Linux 5.15.0-1032-realtime)
 > [!caution]
