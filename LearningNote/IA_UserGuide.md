@@ -95,3 +95,7 @@ uname -r
 顯示 `5.15.0-1032-realtime`，更改成功!
 
 <img width="360" height="47" alt="image" src="https://github.com/user-attachments/assets/b9a382a3-0d75-43d7-a385-e89c1c5a4f4a" />
+
+
+# 製作 Ubuntu 開機隨身碟
+https://ithelp.ithome.com.tw/articles/10191497
