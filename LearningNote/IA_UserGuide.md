@@ -122,3 +122,6 @@ uname -r
 
 # 製作 Ubuntu 開機隨身碟
 https://ithelp.ithome.com.tw/articles/10191497
+
+ISSUE : 
+<img width="1288" height="977" alt="image" src="https://github.com/user-attachments/assets/7bd3cfad-0696-4cf9-8aaa-e81a686a3eb6" />
