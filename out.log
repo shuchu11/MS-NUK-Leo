@@ -1,0 +1,90 @@
+NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
+loop0    7:0    0   2.7G  1 loop /rofs
+loop1    7:1    0     4K  1 loop /snap/bare/5
+loop2    7:2    0  74.3M  1 loop /snap/core22/1612
+loop3    7:3    0 271.2M  1 loop /snap/firefox/4848
+loop4    7:4    0  91.7M  1 loop /snap/gtk-common-themes/1535
+loop5    7:5    0 505.1M  1 loop /snap/gnome-42-2204/176
+loop6    7:6    0  12.9M  1 loop /snap/snap-store/1113
+loop7    7:7    0   500K  1 loop /snap/snapd-desktop-integration/178
+loop8    7:8    0  38.8M  1 loop /snap/snapd/21759
+sda      8:0    1  28.9G  0 disk 
+└─sda1   8:1    1  28.9G  0 part /cdrom
+sdb      8:16   1  57.6G  0 disk 
+└─sdb1   8:17   1  57.6G  0 part /media/ubuntu/AMAMYA
+Disk /dev/loop0: 2.74 GiB, 2945802240 bytes, 5753520 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+
+
+Disk /dev/loop1: 4 KiB, 4096 bytes, 8 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+
+
+Disk /dev/loop2: 74.27 MiB, 77881344 bytes, 152112 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+
+
+Disk /dev/loop3: 271.24 MiB, 284413952 bytes, 555496 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+
+
+Disk /dev/loop4: 91.69 MiB, 96141312 bytes, 187776 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+
+
+Disk /dev/loop5: 505.09 MiB, 529625088 bytes, 1034424 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+
+
+Disk /dev/loop6: 12.93 MiB, 13553664 bytes, 26472 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+
+
+Disk /dev/loop7: 500 KiB, 512000 bytes, 1000 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+
+
+Disk /dev/sda: 28.91 GiB, 31042043904 bytes, 60628992 sectors
+Disk model: USB DISK 3.0    
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0x3a67b573
+
+Device     Boot Start      End  Sectors  Size Id Type
+/dev/sda1  *     2048 60628959 60626912 28.9G  c W95 FAT32 (LBA)
+
+
+Disk /dev/sdb: 57.62 GiB, 61865984000 bytes, 120832000 sectors
+Disk model: USB Flash Drive 
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0x0f94678e
+
+Device     Boot Start       End   Sectors  Size Id Type
+/dev/sdb1  *     2048 120831935 120829888 57.6G  c W95 FAT32 (LBA)
+
+
+Disk /dev/loop8: 38.83 MiB, 40714240 bytes, 79520 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
