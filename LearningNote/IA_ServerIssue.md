@@ -34,8 +34,10 @@ Restart the server, and at the screen shown below, press DEL to enter the **Setu
 ### 6. "Operation" > "Make JBOD" 
 <img width="864" height="704" alt="5" src="https://github.com/user-attachments/assets/daa55e1d-8489-4435-b55c-3ca4e4e01535" />
 
-### 7. Go
+### 7. " Go "
 <img width="857" height="655" alt="6" src="https://github.com/user-attachments/assets/731c40cc-7d36-439f-8d58-4774700f2309" />
 
 ### 8. Success to set `Driver = 1` , `JBODs = 1`
+After completing the settings, exit to the initial Advanced screen of the BIOS, then re-enter the RAID card, you will see JBODs.
+
 <img width="867" height="678" alt="7" src="https://github.com/user-attachments/assets/43e7901b-ddff-4b09-a47f-0f55a5f0a417" />
