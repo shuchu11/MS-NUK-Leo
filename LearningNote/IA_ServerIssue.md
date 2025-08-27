@@ -24,8 +24,9 @@ Restart the server, and at the screen shown below, press DEL to enter the **Setu
 ### 3. To set `Driver = 1` , `JBODs = 1`  ， Enter" Main menu "  
 <img width="839" height="667" alt="2" src="https://github.com/user-attachments/assets/00fe6447-2ce9-4a7b-97d6-7c0747387979" />
 
-### 4. Enter " Virtual Drive Management "
-<img width="893" height="720" alt="3" src="https://github.com/user-attachments/assets/cb45666c-c0bf-4dee-b5a3-b6b0d1285005" />
+### 4. Enter " Drive Management "
+<img width="1006" height="750" alt="image" src="https://github.com/user-attachments/assets/c83887db-0ddb-4540-9721-36e2b11d3894" />
+
 
 ### 5. Here are all the hard drives you have installed
 <img width="896" height="717" alt="4" src="https://github.com/user-attachments/assets/15d68d42-3311-42b1-965b-af2533d4f27d" />
