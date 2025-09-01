@@ -1,13 +1,16 @@
+### 1. Edit DNS configuration
 ```
 sudo nano /etc/resolv.conf
 ```
-Please change the `nameserver` to the correct DNS\
-(EX: `DNS` = 192.168.8.72)
+Please change the `nameserver` to the correct DNS
+
 ```
+# EX: `DNS` = 192.168.8.72
+
 nameserver 192.168.8.72
 ```
 
-Check the DNS status
+### 2. Check the DNS status
 ```
 resolvectl status
 
@@ -29,7 +32,7 @@ Current DNS Server: 140.118.31.99
 
 ```
 
-You can also use the command blew to check
+**You can also use the command blew to check**
 ```
 ubuntu@ubuntu-SYS-111E-WR:~/O-DU-High$ nslookup git.bmw.lab
 Server:         192.168.8.72
