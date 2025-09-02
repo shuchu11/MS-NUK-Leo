@@ -1,4 +1,11 @@
+## Chap
+1. [How to set DNS](#1-edit-dns-configuration)
+2. [Git token](#pullpush-with-token) 
+
+### 0. Tip
+Check you have WireGuard VPN(and have the VPN key) or  server and DNS are under the same Internet .
 ### 1. Edit DNS configuration
+
 ```
 sudo nano /etc/resolv.conf
 ```
@@ -41,3 +48,25 @@ Address:        192.168.8.72#53
 Name:   git.bmw.lab
 Address: 10.1.0.42
 ```
+
+### PULL/PUSH WITH TOKEN 
+EX : URL(HTTPS) - https://git.bmw.lab/Odu/O-DU-High.git
+
+add `<username>:<token>@` into your URL
+```
+#PULL
+git clone https://<username>:<token>@git.bmw.lab/Odu/O-DU-High.git
+
+# PUSH
+git add .
+git commit -m "first commit"
+
+# Setting remote with token
+git remote add origin https://<username>:<token>@git.bmw.lab/Odu/O-DU-High.git
+
+# push
+git push -u origin main
+```
+
+
+
