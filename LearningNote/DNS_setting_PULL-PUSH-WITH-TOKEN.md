@@ -3,7 +3,7 @@
 2. [Git token](#pullpush-with-token) 
 
 ### 0. Tip
-Check you have WireGuard VPN(and have the VPN key) or  server and DNS are under the same Internet .
+Ensure that you have WireGuard VPN(and have the VPN key) or  server and DNS are under the same Internet .
 ### 1. Edit DNS configuration
 
 ```
